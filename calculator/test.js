@@ -8,12 +8,9 @@ function test(){
   } else {
     result = 'a';
   }
-  result = 'b';
+  result += 'b';
   return result;
 }
-
-
-
 
 function test() {
   let result = '';
