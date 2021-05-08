@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자 야구 게임</title>
+</head>
+<body>
+  <form id="form">
+    <input type="text" id="input">
+    <button type="submit">확인</button>
+  </form>
+  <div id="logs"></div>
+  <script>
+    const $input = document.querySelector('#input');
+    const $form = document.querySelector('#form');
+    const $logs = document.querySelector('#logs');
+    const numbers = []; // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    for (let n = 0; n < 9; n++) {
+      numbers.push(n + 1);  
+    }
+
+    /*
+     * for 문으로 동일한 값들을 다르게 배열에 저장하는 방법
+       for(let n = 1; n <= 9; n++){
+        numbers.push(n);
+       }
+     */
+
+    /*
+     * numbers 변수에 while 문으로 숫자 0~9까지 배열에 저장
+    let number = 0;
+
+    while(number < 9){
+      numbers.push(number + 1);
+      number++;
+    }
+    */
+
+    /*
+     * 값들만 모을 때는 배열, 개별 값들에 이름을 붙일 때는 객체 리터럴
+     */
+    const answer = [];
+    for (let n = 0; n < 4; n++) { // 4번 반복(0,1,2,3)
+      // const index = Math.floor(Math.random() * 9); // 0부터 8까지 정수
+      // const index = Math.floor(Math.random() * (9 - n)); // 0부터 8까지 정수
+      const index = Math.floor(Math.random() * numbers.length); // numbers의 길이에 따라
+      answer.push(numbers[index]);
+      numbers.splice(index, 1); // nunbers 변수에서 index에 위치한 값을 뺀다.
+    }
+    console.log(answer); // undefined와 같은 극단적인 케이스는 끝 값에서 발생함.
+
+    const tries = []; // 사용자들이 4자리를 입력한 값들의 모음
+
+    function checkInputValue(input){
+      if(input.length !==4){ // 인풋 값의 갯수들이 4가 아니라면(ex. 314: x, 3144: o)
+        return alert('4자리 숫자를 입력해 주세요');
+      }
+      /*
+       * new Set은 중복을 제거한 배열
+       * alert의 리턴 값은 undefined임.
+       */
+      if(new Set(input).size !==4){ // 중복되지 않는 숫자들이 4가 아니라면(ex. 3144: x, 3146: o)
+        return alert('중복되지 않게 입력해 주세요');
+      }
+      if(tries.includes(input)){ // 입력한 4자리 숫자가 이미 존재한다면
+        return alert('이미 시도한 값입니다.');
+      }
+      return true; // 모든 검증을 통과하면
+    }
+
+    $form.addEventListener('submit', (event) => {
+      event.preventDefault(); // 폼은 서브밋할 때 기본 동작이 새로고침이므로 막아 줘야 된다.
+      // const value = event.target[0].value;
+      const value = $input.value;
+      $input.value = '';
+      
+      /*
+       * undefined은 if문 안에 들어가면 false임.
+       */
+      if(checkInputValue(value)) {
+        // 입력값에 에러가 없으면
+        if(answer.join('') === value){
+          $logs.textContent = '홈런';
+          return;
+        }
+        if(tries.length >= 9){
+          const message = document.createTextNode(`패배! 정답은 ${answer.join()}`);
+          $logs.appendChild(message);
+          return;
+        }
+        // 몇 스크라이크 몇 볼인지 검사
+      } else {
+        // 입력값에 에러가 있으면 멈춤.
+      }
+      
+      tries.push(value);
+      // console.log('submit', event);
+    });
+  </script>  
+</body>
+</html>    
