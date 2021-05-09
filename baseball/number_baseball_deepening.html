@@ -9,16 +9,18 @@
 <body>
   <form id="form">
     <input type="text" id="input">
-    <button type="submit">확인</button>
+    <button type="submit" id="submit">확인</button>
+    <button type="button" id="clear">초기화</button>
   </form>
   <div id="logs"></div>
   <script>
     const $form = document.querySelector('#form');
     const $input = document.querySelector('#input');
-    const $btnSubmit = document.querySelector('button');
+    const $btnSubmit = document.querySelector('#submit');
+    const $btnClear = document.querySelector('#clear');
     const $logs = document.querySelector('#logs');
     const numbers = []; // [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
+   
     let out = 0;
 
     function defeated(){
@@ -56,6 +58,7 @@
      * 값들만 모을 때는 배열, 개별 값들에 이름을 붙일 때는 객체 리터럴
      */
     const answer = [];
+
     for (let n = 0; n < 4; n++) { // 4번 반복(0,1,2,3)
       // const index = Math.floor(Math.random() * 9); // 0부터 8까지 정수
       // const index = Math.floor(Math.random() * (9 - n)); // 0부터 8까지 정수
@@ -63,8 +66,9 @@
       answer.push(numbers[index]);
       numbers.splice(index, 1); // nunbers 변수에서 index에 위치한 값을 뺀다.
     }
+      
     console.log(answer); // undefined와 같은 극단적인 케이스는 끝 값에서 발생함.
-
+    
     const tries = []; // 사용자들이 4자리를 입력한 값들의 모음
 
     function checkInputValue(input){
@@ -163,6 +167,10 @@
       
       tries.push(value);
       // console.log('submit', event);
+    });
+
+    $btnClear.addEventListener('click', () => {
+      window.location.reload();
     });
   </script>  
 </body>
