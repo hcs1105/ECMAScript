@@ -57,6 +57,9 @@
     function checkInputValue(input){
       if(input.length !==4){ // 인풋 값의 갯수들이 4가 아니라면(ex. 314: x, 3144: o)
         return alert('4자리 숫자를 입력해 주세요');
+      }      
+      if(input.match(0)){ // 숫자 0이 있으면
+        return alert('숫자 0은 입력하지 마세요');
       }
       /*
        * new Set은 중복을 제거한 배열

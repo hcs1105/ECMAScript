@@ -57,6 +57,9 @@
     function checkInputValue(input){
       if(input.length !==4){ // 인풋 값의 갯수들이 4가 아니라면(ex. 314: x, 3144: o)
         return alert('4자리 숫자를 입력해 주세요');
+      }   
+      if(input.match(0)){ // 숫자 0이 있으면
+        return alert('숫자 0은 입력하지 마세요');
       }
       /*
        * new Set은 중복을 제거한 배열
@@ -97,8 +100,39 @@
         $logs.appendChild(message);
         return;
       }
-      // 몇 스크라이크 몇 볼인지 검사
+      /* 
+       * 몇 스크라이크 몇 볼인지 검사
+       * 프로그래밍에서 뭔가를 센다면 변수를 만들어서 카운드해야 됨.
+      */
+      let strike = 0;
+      let ball = 0;
+  
+      // answer: 3146, value: 1234     
+      for(let i = 0; i < answer.length; i++){
+        const index = value.indexOf(answer[i]);
+        if(index > -1){ // 입력한 숫자기 정답에 있으면
+          if(index === i) { // 입력한 숫자가 정답의 숫자와 자릿수가 같다면
+            strike += 1;
+          } else { // 입력한 숫자와 정답의 숫자의 자릿수가 다르면
+            ball += 1;
+          }
+        }
+      }
       
+      /*            
+      answer.forEach((number, aIndex) => {
+        const index = value.indexOf(String(number));
+        if(index > -1){ // 입력한 숫자기 정답에 있으면
+          if(index === aIndex) { // 입력한 숫자가 정답의 숫자와 자릿수가 같다면
+            strike += 1;
+          } else { // 입력한 숫자와 정답의 숫자의 자릿수가 다르면
+            ball += 1;
+          }
+        }
+      }); 
+      */
+
+      $logs.append(`${value} : ${strike} 스트라이크 ${ball} 볼`, document.createElement('br'));
       tries.push(value);
       // console.log('submit', event);
     });
