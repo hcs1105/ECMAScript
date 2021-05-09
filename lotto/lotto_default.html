@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로또 추첨 게임</title>
+  <style>
+    .ball{
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      margin-right: 20px;
+      border: 1px solid #000;
+      border-radius: 20px;
+      display:inline-block;
+      font-size: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="result">추첨 결과는? </div>
+  <div id="bonus">보너스: </div>
+  <script>
+    const candidate = Array(45).fill().map((v,i) => i+1);
+    const shuffle = [];
+
+    // Fisher-Yates Shuffle 알고리즘
+    while(candidate.length > 0){
+      const random = Math.floor(Math.random() * candidate.length); // 무작위로 인덱스 뽑기
+      const spliceArray = candidate.splice(random, 1); // 뽑은 값은 배열에 들어 있음
+      const value = spliceArray[0]; // 배열에 들어 있는 값을 꺼내어
+      console.log(value); 
+      shuffle.push(value); // shuffle 배열에 넣기
+    }
+    console.log(shuffle);
+
+    /*
+     * sort((a,b) => a-b); // 오름차순(1,2,3,4,5)
+     * sort((a,b) => b-a); // 내림차순(5,4,3,2,1)
+     * 원본 배열이 유지되는 메소드: map(), slice() 
+     * slice() : 원본 배열을 유지하고 두 번째 인수가 index임
+     * sort() 메소드를 적용할 때 원본 배열을 유지하고 싶으면 중간에 slice() 메소드를 추가해야 함. 
+     */
+    const winBalls = shuffle.slice(0, 6).sort((a,b) => a-b);
+    const bonus = shuffle[6];
+    console.log(winBalls, bonus);
+  </script>
+</body>
+</html>
