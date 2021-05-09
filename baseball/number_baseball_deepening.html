@@ -16,7 +16,20 @@
     const $form = document.querySelector('#form');
     const $input = document.querySelector('#input');
     const $btnSubmit = document.querySelector('button');
+    const $logs = document.querySelector('#logs');
     const numbers = []; // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    let out = 0;
+
+    function defeated(){
+      const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
+      $logs.appendChild(message); 
+    }
+
+    function disabled(){
+      $input.disabled = true;    
+      $btnSubmit.disabled = true;    
+    }
 
     for (let n = 0; n < 9; n++) {
       numbers.push(n + 1);  
@@ -92,29 +105,31 @@
        * 참고 : split() 메소드는 문자열을 배열로 바꿈(ex. '3146'.split('') => ['3','1','4','6'])
        */
       if(answer.join('') === value){ // 입력값에 에러가 없으면
-        $logs.textContent = '홈런!';
+        $logs.textContent = '홈런!'; 
+        disabled();
         return;
       }
       if(tries.length >= 9){
-        const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
-        $logs.appendChild(message);
+        defeated();
         return;
       }
       /* 
        * 몇 스크라이크 몇 볼인지 검사
        * 프로그래밍에서 뭔가를 센다면 변수를 만들어서 카운드해야 됨.
       */
+
       let strike = 0;
       let ball = 0;
-  
       // answer: 3146, value: 1234     
       for(let i = 0; i < answer.length; i++){
         const index = value.indexOf(answer[i]);
         if(index > -1){ // 입력한 숫자기 정답에 있으면
           if(index === i) { // 입력한 숫자가 정답의 숫자와 자릿수가 같다면
             strike += 1;
+            console.log('strike : ' + strike);
           } else { // 입력한 숫자와 정답의 숫자의 자릿수가 다르면
             ball += 1;
+            console.log('ball : ' + ball);
           }
         }
       }
@@ -132,7 +147,20 @@
       }); 
       */
 
-      $logs.append(`${value} : ${strike} 스트라이크 ${ball} 볼`, document.createElement('br'));
+      if(strike === 0 && ball === 0){
+        out++;
+        console.log('out : ' + out);
+        $logs.append(`${value} : 아웃`, document.createElement('br'));
+      } else {
+        $logs.append(`${value} : ${strike} 스트라이크 ${ball} 볼`, document.createElement('br'));
+      }
+
+      if(out === 3){
+        defeated();
+        disabled();
+        return;
+      }
+      
       tries.push(value);
       // console.log('submit', event);
     });
