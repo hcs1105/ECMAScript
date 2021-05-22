@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가위 바위 보 게임</title>
+  <style>
+    #computer {
+      width: 147px;
+      height: 154px;
+      border: 1px solid #000;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div id="computer"></div>
+  <div>
+    <button type="button" id="scissors" class="btn">가위</button>
+    <button type="button" id="rock" class="btn">바위</button>
+    <button type="button" id="paper" class="btn">보</button>
+  </div>
+  <div id="score">0</div>
+  <script>
+    const $computer = document.querySelector('#computer');
+    const $scissors = document.querySelector('#scissors');
+    const $rock = document.querySelector('#rock');
+    const $paper = document.querySelector('#paper');
+    const $score = document.querySelector('#score');
+
+    const imgURL = './srp.png';
+
+    $computer.style.background = `url(${imgURL}) 0 0`;
+    $computer.style.backgroundSize= 'auto 154px';
+
+    // 객체를 만드는 이유 : 여러 개의 변수들을 공통된 특징에 따라 하나의 그룹으로 묶으려고
+    const srpX = {
+      scissors : '0', // 가위의 X 좌표
+      rock : '-147px', // 바위의 X 좌표
+      paper : '-294px', // 보의 X 좌표
+    };
+
+    /*
+    let coordX = '0';
+    setInterval(() => {    
+      if(coordX === srpX.scissors) { // 가위이면
+        $computer.style.background = `url(${imgURL}) ${srpX.rock} 0`;
+        $computer.style.backgroundSize= 'auto 154px';
+        coordX = srpX.rock; // 화면을 변경하면 데이터 값도 변경해야 됨(바위의 X 좌표값).
+      } else if (coordX === srpX.rock){ // 바위이면
+        $computer.style.background = `url(${imgURL}) ${srpX.paper} 0`;
+        $computer.style.backgroundSize= 'auto 154px';
+        coordX = srpX.paper; // 화면을 변경하면 데이터 값도 변경해야 됨(보의 X 좌표값).
+      } else { // 보이면
+        $computer.style.background = `url(${imgURL}) ${srpX.scissors} 0`;
+        $computer.style.backgroundSize= 'auto 154px';
+        coordX = srpX.scissors; // 화면을 변경하면 데이터 값도 변경해야 됨(가위의 X 좌표값).
+      }
+    }, 50);
+    */
+
+    let computerChoice = 'scissors';
+
+    const changeComputerHand = () => {
+      if(computerChoice === 'scissors') { // 가위이면
+        computerChoice = 'rock'; // 바위의 X 좌표값
+      } else if (computerChoice === 'rock'){ // 바위이면
+        computerChoice = 'paper'; // 보의 X 좌표값
+      } else { // 보이면
+        computerChoice = 'scissors'; // 가위의 X 좌표값
+      }
+      // 참고 : srpx.computerChoice는 문자열이고, srpX[computerChoice]는 값임
+      // 참고 : srpx.computerChoice = srpx['computerChoice']
+      $computer.style.background = `url(${imgURL}) ${srpX[computerChoice]} 0`;
+      $computer.style.backgroundSize= 'auto 154px';
+    };
+   
+    setInterval(changeComputerHand, 50);
+
+    /*
+     * setInterval 함수는 반환값이 있음.
+     * 반환값은 타이머에 대한 아아디(숫자)이며 나중에 이 값을 사용해 타이머를 제거할 수 있음.
+     * setTimeout 함수도 clearTimeout 함수로 취소할 수 있음.
+     * 그렇지만 setTimeout 함수에 인수로 넣은 함수가 실행되기 전에 clearTimeout 함수를 호출해야 됨.
+     * 왜냐하면, 이미 실행된 함수는 없던 일로 할 수 없으므로.
+     */
+
+    /*
+     * setInterval 함수를 쓰지 않고 setTimeout 함수를 이용하여 동일한 효과가 구현됨.
+     * 재귀 함수 : 자기가 자신의 함수를 다시 호출하는 함수
+   
+     const changeComputerHand = () => {
+      if(computerChoice === 'scissors') { // 가위이면
+        computerChoice = 'rock'; // 바위의 X 좌표값
+      } else if (computerChoice === 'rock'){ // 바위이면
+        computerChoice = 'paper'; // 보의 X 좌표값
+      } else { // 보이면
+        computerChoice = 'scissors'; // 가위의 X 좌표값
+      }
+      // 참고 : srpx.computerChoice는 문자열이고, srpX[computerChoice]는 값임
+      // 참고 : srpx.computerChoice = srpx['computerChoice']
+      $computer.style.background = `url(${imgURL}) ${srpX[computerChoice]} 0`;
+      $computer.style.backgroundSize= 'auto 154px';
+      
+      setTimeout(changeComputerHand, 50);
+    };
+   
+    setTimeout(changeComputerHand, 50);
+    */
+  </script>
+</body>
+</html>
