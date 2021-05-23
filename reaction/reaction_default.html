@@ -31,10 +31,14 @@
      const $screen = document.querySelector('#screen');
      const $result = document.querySelector('#result');
 
-     // addEventListener 메소드와 setTimeout 함수는 비동기임.
-     // 클래스는 여러 개의 태그를 동시에 선택하거나 어떤 태그에 특정한 역할을 부여할 때 사용함.
-     // html의 속성도 데이터로 쓰임.
-     // console.log($screen.className); // waiting
+     let startTime;
+     let endTime;
+     /*
+      * addEventListener 메소드와 setTimeout 함수는 비동기임.
+      * 클래스는 여러 개의 태그를 동시에 선택하거나 어떤 태그에 특정한 역할을 부여할 때 사용함.
+      * html의 속성도 데이터로 쓰임.
+      * console.log($screen.className); // waiting
+      */
 
      $screen.addEventListener('click', (event) => {
       // if($screen.classList.contains('waiting')) {
@@ -43,20 +47,27 @@
         $screen.classList.remove('waiting');
         $screen.classList.add('ready');
         $screen.textContent = '초록색이 되면 클릭하세요.';
-        setTimeout(function(){
+        setTimeout(() => {
           $screen.classList.remove('ready');
           $screen.classList.add('now');
           $screen.textContent = '클릭하세요.';
+          // 첫 번째 클릭 시간 재기
+          startTime = new Date();
         }, Math.floor(Math.random() * 1000 + 2000)); // 2000ms ~ 3000ms(2초 ~ 3초) 사이의 수
         // 2000 <= X * 1000 + 2000 < 3000
       // } else if ($screen.classList.contains('ready')) {
       } else if (event.target.classList.contains('ready')) { // 준비 화면(빨강)
 
       } else { // 클릭 화면(초록)
-
+        // 마지막 클릭 시간 재기
+        endTime = new Date();
+        $result.textContent = `${endTime - startTime}ms`;
+        $screen.classList.remove('now');
+        $screen.classList.add('waiting');
+        $screen.textContent = '클락해서 시작하세요.';
+        // 시간 차이 저장하기
       }
      });
-
    </script>
 </body>
 </html>
