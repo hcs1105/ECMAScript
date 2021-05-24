@@ -5,12 +5,12 @@
  * 태그.classList.remove('클래스'); // 삭제
  */
 
-// 다음 태그의 클래스는 어떻게 될까요?
+// 문제 1. 다음 태그의 클래스는 어떻게 될까요?
 태그.classList.add('hello', 'hi', 'hello', 'bye'); // 'hello', 'hi', 'bye'
 태그.classList.replace('bye', 'seeyou'); // 'hello', 'hi', 'seeyou'
 태그.classList.remove('bye'); // 'hello', 'hi', 'seeyou'
 
-// 2021년 2월 21일과 2021년 3월 3일은 며칠 차이가 날끼요?
+// 문재 2. 2021년 2월 21일과 2021년 3월 3일은 며칠 차이가 날끼요?
 /*
  * new Date(2021, 2, 3) - new Date(2021, 1, 21) // 864000000ms
  * (new Date(2021, 2, 3) - new Date(2021, 1, 21)) / 1000 // 864000s
