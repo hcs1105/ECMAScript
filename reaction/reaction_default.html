@@ -30,6 +30,7 @@
    <script>
      const $screen = document.querySelector('#screen');
      const $result = document.querySelector('#result');
+     const records = [];
 
      let startTime;
      let endTime;
@@ -61,10 +62,16 @@
       } else { // 클릭 화면(초록)
         // 마지막 클릭 시간 재기
         endTime = new Date();
-        $result.textContent = `${endTime - startTime}ms`;
+        const current = endTime - startTime;
+        records.push(current);
+        console.log('endTime : ', endTime, 'startTime : ', startTime);
+        const average = records.reduce((a, b) => a + b) / records.length;
+        $result.textContent = `현재 : ${current}ms, 평균 : ${average}ms`;
+        startTime = null; // startTime 초기화
+        endTime = null; // endTime 초기화
         $screen.classList.remove('now');
         $screen.classList.add('waiting');
-        $screen.textContent = '클락해서 시작하세요.';
+        $screen.textContent = '클릭해서 시작하세요.';
         // 시간 차이 저장하기
       }
      });
