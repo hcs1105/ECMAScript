@@ -34,6 +34,7 @@
 
      let startTime;
      let endTime;
+     let timeoutId;
      /*
       * addEventListener 메소드와 setTimeout 함수는 비동기임.
       * 클래스는 여러 개의 태그를 동시에 선택하거나 어떤 태그에 특정한 역할을 부여할 때 사용함.
@@ -48,7 +49,7 @@
         $screen.classList.remove('waiting');
         $screen.classList.add('ready');
         $screen.textContent = '초록색이 되면 클릭하세요.';
-        setTimeout(() => {
+        timeoutId = setTimeout(() => {
           $screen.classList.remove('ready');
           $screen.classList.add('now');
           $screen.textContent = '클릭하세요.';
@@ -58,7 +59,10 @@
         // 2000 <= X * 1000 + 2000 < 3000
       // } else if ($screen.classList.contains('ready')) {
       } else if (event.target.classList.contains('ready')) { // 준비 화면(빨강)
-
+        $screen.classList.remove('ready');
+        $screen.classList.add('waiting');
+        $screen.textContent = '너무 성급하시군요.';
+        clearTimeout(timeoutId);
       } else { // 클릭 화면(초록)
         // 마지막 클릭 시간 재기
         endTime = new Date();
