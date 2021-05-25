@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>반응 속도</title>
+  <style>
+  #screen {
+    width : 300px;
+    height : 200px;
+    text-align : center;
+    user-select : none;
+  }
+  .waiting {
+    background : #0ff;
+  }
+  .ready {
+    background : #f00;
+    color: #fff;
+  }
+  .now {
+    background: #adff2f;
+  }
+  </style>
+</head>
+<body>
+   <div id="screen" class="waiting">클릭해서 시작하세요.</div>
+   <div id="result"></div>
+   <script>
+     const $screen = document.querySelector('#screen');
+     const $result = document.querySelector('#result');
+     const records = [];
+
+     let startTime;
+     let endTime;
+     let timeoutId;
+     /*
+      * addEventListener 메소드와 setTimeout 함수는 비동기임.
+      * 클래스는 여러 개의 태그를 동시에 선택하거나 어떤 태그에 특정한 역할을 부여할 때 사용함.
+      * html의 속성도 데이터로 쓰임.
+      * console.log($screen.className); // waiting
+      */
+
+     $screen.addEventListener('click', (event) => {
+      // if($screen.classList.contains('waiting')) {
+      if(event.target.classList.contains('waiting')) { // 대기 화면(파랑)
+        // $screen.classList.replace('waiting', 'ready');
+        $screen.classList.remove('waiting');
+        $screen.classList.add('ready');
+        $screen.textContent = '초록색이 되면 클릭하세요.';
+        timeoutId = setTimeout(() => {
+          $screen.classList.remove('ready');
+          $screen.classList.add('now');
+          $screen.textContent = '클릭하세요.';
+          // 첫 번째 클릭 시간 재기
+          startTime = new Date();
+        }, Math.floor(Math.random() * 1000 + 2000)); // 2000ms ~ 3000ms(2초 ~ 3초) 사이의 수
+        // 2000 <= X * 1000 + 2000 < 3000
+      // } else if ($screen.classList.contains('ready')) {
+      } else if (event.target.classList.contains('ready')) { // 준비 화면(빨강)
+        $screen.classList.remove('ready');
+        $screen.classList.add('waiting');
+        $screen.textContent = '너무 성급하시군요.';
+        clearTimeout(timeoutId);
+      } else { // 클릭 화면(초록)
+        // 마지막 클릭 시간 재기
+        endTime = new Date();
+        // 시간 차이 저장하기
+        const current = endTime - startTime;
+        records.push(current);
+        console.log('endTime : ', endTime, 'startTime : ', startTime);
+        const average = records.reduce((a, b) => a + b) / records.length;
+        $result.textContent = `현재 : ${current}ms, 평균 : ${average}ms`;
+
+        const topFive = records.sort((a, b) => a - b).slice(0, 5);
+        // 참고 : forEach는 배열에 대한 반복문임.
+        topFive.forEach((element, index) => {
+          $result.append(
+            document.createElement('br'),
+            `${index + 1}위 : ${element}ms`
+          );
+        });
+
+        startTime = null; // startTime 초기화
+        endTime = null; // endTime 초기화
+        
+        $screen.classList.remove('now');
+        $screen.classList.add('waiting');
+        $screen.textContent = '클릭해서 시작하세요.';
+      }
+     });
+   </script>
+</body>
+</html>
