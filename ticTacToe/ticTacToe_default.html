@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>틱택토 게임</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    td {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #000;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!--   
+  <table>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table> 
+  -->
+  <script>
+    /* 
+     * 구조 분해 할당 : 객체의 속성과 그 속성을 담는 변수의 이름이 같을 때 구조 분해 할당을 사용함.  
+     * const body = document.body;  
+     * const createElement = document.createElement;  
+     * const arr = [1, 2, 3, 4, 5];  
+     * const one = arr[0];
+     * const two = arr[1];
+     * const thre = arr[2];
+     * const four = arr[3];
+     * const five = arr[4];
+     * const [one, two, three, four, five] = arr;
+     * const one = arr[0];
+     * const thre = arr[2];
+     * const five = arr[4];
+     * const [one,, three,, five] = arr;
+     */
+    const { body } = document; 
+    const $table = document.createElement('table');
+    const $result = document.createElement('div');
+    const data = [];
+
+    let turn = 'o';
+
+    for (let i = 0; i < 3; i++) {
+      data.push([]); // const data = [[], [], []];
+    }
+
+    for (let i = 0; i < 3; i++) {
+      const $tr = document.createElement('tr');
+      for (let i = 0; i < 3; i++) {
+        const $td = document.createElement('td');
+        $td.addEventListener('click', (event) => {
+          // 칸에 글자가 있는가?
+          if (event.target.textContent) return;
+          console.log('TD is clicked.');
+          event.target.textContent = turn;
+          // $td.textContent = turn;
+          // 승부 확인
+          if (turn === 'o') {
+            turn = 'x';
+          } else {
+            turn = 'o';
+          }
+        });
+        $tr.append($td);
+      }
+      $table.append($tr);
+    }
+    body.append($table);
+    body.append($result);
+  </script>
+</body>
+</html>
