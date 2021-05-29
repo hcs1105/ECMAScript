@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>틱택토 게임</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    td {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #000;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!--   
+  <table>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table> 
+  -->
+  <script>
+    /* 
+     * 객체의 속성과 그 속성을 담고 있는 변수의 이름이 같을 때 구조 분해 할당을 사용함.  
+     * const body = document.body;  
+     * const createElement = document.createElement;  
+     * const arr = [1, 2, 3, 4, 5];  
+     * const one = arr[0];
+     * const two = arr[1];
+     * const thre = arr[2];
+     * const four = arr[3];
+     * const five = arr[4];
+     * const [one, two, three, four, five] = arr;
+     * const one = arr[0];
+     * const thre = arr[2];
+     * const five = arr[4];
+     * const [one,, three,, five] = arr;
+     */
+    const { body } = document; 
+    const $table = document.createElement('table');
+    const $result = document.createElement('div');
+    const rows = [];
+
+    let turn = 'o';
+
+    /*
+     * 명령문들은 함수로 분리할수록 좋다.
+     * 함수들을 분리할 때 반복문 밖으로 빼라.
+     */
+    const callback = (event) => {
+      /*
+       * // 칸에 글자가 있는가?
+       * // if (event.target.textContent) return;
+       */
+
+      console.log('TD is clicked.');
+      
+      if (event.target.textContent != '') { // 킨이 이미 채워져 있는가?
+        console.log('빈 칸이 아닙니다.');
+        return; 
+      } 
+      
+      // 빈 칸이면
+      console.log('빈 칸입니다.');
+      event.target.textContent = turn;
+      // $td.textContent = turn;
+        
+      // 승부 확인
+      /*       
+      if (turn === 'o') {
+        turn = 'x';
+      } else {
+        turn = 'o';
+      } 
+      */
+      turn = (turn === 'o') ? 'x' : 'o';
+    };
+
+    // 반복문 안의 명령문들은 최대한 짧게 써라.
+    // for (let i = 1; i <= 3; i++) {
+    for (let i = 0; i < 3; i++) {
+      const $tr = document.createElement('tr');
+      const cells = [];
+      // for (let j = 1; j <= 3; j++) {
+      for (let j = 0; j < 3; j++) {
+        const $td = document.createElement('td');
+        cells.push($td);
+        $td.addEventListener('click', callback);
+        $tr.append($td);
+      }
+      rows.push(cells);
+      $table.append($tr);
+    }
+    body.append($table);
+    body.append($result);
+  </script>
+</body>
+</html>
