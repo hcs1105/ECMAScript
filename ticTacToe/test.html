@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이벤트 버블링 연습 문제</title>
+</head>
+<body>
+<!-- 버튼을 클릭할 때 'hello, event bubbling'을 alert하게 다음 코드를 수정하세요. -->
+<!-- 단, 이벤트 리스너를 button 태그에 달아서는 안 됩니다. -->
+<header>
+  <div>
+    <button type="buton">클릭</button>
+  </div>
+</header>
+<script>
+  const $header = document.querySelector('header');
+  $header.addEventListener('click', () => {
+    console.log('hello, event bubbling');
+  });
+</script>
+</body>
+</html>

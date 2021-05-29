@@ -72,7 +72,12 @@
        */
 
       console.log('TD is clicked.');
-      
+      /* 
+       * 이벤트 버블링 : 자식 -> 부모한테 이벤트 전파
+       * 이벤트 캡처링 : 부모 -> 전달한테 이벤트 전파(ex. 바깥에서 팝업 닫기)
+       */
+      event.stopPropagation(); // 이벤트 버블링 방지
+      // event.currentTarget : table
       if (event.target.textContent != '') { // 킨이 이미 채워져 있는가?
         console.log('빈 칸이 아닙니다.');
         return; 
@@ -103,12 +108,16 @@
       for (let j = 0; j < 3; j++) {
         const $td = document.createElement('td');
         cells.push($td);
-        $td.addEventListener('click', callback);
+        // $td.addEventListener('click', callback);
         $tr.append($td);
       }
       rows.push(cells);
       $table.append($tr);
     }
+    /* 
+     * $table.addEventListener('click', callback, true); // 이벤트 캡처링
+     */
+    $table.addEventListener('click', callback);
     body.append($table);
     body.append($result);
   </script>
