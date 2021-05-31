@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>반복문을 이용하여 1부터 100까지의 곱을 구하기</title>
+</head>
+<body>
+  <script>
+    /*
+    sum = sum * 1 <==> sum *= 1
+    sum = sum * 2 <==> sum *= 2
+    sum = sum * 3 <==> sum *= 3
+    sum = sum * 4 <==> sum *= 4
+    ...
+    sum = sum * 100 <==> sum *= 100
+    */
+
+    let sum = 1;
+    for(let i = 1; i < 101; i++){
+      sum *= i;
+    } 
+    console.log(sum); // 9.33262154439441e+157
+  </script>
+</body>
+</html>

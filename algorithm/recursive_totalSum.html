@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>재귀 함수를 이용하여 1부터 100까지의 합을 구하기</title>
+</head>
+<body>
+  <script>
+    /*   
+     * 재귀 함수 : 내가 나를 호출하는 함수  
+     * 반복문과 재귀 함수는 서로 호환이 됨.  
+     */ 
+
+    /*
+    sum = sum + 1 <==> sum += 1
+    sum = sum + 2 <==> sum += 2
+    sum = sum + 3 <==> sum += 3
+    sum = sum + 4 <==> sum += 4
+    ...
+    sum = sum + 100 <==> sum += 100
+    */
+
+    // 빅오 표기법 : 얼마만큼 반복하고 있는가에 대한 척도
+    const n = 100;
+    let sum = 0;
+    for(let i = 1; i < n + 1; i++){
+      sum += i;
+    } 
+    console.log(sum); // 5050, O(n)
+
+    console.log(n*(n+1)/2); // 5050, O(1)
+
+    /*
+     n = 100, f(100), 100 + f(99) // 100 + 99 + 98 + 97 + 96 + 95 + 94 + ... + 2 + 1
+     n = 99, f(99), 99 + f(98) // 99 + 98 + 97 + 96 + 95 + 94 + ... + 2 + 1
+     n = 98, f(98), 98 + f(97) // 98 + 97 + 96 + 95 + 94 + ... + 2 + 1
+     n = 97, f(97), 97 + f(96) // 97 + 96 + 95 + 94 + ... + 2 + 1
+     ...
+     n = 2, f(2), 2 + f(1) // 2 + 1 
+     n = 1, f(1), 1
+    */
+
+    // 종료 조건이 없으면 재귀 함수가 무한 반복되므로 재귀 함수에 종료 조건은 무조건 있어야 됨.
+    const f = (n) => {
+      if( n <= 1) { // 종료 조건
+        return 1;
+      }
+      return n + f(n-1);
+    }
+    console.log(`재귀함수 : ${f(100)}`); // 5050
+  </script>
+</body>
+</html>
