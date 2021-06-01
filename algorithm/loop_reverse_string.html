@@ -11,15 +11,18 @@
     let result = '';
     let x = 'Han Changsu';
 
-    while (true) {
-      if (x.length === 1) { // 종료 조건
+    while(true) {
+      if(x.length === 1){ // 종료 조건
         result += x;  
         break;
       } 
+
       let y = x.split('');
       console.log('y : ' +  y);
+      
       result += String(y.pop()); // pop() 메소드는 배열에만 존재함.
       console.log('result 1 : ' + result);
+      
       x = y.join('');
       console.log('x : ' + x);
     }
