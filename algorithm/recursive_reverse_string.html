@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>재귀 함수를 이용하여 문자열 뒤집기</title>
+</head>
+<body>
+  <script>
+    const reverseString = (string) => {
+      if(string.length === 1) { // 종료 조건
+        return string;
+      }
+      return string[string.length - 1] + reverseString(string.slice(0, string.length - 1));
+    }
+
+    console.log(reverseString('Han Changsu')); // usgnahC naH
+
+    /*
+    reverseString('Han Changsu') = string[string.length - 1] + reverseString(string.slice(0, string.length - 1))
+                                 = string[10] + reverseString(string.slice(0, 10))
+                                 = 'u' + reverString('Han Changs') // 'usnahC naH'
+    reverseString('Han Changs') = string[string.length - 1] + reverseString(string.slice(0, string.length - 1))
+                                = string[9] + reverseString(string.slice(0, 9))
+                                = 's' + reverseString('Han Chang') // 'snahC naH'
+    reverseString('Han Chang') = string[string.length - 1] + reverseString(string.slice(0, string.length - 1))
+                               = string[8] + reverseString(string.slice(0, 8))
+                               = 'g' + reverseString('Han Chan') // 'gnahC naH'
+    reverseString('Han Chan') = string[string.length - 1] + reverseString(string.slice(0, string.length - 1))
+                              = string[7] + reverseString(string.slice(0, 7))
+                              = 'n' + reverseString('Han Cha') // 'nahC naH'
+    reverseString('Han Cha') = string[string.length - 1] + reverseString(string.slice(0, string.length - 1))
+                             = string[6] + reverseString(string.slice(0, 6))
+                             = 'a' + reverseString('Han Ch') // 'ahC naH'
+    reverseString('Han Ch') = string[string.length - 1] + reverseString(string.slice(0, string.length - 1))
+                            = string[5] + reverseString(string.slice(0, 5))
+                            = 'h' + reverseString('Han C') // 'hC naH'
+    reverseString('Han C') = string[string.length - 1] + reverseString(string.slice(0, string.length - 1))
+                           = string[4] + reverseString(string.slice(0, 4))
+                           = 'C' + reverseString('Han ') // 'C naH'
+    reverseString('Han ') = string[string.length - 1] + reverseString(string.slice(0, string.length - 1))
+                          = string[3] + reverseString(string.slice(0, 3))
+                          = ' ' + reverseString('Han') // ' naH'
+    reverseString('Han') = string[string.length - 1] + reverseString(string.slice(0, string.length - 1))
+                         = string[2] + reverseString(string.slice(0, 2))
+                         = 'n' + reverseString('Ha') // 'naH'
+    reverseString('Ha') = string[string.length - 1] + reverseString(string.slice(0, string.length - 1))
+                        = string[1] + reverseString(string.slice(0, 1))
+                        = 'a' + reverseString('H') // 'aH'
+    reverseString('H') = 'H'
+    */
+  </script>
+</body>
+</html>
