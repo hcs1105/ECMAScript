@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>반복문으로 각 자릿수의 합 구하기</title>
+</head>
+<body>
+  <script>
+    let result = 0;
+    let x = '123456';
+
+    while(true){
+      if(x.length === 1){
+        result += parseInt(x, 10);
+        break;
+      }
+
+      let y = x.split('');
+      console.log('y : ' + y);
+
+      result += parseInt(y.pop(), 10);
+      x = y.join('');
+      console.log('x : ' + x);
+      console.log('result 1 : ' + result);  // result 1 : 20
+    }
+    console.log('result 2 : ' + result); // result 1 : 21
+  </script>
+</body>
+</html>
