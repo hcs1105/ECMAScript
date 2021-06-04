@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>틱택토 게임</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    td {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #000;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!--   
+  <table>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table> 
+  -->
+  <script>
+    /*
+     * 혼자서 o와 x의 역할을 번갈아 했습니다. 혼자서 게임을 하면 재미없으니 x의 역할은 컴퓨터가 하도록 만들어 봅시다.
+     * 이기기 위한 최선의 전략은 구현하기 어려우므로 컴퓨터가 비어 있는 칸 중에 무작위로 x를 입력하도록 구현해 보세요.
+     * 힌트 : 컴퓨터의 차례는 callback 함수 안에서 구현합니다. rows 배열에서 비어 있는 칸들도 추려낼 수 있습니다.
+     * 즉, 컴퓨터의 차례가 추가됨에 따라 callback 함수에서 승부를 확인하는 코드(checkWinnder)를 2번 사용합니다.
+     */
+
+    /* 
+     * 객체의 속성과 그 속성을 담고 있는 변수의 이름이 같을 때 구조 분해 할당을 사용함.  
+     * const body = document.body;  
+     * const createElement = document.createElement;  
+     * const arr = [1, 2, 3, 4, 5];  
+     * const one = arr[0];
+     * const two = arr[1];
+     * const thre = arr[2];
+     * const four = arr[3];
+     * const five = arr[4];
+     * const [one, two, three, four, five] = arr;
+     * const one = arr[0];
+     * const thre = arr[2];
+     * const five = arr[4];
+     * const [one,, three,, five] = arr;
+     */
+    const { body } = document; 
+    const $table = document.createElement('table');
+    const $result = document.createElement('div');
+    const rows = [];
+
+    let turn = 'o';
+
+    /*
+     * 명령문들은 함수로 분리할수록 좋다.
+     * 함수들을 분리할 때 반복문 밖으로 빼라.
+     */
+
+    /*
+     * rows : [
+                [td, td, td], 
+                [td, td, td], 
+                [td, td, td]
+              ]
+     */
+    
+    const checkWinner = (target) => { // target : 태그(td)
+      const rowIndex = target.parentNode.rowIndex; // tr의 rowIndex이며 참고로 parentNode는 특정 태그의 부모 태그임.
+      const cellIndex = target.cellIndex; // td는 자체적으로 cellIndex를 가지고 있음.
+
+      /*
+       * 유사 배열 객체(array-like object) : 태그.children와 같이 진짜 배열처럼 생긴 객체
+       * 유사 배열 객체을 진짜 배열처럼 사용하려면, Array.from 메소드를 사용해야 됨.
+       */
+      /* 
+      console.log(target.parentNode.children); // [td, td, td]
+      console.log(target.parentNode.children.indexOf(target)); // target.parentNode.children.indexOf is not a function 
+      */
+      console.log(Array.from(target.parentNode.children)); // [td, td, td]
+      console.log(Array.from(target.parentNode.children).indexOf(target));
+
+      // 세 칸이 모두 채워졌는가?
+      let hasWinner = false; // 뭔가를 검사할 때 false로 시작하면 좋음.
+      console.log('rows[rowIndex][0].textContent : ' + rows[rowIndex][0].textContent);
+      console.log('turn : ' + event.target.textContent);
+      // 가로줄 검사
+      if (
+        rows[rowIndex][0].textContent === turn && 
+        rows[rowIndex][1].textContent === turn && 
+        rows[rowIndex][2].textContent === turn
+      ) { 
+        hasWinner = true;
+      }
+
+      // 세로줄 검사
+      if (
+        rows[0][cellIndex].textContent === turn &&        
+        rows[1][cellIndex].textContent === turn &&        
+        rows[2][cellIndex].textContent === turn       
+      ) {
+          hasWinner = true;
+      }
+
+      // 대각선 검사
+      if (
+        rows[0][0].textContent === turn &&        
+        rows[1][1].textContent === turn &&        
+        rows[2][2].textContent === turn       
+      ) {
+          hasWinner = true;
+      }
+
+      if (
+        rows[0][2].textContent === turn &&        
+        rows[1][1].textContent === turn &&        
+        rows[2][0].textContent === turn       
+      ) {
+          hasWinner = true;
+      }
+      return hasWinner; // 승자가 있으면 true, 없으면 false
+    };
+    const callback = (event) => {
+      /*
+       * // 칸에 글자가 있는가?
+       * // if (event.target.textContent) return;
+       */
+
+      console.log('TD is clicked.');
+      /* 
+       * 이벤트 버블링 : 자식 -> 부모한테 이벤트 전파
+       * 이벤트 캡처링 : 부모 -> 전달한테 이벤트 전파(ex. 바깥에서 팝업 닫기)
+       */
+      event.stopPropagation(); // 이벤트 버블링 방지
+      // event.currentTarget : table
+      if (event.target.textContent != '') { // 킨이 이미 채워져 있는가?
+        console.log('빈 칸이 아닙니다.');
+        return; 
+      } 
+      
+      // 빈 칸이면
+      console.log('빈 칸입니다.');
+      event.target.textContent = turn;
+      // $td.textContent = turn;
+
+      // 승자 확인 검사
+      const hasWinner = checkWinner(event.target);
+      if (hasWinner) { // 승자가 있으면 true, 없으면 false
+        $result.textContent = `${turn}님이 승리!`;
+        $table.removeEventListener('click', callback); // 승리했을 때 다른 셀에 클릭되는 것을 막으려고
+        return;
+      }
+
+      // 무승부 검사
+      /*       
+      let count = 0;
+      rows.forEach((row) => {
+        row.forEach((cell) => {
+          if (!cell.textContent) {
+            count += 1;
+          }
+        });
+      });
+      if (count === 9) {
+        $result.textContent = '무승부';
+        return;
+      } 
+      */  
+     
+      /*
+       * every() 메소드는 모두 true이면 true이고 하나라도 false가 있으면 false
+       * every() 메소드는 1차원 배열에서만 사용됨.
+       * some() 메소드는 하나라도 true이면 true이고 모두 false이면 false임.
+       * 참고로 2차원 배열을 1차원 배열로 만들려면 flat() 메소드를 사용해야 됨.
+       * false인 7가지 경우 : 빈 문자열, false, 0, undefined, null, NaN, document.all
+       */
+      // let draw = true;
+      const draw = rows.flat().every((cell) => cell.textContent);
+      if (draw) { // draw : true -> 무승부
+        $result.textContent = '무승부';
+        return;
+      } 
+
+      /*       
+      if (turn === 'o') {
+        turn = 'x';
+      } else {
+        turn = 'o';
+      } 
+      */
+      // draw : false -> 무승부가 아님.
+      turn = (turn === 'o') ? 'x' : 'o'; // o : 창수, x: 컴퓨터
+    };
+
+    // 반복문 안의 명령문들은 최대한 짧게 써라.
+    // for (let i = 1; i <= 3; i++) {
+    for (let i = 0; i < 3; i++) {
+      const $tr = document.createElement('tr');
+      const cells = [];
+    
+      // for (let j = 1; j <= 3; j++) {
+      for (let j = 0; j < 3; j++) {
+        const $td = document.createElement('td');
+        cells.push($td);
+        // $td.addEventListener('click', callback);
+        $tr.append($td);
+      }
+      rows.push(cells);
+      $table.append($tr);
+    }
+    /* 
+     * $table.addEventListener('click', callback, true); // 이벤트 캡처링
+     */
+    $table.addEventListener('click', callback);
+    body.append($table);
+    body.append($result);
+  </script>
+</body>
+</html>
