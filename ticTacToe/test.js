@@ -17,12 +17,14 @@ const obj = {
   }
 };
 
+// solution
 const { a, b : { c , d : { e } } } = obj; // 참고로 콜론으로 연결된 b와 d는 변수가 아닙니다.
 const a = obj.a;
 const c = obj.b.c;
 const e = obj.b.d.e;
 
 // 유제 1. 문제 1의 객체에서 a, b, e 속성을 구조 분해 할당 문법으로 변수에 할당해 보세요.
+// solution
 const { a, b } = obj;
 const { d: { e } } = b;
 
@@ -31,6 +33,7 @@ const { d: { e } } = b;
  */
 
 // 문제 2. 5줄 4칸짜리 이차원 배열을 만들어 보세요. 배열의 요소는 모두 1입니다.
+// solution
 const array = [];
 
 for (let i = 0; i < 5; i++) {
@@ -49,3 +52,21 @@ console.log(array);
  * [1, 1, 1, 1]
  * [1, 1, 1, 1]
  */
+
+// 문제 3. 다음 베열에서 한 칸이라도 null이 들어 있으면 true를 반환하고 아니면 false를 출력한 코드를 작성하세요.
+const array = [1, 'hello', null, undefined, false];
+
+// solution - 1
+let some = false;
+
+array.forEach((element) => {
+  if (element === null) {
+    some = true;
+  }
+});
+
+console.log(some); // true
+
+// solution - 2
+const some = array.some(element => element === null);
+console.log(some); // true
