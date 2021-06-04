@@ -61,6 +61,142 @@
 
     let turn = 'o';
 
+    /*
+     * 명령문들은 함수로 분리할수록 좋다.
+     * 함수들을 분리할 때 반복문 밖으로 빼라.
+     */
+
+    /*
+     * rows : [
+                [td, td, td], 
+                [td, td, td], 
+                [td, td, td]
+              ]
+     */
+    
+    const checkWinner = (target) => { // target : 태그
+      let rowIndex;
+      let cellIndex;
+
+      // forEach 메소드는 진짜 배열에서만 사용됨.
+      rows.forEach((row, ri) => {
+        row.forEach((cell, ci) => {
+          if (cell === target) {
+            rowIndex = ri;
+            cellIndex = ci;
+          }
+        });
+      });
+      // 세 칸이 모두 채워졌는가?
+      let hasWinner = false; // 뭔가를 검사할 때 false로 시작하면 좋음.
+      console.log('rows[rowIndex][0].textContent : ' + rows[rowIndex][0].textContent);
+      console.log('turn : ' + event.target.textContent);
+      // 가로줄 검사
+      if (
+        rows[rowIndex][0].textContent === turn && 
+        rows[rowIndex][1].textContent === turn && 
+        rows[rowIndex][2].textContent === turn
+      ) {
+        hasWinner = true;
+      }
+
+      // 세로줄 검사
+      if (
+        rows[0][cellIndex].textContent === turn &&        
+        rows[1][cellIndex].textContent === turn &&        
+        rows[2][cellIndex].textContent === turn       
+      ) {
+          hasWinner = true;
+      }
+
+      // 대각선 검사
+      if (
+        rows[0][0].textContent === turn &&        
+        rows[1][1].textContent === turn &&        
+        rows[2][2].textContent === turn       
+      ) {
+          hasWinner = true;
+      }
+
+      if (
+        rows[0][2].textContent === turn &&        
+        rows[1][1].textContent === turn &&        
+        rows[2][0].textContent === turn       
+      ) {
+          hasWinner = true;
+      }
+      return hasWinner; // 승자가 있으면 true, 없으면 false
+    };
+    const callback = (event) => {
+      /*
+       * // 칸에 글자가 있는가?
+       * // if (event.target.textContent) return;
+       */
+
+      console.log('TD is clicked.');
+      /* 
+       * 이벤트 버블링 : 자식 -> 부모한테 이벤트 전파
+       * 이벤트 캡처링 : 부모 -> 전달한테 이벤트 전파(ex. 바깥에서 팝업 닫기)
+       */
+      event.stopPropagation(); // 이벤트 버블링 방지
+      // event.currentTarget : table
+      if (event.target.textContent != '') { // 킨이 이미 채워져 있는가?
+        console.log('빈 칸이 아닙니다.');
+        return; 
+      } 
+      
+      // 빈 칸이면
+      console.log('빈 칸입니다.');
+      event.target.textContent = turn;
+      // $td.textContent = turn;
+
+      // 승자 확인 검사
+      if (checkWinner(event.target)) { // 승자가 있으면 true, 없으면 false
+        $result.textContent = `${turn}님이 승리!`;
+        $table.removeEventListener('click', callback); // 승리했을 때 다른 셀에 클릭되는 것을 막으려고
+        return;
+      }
+
+      // 무승부 검사
+      /*       
+      let count = 0;
+      rows.forEach((row) => {
+        row.forEach((cell) => {
+          if (!cell.textContent) {
+            count += 1;
+          }
+        });
+      });
+      if (count === 9) {
+        $result.textContent = '무승부';
+        return;
+      } 
+      */    
+      let draw = true;
+      rows.forEach((row) => {
+        row.forEach((cell) => {
+          if (!cell.textContent) {
+            draw = false;
+          }
+        });
+      });
+      if (draw) { // draw : true -> 무승부
+        $result.textContent = '무승부';
+        return;
+      } 
+
+      /*       
+      if (turn === 'o') {
+        turn = 'x';
+      } else {
+        turn = 'o';
+      } 
+      */
+      // draw : false -> 무승부가 아님.
+      turn = (turn === 'o') ? 'x' : 'o';
+    };
+
+    // 반복문 안의 명령문들은 최대한 짧게 써라.
     // for (let i = 1; i <= 3; i++) {
     for (let i = 0; i < 3; i++) {
       const $tr = document.createElement('tr');
@@ -69,24 +205,16 @@
       for (let j = 0; j < 3; j++) {
         const $td = document.createElement('td');
         cells.push($td);
-        $td.addEventListener('click', (event) => {
-          // 칸에 글자가 있는가?
-          if (event.target.textContent) return;
-          console.log('TD is clicked.');
-          event.target.textContent = turn;
-          // $td.textContent = turn;
-          // 승부 확인
-          if (turn === 'o') {
-            turn = 'x';
-          } else {
-            turn = 'o';
-          }
-        });
+        // $td.addEventListener('click', callback);
         $tr.append($td);
       }
       rows.push(cells);
       $table.append($tr);
     }
+    /* 
+     * $table.addEventListener('click', callback, true); // 이벤트 캡처링
+     */
+    $table.addEventListener('click', callback);
     body.append($table);
     body.append($result);
   </script>
