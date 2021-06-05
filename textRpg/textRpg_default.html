@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>텍스트 RPG 게임</title>
+</head>
+<body>
+  <form id="start-screen">
+    <input type="text" id="name-input" placeholder="주인공 이름을 입력하세요.">
+    <button type="submit" id="start">시작</button>
+  </form>
+  <div id="screen">
+    <div id="hero-start">
+      <span id="hero-name"></span>
+      <span id="hero-level"></span>
+      <span id="hero-hp"></span>
+      <span id="hero-xp"></span>
+      <span id="hero-att"></span>
+    </div>
+    <form id="game-menu" style="display:none;">
+      <div id="menu-1">1. 모험</div>
+      <div id="menu-2">2. 휴식</div>
+      <div id="menu-3">3. 종료</div>
+      <input type="text" id="menu-input">
+      <button type="submit" id="menu-button">입력</button>
+    </form>
+    <form id="battle-menu" style="display:none;">
+      <div id="battle-1">1. 공격</div>
+      <div id="battle-2">2. 회복</div>
+      <div id="battle-3">3. 도망</div>
+      <input type="text" id="battle-input">
+      <button type="submit" id="battle-button">입력</button>  
+    </form>
+    <div id="message"></div>
+    <div id="monster-stat">
+      <span id="monster-name"></span>
+      <span id="monster-hp"></span>
+      <span id="monster-att"></span>
+    </div>
+  </div>
+  <script>
+    // 변수는 최대한 구체적으로 적는 것이 좋다.
+    const $startScreen = document.querySelector('#start-screen');
+    const $gameMenu = document.querySelector('#game-menu');
+    const $battleMenu = document.querySelector('#battle-menu');
+    const $heroName = document.querySelector('#hero-name'); // 주인공의 이름
+    const $heroLavel = document.querySelector('#hero-level'); // 주인공의 레벨
+    const $heroHp = document.querySelector('#hero-hp'); // 주인공의 체력
+    const $heroXp = document.querySelector('#hero-xp'); // 주인공의 경험치
+    const $heroAtt = document.querySelector('#hero-att'); // 주인공의 공격력
+    const $monsterName = document.querySelector('#monster-name'); // 몬스터 이름
+    const $monsterHp = document.querySelector('#monster-hp'); // 몬스터 체력
+    const $monsterAtt = document.querySelector('#monster-att'); // 몬스터의 공격력
+
+    const hero = {
+      name : '',
+      level : 1,
+      maxHp : 100,
+      hp : 100,
+      xp : 0,
+      att : 10
+    };
+
+    let monster = null; // monsterList 변수에서 몬스터를 여기에 생성하려고 초기값을 null로 지정
+
+    const monsterList = [
+      {name : '슬라임', hp : 25, att : 10, xp : 100}, 
+      {name : '스켈레톤', hp : 50, att : 15, xp : 20}, 
+      {name : '미왕', hp : 150, att : 35, xp : 50}
+    ];
+
+    $startScreen.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = event.target['name-input'].value;
+      $startScreen.style.display = 'none';
+      $gameMenu.style.display = 'block';
+      $heroName.textContent = name;
+      $heroLavel.textContent = `${hero.level}Level`;
+      $heroHp.textContent = `HP : ${hero.hp} / ${hero.maxHp}`;
+      $heroXp.textContent = `XP : ${hero.xp} / ${15 * hero.level}`;
+      $heroAtt.textContent = `ATT : ${hero.att}`;
+      hero.name = name;
+    });
+  </script>
+</body>
+</html>
