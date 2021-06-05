@@ -98,8 +98,7 @@
 
       // 세 칸이 모두 채워졌는가?
       let hasWinner = false; // 뭔가를 검사할 때 false로 시작하면 좋음.
-      console.log('rows[rowIndex][0].textContent : ' + rows[rowIndex][0].textContent);
-      console.log('turn : ' + event.target.textContent);
+      console.log('turn : ' + target.textContent);
       // 가로줄 검사
       if (
         rows[rowIndex][0].textContent === turn && 
@@ -136,6 +135,35 @@
       }
       return hasWinner; // 승자가 있으면 true, 없으면 false
     };
+
+    const checkWinnerAndDraw = (target) => {
+      const hasWinner = checkWinner(target); 
+      // 승자가 있으면
+      if (hasWinner) { 
+        $result.textContent = `${turn}님이 승리!`;
+        $table.removeEventListener('click', callback); // 승리했을 때 다른 셀에 클릭되는 것을 막으려고
+        return;
+      }
+
+      /*
+       * every() 메소드는 모두 true이면 true이고 하나라도 false가 있으면 false
+       * every() 메소드는 1차원 배열에서만 사용됨.
+       * some() 메소드는 하나라도 true이면 true이고 모두 false이면 false임.
+       * 참고로 2차원 배열을 1차원 배열로 만들려면 flat() 메소드를 사용해야 됨.
+       * false인 7가지 경우 : 빈 문자열, false, 0, undefined, null, NaN, document.all
+       */
+
+      // 승자가 없으면
+      // let draw = true;
+      const draw = rows.flat().every((cell) => cell.textContent);
+      if (draw) {
+        $result.textContent = '무승부';
+        return;
+      }
+      turn = (turn === 'o') ? 'x' : 'o'; // o : 창수, x: 컴퓨터
+    };
+
+    let clickable = true; // 컴퓨터의 turn에서 창수가 클릭하지 않게 만들려고 플래그 변수 사용
     const callback = (event) => {
       /*
        * // 칸에 글자가 있는가?
@@ -148,6 +176,11 @@
        * 이벤트 캡처링 : 부모 -> 전달한테 이벤트 전파(ex. 바깥에서 팝업 닫기)
        */
       event.stopPropagation(); // 이벤트 버블링 방지
+ 
+      if(!clickable) { // 클릭하지 못하는 상황에서 return을 반환함.
+        return;
+      }
+ 
       // event.currentTarget : table
       if (event.target.textContent != '') { // 킨이 이미 채워져 있는가?
         console.log('빈 칸이 아닙니다.');
@@ -160,52 +193,18 @@
       // $td.textContent = turn;
 
       // 승자 확인 검사
-      const hasWinner = checkWinner(event.target);
-      if (hasWinner) { // 승자가 있으면 true, 없으면 false
-        $result.textContent = `${turn}님이 승리!`;
-        $table.removeEventListener('click', callback); // 승리했을 때 다른 셀에 클릭되는 것을 막으려고
-        return;
-      }
-
-      // 무승부 검사
-      /*       
-      let count = 0;
-      rows.forEach((row) => {
-        row.forEach((cell) => {
-          if (!cell.textContent) {
-            count += 1;
-          }
-        });
-      });
-      if (count === 9) {
-        $result.textContent = '무승부';
-        return;
-      } 
-      */  
+      checkWinnerAndDraw(event.target);
      
-      /*
-       * every() 메소드는 모두 true이면 true이고 하나라도 false가 있으면 false
-       * every() 메소드는 1차원 배열에서만 사용됨.
-       * some() 메소드는 하나라도 true이면 true이고 모두 false이면 false임.
-       * 참고로 2차원 배열을 1차원 배열로 만들려면 flat() 메소드를 사용해야 됨.
-       * false인 7가지 경우 : 빈 문자열, false, 0, undefined, null, NaN, document.all
-       */
-      // let draw = true;
-      const draw = rows.flat().every((cell) => cell.textContent);
-      if (draw) { // draw : true -> 무승부
-        $result.textContent = '무승부';
-        return;
+      if (turn === 'x') {
+        clickable = false;
+        setTimeout(() => {
+          const emptyCells = rows.flat().filter((v) => !v.textContent);
+          const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]; // 0 ~ emptyCells.length-1
+          randomCell.textContent = 'x';
+          checkWinnerAndDraw(randomCell);
+          clickable = true;
+        }, 1000);
       } 
-
-      /*       
-      if (turn === 'o') {
-        turn = 'x';
-      } else {
-        turn = 'o';
-      } 
-      */
-      // draw : false -> 무승부가 아님.
-      turn = (turn === 'o') ? 'x' : 'o'; // o : 창수, x: 컴퓨터
     };
 
     // 반복문 안의 명령문들은 최대한 짧게 써라.
