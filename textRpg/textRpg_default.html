@@ -108,6 +108,42 @@
         $monsterName.textContent = monster.name;
         $monsterHp.textContent = `HP : ${monster.hp} / ${monster.maxHp}`;
         $monsterAtt.textContent = `ATT : ${monster.att}`;
+
+        /*
+         * 복사는 뒤(앞)에 있는 내용을 바꿔도 앞(뒤)에 있는 내용에 영향을 주지 않음. 
+         * 깊은 복사는 외부와 내부 모두 참조 관계가 아님. 
+         * 얕은 복사는 외부만 복사이고 내부가 참조 관계임. 
+         * 참조는 뒤(앞)에 있는 내용이 바뀌면 앞(뒤)에 있는 내용도 바뀜. 
+         * const a = [];
+         * const b = 'hello'; // 원시값(문자열, 숫자, 블리언, null, undefined)은 객체가 아니므로 복사가 됨.
+         * const c = {};
+         * const arr = [a, b, c]; // a와 c는 객체이므로 참조 관계가 됨.
+         * const arr1 = arr; // 참조 관계
+         * arr1[1] = 'hi';
+         * console.log(arr[1]) // 'hi', 참조 관계
+         * const arr2 = [...arr];
+         * arr2[1] = 'babo';
+         * console.log(arr[1]); // hi, 얕은 복사
+         * arr2[0].push(1); // 1
+         * console.log(arr[0]) // [1], 배열의 경우 얕은 복사를 했음에도 외부가 바뀜. 
+         * const arr3 = JSON.parse(JSON.stringify(arr)); // 깊은 복사
+         * arr3[0].push(2); // 2
+         * console.log(arr[0]) // [1]
+         * console.log(arr3[0]) // [1, 2]
+         */
+        const monster1 = JSON.parse(JSON.stringify(monsterList[0])); // 깊은 복사
+        const monster2 = monsterList[0]; // 객체를 대입하면 참조 관계임.
+        const monster3 = {...monsterList[0]}; // 얕은 복사, monsterList[0]은 객체 리터럴임.
+        // const arr = [...arr]; // 배열을 얕은 복사할 때 적용하는 방법
+        monster1.name = '새 몬스터';
+        console.log(monsterList[0].name); // 슬라임
+        // monster2.name = '새 몬스터'; 
+        // console.log(monsterList[0].name); // 새 몬스터
+        // monster3.name = '새 몬스터'; 
+        // console.log(monsterList[0].name); // 슬라임
+        console.log(monsterList[0].name === monster1.name); // false, 깊은 복사
+        // console.log(monsterList[0].name === monster2.name); // true, 참조 관계
+        // console.log(monsterList[0].name === monster3.name); // false, 얕은 복사
       } else if(input === '2'){ // 휴식
 
       } else { // 종료
