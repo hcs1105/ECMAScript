@@ -54,6 +54,9 @@
     const $monsterHp = document.querySelector('#monster-hp'); // 몬스터 체력
     const $monsterAtt = document.querySelector('#monster-att'); // 몬스터의 공격력
 
+    /*
+     * 객체 안의 this는 자기 자신을 가리킴.
+     */
     const hero = {
       name : '',
       level : 1,
@@ -61,13 +64,40 @@
       hp : 100,
       xp : 0,
       att : 10,
-      attack(monster){
-        monster.hp -= this.att;
-        this.hp -= monster.att; 
+      /*       
+       * window 객체 : document의 부모이며 브라우저 전체를 담당하는 객체      
+       * window 객체는 생략이 가능함.      
+       * 화살표 함수를 사용할 때 this가 window를 가리킬 수 있으므로 화살표 함수에 this를 쓰지 말 것.      
+       * 객체 리터럴 안에서 메소드는 function 에약어를 생략할 수 있다.      
+       * attack : (monster) => {
+       *  monster.hp -= this.att; // <==> monster.hp -= window.att
+       *  this.hp -= monster.att; // <==> window.hp -= monster.att
+       * }, 
+       * heal: (monster) => {
+       *  this.hp += 20; // <==> window.hp += 20;
+       *  this.hp -= monster.att; // <==> window.hp -= monster.att;
+       * }  
+       */  
+     
+      /*
+       * const b = {
+       *  name : '제로초',
+       *  sayName : function() {
+       *   console.log(this);
+       *  }   
+       * };
+       * 
+       * b.sayName(); // true{this === b}
+       * const bf = b.sayName;
+       * bf(); // false(this가 window이므로)
+       */
+      attack(monster){ // <==> attack : function (monster){ 
+        monster.hp -= this.att; // <==> monster.hp -= hero.att
+        this.hp -= monster.att; // <==> hero.hp -= monster.att
       }, 
-      heal(monster){
-        this.hp += 20;
-        this.hp -= monster.att; 
+      heal(monster){ // <==> heal : function (monster){
+        this.hp += 20; // <==> hero.hp += 20;
+        this.hp -= monster.att; // <==> hero.hp -= monster.att;
       }
     };
 
