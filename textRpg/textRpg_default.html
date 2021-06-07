@@ -68,7 +68,7 @@
     const monsterList = [
       {name : '슬라임', hp : 25, att : 10, xp : 100}, 
       {name : '스켈레톤', hp : 50, att : 15, xp : 20}, 
-      {name : '미왕', hp : 150, att : 35, xp : 50}
+      {name : '마왕', hp : 150, att : 35, xp : 50}
     ];
 
     $startScreen.addEventListener('submit', (event) => {
@@ -111,14 +111,14 @@
 
         /*
          * 복사는 뒤(앞)에 있는 내용을 바꿔도 앞(뒤)에 있는 내용에 영향을 주지 않음. 
-         * 깊은 복사는 외부와 내부 모두 참조 관계가 아님. 
-         * 얕은 복사는 외부만 복사이고 내부가 참조 관계임. 
+         * 깊은 복사는 외부와 내부에 있는 객체와 배열은 모두 참조 관계가 아님. 
+         * 얕은 복사는 외부만 복사이고 내부에 있는 객체와 배열은 참조 관계임. 
          * 참조는 뒤(앞)에 있는 내용이 바뀌면 앞(뒤)에 있는 내용도 바뀜. 
          * const a = [];
          * const b = 'hello'; // 원시값(문자열, 숫자, 블리언, null, undefined)은 객체가 아니므로 복사가 됨.
          * const c = {};
-         * const arr = [a, b, c]; // a와 c는 객체이므로 참조 관계가 됨.
-         * const arr1 = arr; // 참조 관계
+         * const arr = [a, b, c]; // a는 배열이고 c는 객체이므로 참조 관계가 됨.
+         * const arr1 = arr; // 참조 관계 : 객체를 담은 변수를 다시 다른 변수에 대입한 것
          * arr1[1] = 'hi';
          * console.log(arr[1]) // 'hi', 참조 관계
          * const arr2 = [...arr];
@@ -130,6 +130,12 @@
          * arr3[0].push(2); // 2
          * console.log(arr[0]) // [1]
          * console.log(arr3[0]) // [1, 2]
+         */
+
+        /*
+         * JSON.parse(JSON.stringfy()) 메소드를 사용하면 깊은 복사를 쉽게 할 수 있다.
+         * 그렇지만 JSON.parse(JSON.stringfy()) 메소드는 성능에 안 좋고 프로토타압에 적용되지 않는 경우가 많다.
+         * 그래서 lodash의 clonedeep() 메소드로 깊은 복사할 것을 추천하다.
          */
         const monster1 = JSON.parse(JSON.stringify(monsterList[0])); // 깊은 복사
         const monster2 = monsterList[0]; // 객체를 대입하면 참조 관계임.
