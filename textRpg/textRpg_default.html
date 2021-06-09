@@ -53,6 +53,7 @@
     const $monsterName = document.querySelector('#monster-name'); // 몬스터 이름
     const $monsterHp = document.querySelector('#monster-hp'); // 몬스터 체력
     const $monsterAtt = document.querySelector('#monster-att'); // 몬스터의 공격력
+    const $messsage = document.querySelector('#message');
 
     /*
      * 객체 안의 this는 자기 자신을 가리킴.
@@ -97,7 +98,7 @@
       }, 
       heal(monster){ // <==> heal : function (monster){
         this.hp += 20; // <==> hero.hp += 20;
-        this.hp -= monster.att; // <==> hero.hp -= monster.att;
+        // this.hp -= monster.att; // <==> hero.hp -= monster.att;
       }
     };
 
@@ -205,11 +206,15 @@
       event.preventDefault();
       const input = event.target['battle-input'].value; 
 
-      if(input === '1'){
-
-      } else if(input === '2'){
-
-      } else {
+      if(input === '1'){ // 공격
+        hero.attack(monster);   
+        monster.attack(hero); // Uncaught TypeError: monster.attack is not a function
+        $heroHP.textContent = `HP : ${hero.hp}/${hero.maxHp}`;   
+        $monsterHp.textContent = `HP : ${monster.hp}/${monster.maxHp}`; 
+        $messsage.textContent = `${hero.att}의 데미지를 주고, ${monster.att}의 데미지를 받았다.`;
+      } else if(input === '2'){ // 회복
+      
+      } else { // 도망
 
       }
     });
