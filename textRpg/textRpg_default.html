@@ -170,6 +170,10 @@
          * arr3[0].push(2); // 2
          * console.log(arr[0]) // [1]
          * console.log(arr3[0]) // [1, 2]
+         * const array = [{j: 'k'}, {l: 'm'}];
+         * const shallowCopy = [...array]; // 얕은 복사
+         * console.log(array === shallowCopy); // false
+         * console.log(array[0] === shallowCopy[0]); // true
          */
 
         /*
