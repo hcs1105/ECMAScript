@@ -10,11 +10,18 @@ const i = [{ j : 'k'}, { l : 'm'}];
 const n = { o : { p : 'q'}};
 
 const a1 = a;
-const c1 = c.slice(); // 변수 C의 배열 안에 있는 요소들이 원시값이므로 slice() 메소드를 사용해도 됨.
+const c1 = c.slice(); // 변수 C의 배열 안에 있는 요소들이 원시값이므로 얕은 복사인 slice() 메소드를 사용해도 됨.
 const c1 = [...c];
 const e1 = {...e}; // 객체 안에 객체가 들어 있지 않으므로
 const i1 = JSON.parse(JSON.stringify(i));
 const n1 = JSON.parse(JSON.stringify(n));
+
+/*
+ * 문자열과 블리언, 숫자와 같은 자료형은 단순히 다른 변수에 대입하는 것만으로 복사되며 복사된 값을 바꿔도 원본이 바뀌지 않음.
+ * 내부에 객체가 들어 있지 않는 배열은 slice 메소드를 사용하고 내부에 객체가 들어 있지 않는 객체 리터럴은 ... 연산자 사용 
+ * 내부에 객체가 들어 있는 경우는 복사가 까다롭다. slice 메소드나 spread 문법은 내부 객체를 복사 대신 참조로 연결한다.
+ * 그래서 JSON.parse(JSON.stringify(객체))로 깊은 복사한다. 
+/*
 
 /*
  * 유제 1. 다음 값을 concat 메소드로 복사해 보세요. 여기서 복사라고 함은 복사본을 수정할 때 원본이 바뀌지 않는 것을 
