@@ -224,7 +224,7 @@
       if(input === '1'){ // 공격
         hero.attack(monster);   
         monster.attack(hero); // Uncaught TypeError: monster.attack is not a function
-        $heroHP.textContent = `HP : ${hero.hp}/${hero.maxHp}`;   
+        $heroHp.textContent = `HP : ${hero.hp}/${hero.maxHp}`;   
         $monsterHp.textContent = `HP : ${monster.hp}/${monster.maxHp}`; 
         $messsage.textContent = `${hero.att}의 데미지를 주고, ${monster.att}의 데미지를 받았다.`;
       } else if(input === '2'){ // 회복
