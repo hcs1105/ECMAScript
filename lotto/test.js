@@ -1,5 +1,3 @@
-// Git 기본 브랜치 변경 테스트 : master -> main
-
 // setTimeout() 함수를 이용히여 3.5초 이후에 처리하도록 구현하는 문제
 function func() {
   console.log('Hellow');
