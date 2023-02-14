@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>console 메소드, script async와 defer의 차이점</title>
+    <script src="console.js"></script>
+</head>
+<body>
+    <p>자바스크립트 공식 사이트 - ecma-international.org</p>
+    <p>자바스크립트 공식 사이트 - developer.mozilla.org</p>
+    <p>브라우저가 파일을 읽는 일반적인 방법 : parsing HTML - blocked(fetching js - excuting js) - parsing HTML</p>
+    <p>브라우저가 파일을 읽는 부수적인 방법 : parsing HTML - fetching js - excuting js(js 파일을 닫는 body 태그 앞에 배치)</p>
+    <p>브라우저가 파일을 읽는 head + async 방법 : 병렬 진행(parsing HTML - fetching js) - blocked(excuting js) - parsing HTML</p>
+    <p>브라우저가 파일을 읽는 head + defer 방법 : parsing HTML - fetching js - parsing HTML - excuting js</p>
+    <p>head + defer 방법이 가장 안전하고 효율적이다.</p>
+</body>
+</html>
