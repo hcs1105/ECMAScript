@@ -107,3 +107,20 @@ console.log(symbol1 === symbol2); // false
 console.log(symbol3 === symbol4); // true
 // console.log(`value: ${symbol1}, type: ${typeof symbol1}`); // Uncaught TypeError: Cannot convert a Symbol value to a string
 console.log(`value: ${symbol1.description}, type: ${typeof symbol1}`); // value: id, type: symbol
+
+// 5. Dynamic typing: dynamic typed language
+let text = 'hello';
+console.log(text.charAt(0)); // h
+console.log(`value: ${text}, type: ${typeof text}`); // value: hello, type: string
+text = 1;
+console.log(`value: ${text}, type: ${typeof text}`); // value: 1, type: number
+text = '7' + 5;
+console.log(`value: ${text}, type: ${typeof text}`); // value: 75, type: string
+text = '8' / '2';
+console.log(`value: ${text}, type: ${typeof text}`); // value: 4, type: number
+// console.log(text.charAt(0)); Uncaught TypeError: text.charAt is not a function
+
+// object, real-life object, data structure
+const hcs1105 = {name : 'hcs1105', age : 20};
+hcs1105.age = 21;
+console.log(hcs1105.age); // 21
