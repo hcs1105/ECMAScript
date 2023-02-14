@@ -5,7 +5,7 @@
 
 console.log(age); // undefined
 
-// 2. Variable
+// 2. Variable, rw(read/write)
 // let (added in ES 6)
 
 let globalName = 'global name';
@@ -32,13 +32,17 @@ console.log(globalName); // global name
 // has no block scope.
 console.log(age); // 7
 
-// 3. Constants
+// 3. Constant, r(read only)
 // favor immutable data type always for a few reasons:
 //  - security
 //  - thread safety
 
 const dayInWeek = 7;
 const maxNumber = 5;
+
+// Note!
+// Immutable data types : primitive types, frozen object(i.e. object.frozen())
+// Mutable data types : all objects by default are mutable in JS        
 
 // 4. Variable types
 // primitive, sing item - number, string, boolean, undefined, null, symbol 
