@@ -31,3 +31,11 @@ console.log(globalName); // global name
 }
 // has no block scope.
 console.log(age); // 7
+
+// 3. Constants
+// favor immutable data type always for a few reasons:
+//  - security
+//  - thread safety
+
+const dayInWeek = 7;
+const maxNumber = 5;
