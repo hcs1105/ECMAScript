@@ -118,3 +118,19 @@ function sum(a, b){
 
 const result = sum(1, 2);
 console.log(`sum: ${sum(1,2)}`); // 3
+
+// 7. Early return, early exit
+// bad
+function upgradeUser1(user){
+  if(user.point > 10) {
+    // long upgrade logic...
+  }
+}
+
+// good
+function upgradeUser2(user){
+  if(user.point <= 10){
+    return;
+  }
+  // long upgrade logic...
+}
