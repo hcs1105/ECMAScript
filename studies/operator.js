@@ -121,7 +121,7 @@ const browser = 'IE';
 
 switch(browser){
   case 'IE' : 
-    console.log('go away!');
+    console.log('go away!'); // go away!
     break;
   case 'Chrome' : 
   case 'Firefox' : 
@@ -129,4 +129,5 @@ switch(browser){
     break;
   default : 
     console.log('same all!');
+    break;
 }
