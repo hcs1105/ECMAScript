@@ -131,3 +131,53 @@ switch(browser){
     console.log('same all!');
     break;
 }
+
+// 11. Loops
+// while loop, while the condition is truthy, body code is executed
+let i = 3;
+while(i > 0){
+  console.log(`while: ${i}`); // while: 3, while: 2, while: 1
+  i--;
+}
+
+// do while loop, body code is executed first, then check the condition
+do {
+  console.log(`do while: ${i}`);
+  i--;
+} while(i > 0); // do while: 0
+
+// for loop, for(begin; condition; step)
+for(i = 3; i > 0; i--){
+  console.log(`for: ${i}`); // for: 3, for: 2, for: 1
+}
+
+for(let i = 3; i > 0; i = i - 2){
+  // inline variable declaration
+  console.log(`inline variable for: ${i}`); // inline variable for: 3, inline variable for: 1
+}
+
+// nested loops
+// 빅오 표기법(big-O notation) : n**2
+// CPU 성능에 좋지 않음.
+for(let i = 0; i < 3; i++) {
+  for(let j = 0; j < 3; j++){
+    console.log(`i: ${i}, j: ${j}`); 
+    // i: 0, j: 0, i: 0, j: 1, i: 0, j: 2, i: 1, j: 0, i: 1, j: 1, i: 1, j: 2, i: 2, j: 0, i: 2, j: 1, i: 2, j: 2,   
+  }
+}
+
+// break, continue
+// Q1. iterate from 0 to 10 and print only even numbers(use continue)
+for(let i = 0; i < 11; i++){
+  if(i % 2 === 1) {
+    continue;
+  }
+    console.log(`q1 : ${i}`); // q1 : 0, q1 : 2, q1 : 4, q1 : 6, q1 : 8, q1 : 10
+}
+// Q2. iterate from 0 to 10 and print numbers until reach 8(use break)
+for(let i = 0; i < 11; i++){
+  if(i > 8){
+    break;
+  }
+  console.log(`q2 : ${i}`); // q2 : 0, q2 : 1, q2 : 2, q2 : 3, q2 : 4, q2 : 5, q2 : 6, q2 : 7, q2 : 8
+}
