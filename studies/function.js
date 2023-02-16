@@ -106,6 +106,15 @@ function printMessage(){
   }
   printAnthor();
   console.log(childMessage); // Uncaught ReferenceError: childMessage is not defined
+  // return undefined;
 }
 printMessage();
 console.log(message); // Uncaught ReferenceError: message is not defined
+
+// 6. Return a value
+function sum(a, b){
+  return a + b;
+}
+
+const result = sum(1, 2);
+console.log(`sum: ${sum(1,2)}`); // 3
