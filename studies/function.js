@@ -89,3 +89,23 @@ function printAll3(...args){
 }
 
 printAll3('beautiful', 'smile', 'hcs1105'); // beautiful, smile, hcs1105
+
+// 5. Local scope
+// 밖에서는 안이 보이지 않고 안에서만 밖을 볼 수 있다
+// 클로저(Closure) : 중첩된 함수에서 자식 함수가 부모 함수의 변수에 접근하는 현상
+let globalMessage = 'global'; // global variable
+
+function printMessage(){
+  let message = 'hello';
+  console.log(message); // hello, local variable
+  console.log(globalMessage); // global
+  
+  function printAnthor(){
+    console.log(message); // hello;
+    let childMessage = 'hi';
+  }
+  printAnthor();
+  console.log(childMessage); // Uncaught ReferenceError: childMessage is not defined
+}
+printMessage();
+console.log(message); // Uncaught ReferenceError: message is not defined
