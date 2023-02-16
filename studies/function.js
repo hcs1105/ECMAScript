@@ -105,11 +105,11 @@ function printMessage(){
     let childMessage = 'hi';
   }
   printAnthor();
-  console.log(childMessage); // Uncaught ReferenceError: childMessage is not defined
+  // console.log(childMessage); // Uncaught ReferenceError: childMessage is not defined
   // return undefined;
 }
 printMessage();
-console.log(message); // Uncaught ReferenceError: message is not defined
+// console.log(message); // Uncaught ReferenceError: message is not defined
 
 // 6. Return a value
 function sum(a, b){
@@ -134,3 +134,23 @@ function upgradeUser2(user){
   }
   // long upgrade logic...
 }
+
+// 8. First-class function
+// Functions are treated like any other variable
+// can be assigned as a value to variable
+// can be passed as an argument to other functions
+// can be returned by another function
+
+// 9. Function expression
+// A function declaration can be called earlier than it is defined. (hoisted) 
+// A function exprerssion is created when the execution reaches it.
+
+const print = function() { // anonymous function
+  console.log('print');
+}
+
+print(); // print
+const printAgain = print;
+printAgain(); //print
+const sumAgain = sum;
+console.log(sumAgain(1,3)); // 4
