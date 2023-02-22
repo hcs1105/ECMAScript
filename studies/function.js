@@ -209,3 +209,15 @@ const simpleMultiply = (a, b) => {
   // do something more
   return a + b;
 }
+
+// IIFE : Immediately Invoked Function Expression
+// 즉시 실행 함수 : 선언함과 동시에 바로 호출되는 함수
+function hello() {
+  console.log('IIFE1');
+}
+
+hello(); // IIFE1
+
+(function hello() {
+  console.log('IIFE2');
+})(); // IIFE2
