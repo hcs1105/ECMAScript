@@ -89,3 +89,26 @@ class Experiment {
 const experiment = new Experiment();
 console.log(experiment.publicField); // 2
 console.log(experiment.privateField); // undefined
+
+// 4. Static properties and methods
+// object와 상관없이 공통적으로 클래스에 쓸 수 있는 거라면 Static properties and methods를 이용하여 메모리의 효율을 조금이라도 줄일 수 있다.
+// TypeScript에서 유용하게 사용할 수 있다.
+// Too soon!
+
+class Article {
+  static fedev = 'Frontend Developer';
+  constructor(articleNumber){
+    this.articleNumber = articleNumber;
+  }
+
+  static printFedev() {
+    console.log(Article.fedev);
+  }
+}
+
+const article1 = new Article(1);
+const article2 = new Article(2);
+
+console.log(article1.fedev); // undefined
+console.log(Article.fedev); // Frontend Developer
+Article.printFedev(); // Frontend Developer
