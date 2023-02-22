@@ -221,3 +221,37 @@ hello(); // IIFE1
 (function hello() {
   console.log('IIFE2');
 })(); // IIFE2
+
+// Quiz
+// function calculate(command, a, b)
+// command : add, substract, divide, multiply, remainder
+
+function calculate(command, a, b){
+  switch (command) {
+    case 'add' :
+      console.log(a + b);
+      break;
+    case 'substract' :
+      console.log(a - b);
+      break;
+    case 'divide' :
+      console.log(a / b);
+      break;
+    case 'multiply' :
+      console.log(a * b);
+      break;
+    case 'remainder' :
+      console.log(a % b);
+      break;
+    default : 
+      console.log('Unknown command');
+      break;
+  }
+}
+
+calculate('add', 3, 4); // 7
+calculate('substract', 3, 4); // -1
+calculate('divide', 3, 4); // 0.75
+calculate('multiply', 3, 4); // 12
+calculate('remainder', 3, 4); // 3
+calculate('', 3, 4); // Unknown command
