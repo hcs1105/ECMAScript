@@ -154,3 +154,28 @@ const printAgain = print;
 printAgain(); //print
 const sumAgain = sum;
 console.log(sumAgain(1,3)); // 4
+
+// 10. Callback function using function expression
+// 콜백 함수 : 함수를 다른 함수의 파라미터 전달받아 특정 시점에 호출되는 함수
+function randomQuiz(answer, printYes, printNo){
+  if(answer === 'love you'){
+    printYes();
+  } else {
+    printNo();
+  }
+}
+
+// anonymous function
+const printYes = function(){
+  console.log('Yes!');
+}
+
+// named function
+// better debugging in debugger's stack traces
+// recursions
+const printNo = function print(){
+  console.log('No!');
+}
+
+randomQuiz('wrong', printYes, printNo); // No!
+randomQuiz('love you', printYes, printNo); // Yes!
