@@ -179,3 +179,33 @@ const printNo = function print(){
 
 randomQuiz('wrong', printYes, printNo); // No!
 randomQuiz('love you', printYes, printNo); // Yes!
+
+// Arrow function
+// 화살표 함수 : function 키워드를 사용하여 만든 함수 표현식을 화살표로 변경하여 만든 함수
+// always anonymous
+const simplePrint = () => console.log('simplePrint');
+
+/*  
+ * 같은 표현 :  
+const simplePrint = function(){
+  console.log('simplePrint');
+}
+*/
+
+simplePrint(); // simplePrint
+
+const add = (a, b) => a + b;
+
+/*  
+ * 같은 표현 :  
+const add = function(){
+  return a + b;
+}
+*/
+
+add(1,2);
+
+const simpleMultiply = (a, b) => {
+  // do something more
+  return a + b;
+}
