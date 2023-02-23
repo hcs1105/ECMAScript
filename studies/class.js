@@ -127,6 +127,10 @@ class Shape {
   getArea() {
     return this.width * this.height;
   }
+
+  toString() {
+    return `Triangle color : ${this.color}`;
+  }
 }
 
 class Rectangle extends Shape {}
@@ -147,4 +151,14 @@ console.log(rectangle.getArea()); // 400
 
 const triangle = new Triangle(20, 20, 'red');
 triangle.draw(); // drawing red color!
-console.log(triangle.getArea()); // 200
+console.log(triangle.getArea()); // 
+
+// 6. Class checking : instanceof
+// instanceof 연산자 : 오브젝트가 특정 클래스에 속한는지 여부를 확인하는 연산자
+// 참고 URL : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
+console.log(rectangle instanceof Rectangle); // true
+console.log(triangle instanceof Rectangle); // false
+console.log(triangle instanceof Triangle); // true
+console.log(triangle instanceof Shape); // true
+console.log(triangle instanceof Object); // true
+console.log(triangle.toString()); // Triangle color : red
