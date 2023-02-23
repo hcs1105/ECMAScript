@@ -39,3 +39,23 @@ console.log(hcs1105.hasJob); // true
 
 delete hcs1105.hasJob;
 console.log(hcs1105.hasJob); // undefined
+
+// 2. Computed properties
+// Key should be always string.
+console.log(hcs1105.name); // hcs1105
+console.log(hcs1105['name']); // hcs1105, 실시간으로 원하는 key의 값을 받아 올 때 사용.
+hcs1105.hasJob = true;
+console.log(hcs1105.hasJob); // true
+
+function printValue1(obj, key) {
+	console.log(obj.key);
+}
+
+printValue1(hcs1105, 'name'); // undefined
+
+function printValue2(obj, key) {
+	console.log(obj[key]);
+}
+
+printValue2(hcs1105, 'name'); // hcs1105
+printValue2(hcs1105, 'age'); // 20
