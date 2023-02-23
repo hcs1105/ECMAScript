@@ -80,7 +80,6 @@ console.log(user1.age); // 0
 
 // 3. Fields (public, private)
 // Too soon!
-
 class Experiment {
   publicField = 2;
   #privateField = 0;
@@ -94,7 +93,6 @@ console.log(experiment.privateField); // undefined
 // object와 상관없이 공통적으로 클래스에 쓸 수 있는 거라면 Static properties and methods를 이용하여 메모리의 효율을 조금이라도 줄일 수 있다.
 // TypeScript에서 유용하게 사용할 수 있다.
 // Too soon!
-
 class Article {
   static fedev = 'Frontend Developer';
   constructor(articleNumber){
@@ -112,3 +110,41 @@ const article2 = new Article(2);
 console.log(article1.fedev); // undefined
 console.log(Article.fedev); // Frontend Developer
 Article.printFedev(); // Frontend Developer
+
+// 5. Inheritance
+// A way for one class to extend another class.
+class Shape {
+  constructor(width, height, color){
+    this.width = width;
+    this.height = height;
+    this.color = color;
+  }
+
+  draw() {
+    console.log(`drawing ${this.color} color!`);
+  }
+
+  getArea() {
+    return this.width * this.height;
+  }
+}
+
+class Rectangle extends Shape {}
+class Triangle extends Shape {
+  draw() { // override
+    super.draw(); // drawing blue color!
+    console.log('▲'); // ▲
+  }
+
+  getArea() { // override
+    return (this.width * this.height) / 2;
+  }
+}
+
+const rectangle = new Rectangle(20, 20, 'blue');
+rectangle.draw(); // drawing blue color!
+console.log(rectangle.getArea()); // 400
+
+const triangle = new Triangle(20, 20, 'red');
+triangle.draw(); // drawing red color!
+console.log(triangle.getArea()); // 200
