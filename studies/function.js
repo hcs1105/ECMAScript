@@ -229,29 +229,23 @@ hello(); // IIFE1
 function calculate(command, a, b){
   switch (command) {
     case 'add' :
-      console.log(a + b);
-      break;
+      return a + b;
     case 'substract' :
-      console.log(a - b);
-      break;
+      return a - b;
     case 'divide' :
-      console.log(a / b);
-      break;
+      return a / b;
     case 'multiply' :
-      console.log(a * b);
-      break;
+      return a * b;
     case 'remainder' :
-      console.log(a % b);
-      break;
+      return a % b;
     default : 
-      console.log('Unknown command');
-      break;
+      return 'Unknown command';
   }
 }
 
-calculate('add', 3, 4); // 7
-calculate('substract', 3, 4); // -1
-calculate('divide', 3, 4); // 0.75
-calculate('multiply', 3, 4); // 12
-calculate('remainder', 3, 4); // 3
-calculate('', 3, 4); // Unknown command
+console.log(calculate('add', 3, 4)); // 7
+console.log(calculate('substract', 3, 4)); // -1
+console.log(calculate('divide', 3, 4)); // 0.75
+console.log(calculate('multiply', 3, 4)); // 12
+console.log(calculate('remainder', 3, 4)); // 3
+console.log(calculate('', 3, 4)); // Unknown command
