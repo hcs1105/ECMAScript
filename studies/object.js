@@ -75,3 +75,12 @@ function makePerson(name, age) {
 		age // 같은 표현 - age : age
 	};
 }
+
+// 4. Constructor Function
+const person5 = new Person('hcs1105', 20);
+console.log(person5); // Person {name: 'hcs1105', age: 20}
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
