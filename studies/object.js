@@ -59,3 +59,19 @@ function printValue2(obj, key) {
 
 printValue2(hcs1105, 'name'); // hcs1105
 printValue2(hcs1105, 'age'); // 20
+
+// 3. Property value shorthand
+// 자바스크립트에서 key와 value의 이름이 동일하다면, value를 생략할 수 있다.
+const person1 = {name : 'bob', age : 2}
+const person2 = {name : 'steve', age : 3}
+const person3 = {name : 'dave', age : 4}
+const person4 = makePerson('hcs1105', 20);
+console.log(person4); // {name: 'hcs1105', age: 20}
+
+// 자바스크립트에 클래스가 없을 때 사용하던 방법
+function makePerson(name, age) {
+	return {
+		name, // 같은 표현 - name : name
+		age // 같은 표현 - age : age
+	};
+}
