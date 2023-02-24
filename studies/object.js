@@ -84,3 +84,9 @@ function Person(name, age) {
   this.name = name;
   this.age = age;
 }
+
+// 5. in operator : property existancde check(key in obj)
+console.log('name' in hcs1105); // true
+console.log('age' in hcs1105); // true
+console.log('job' in hcs1105); // false
+console.log(hcs1105.job); // undefined(정의하지 않는 키에 접근할 때)
