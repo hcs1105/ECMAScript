@@ -109,3 +109,44 @@ for(let i = 0; i < array.length; i++){
 for(const value of array) {
 	console.log(value); // 1, 2, 3, 4
 }
+
+// 7. Object Cloning
+// Object.assign(dest, [obj1, obj2, obj3...])
+const user = {name : 'hcs1105', age : 20};
+const user2 = user; // user 변수 안에 ref를 user2 변수도 동일하게 할당받고 있음.
+
+user2.name = 'Front-end Developer';
+console.log(user); // {name: 'Front-end Developer', age: 20}
+console.log(user2); // {name: 'Front-end Developer', age: 20}
+
+// Old way
+const user3 = {};
+
+for(const key in user) {
+	user3[key] = user[key];
+}
+
+console.clear();
+console.log(user3); // {name: 'Front-end Developer', age: 20}
+
+// assign() 메소드를 활용한 방법
+const user4 = {};
+
+Object.assign(user4, user);
+console.log(user4); // {name: 'Front-end Developer', age: 20}
+
+const user5 = Object.assign({}, user);
+console.log(user5); // {name: 'Front-end Developer', age: 20}
+
+// assign() 메소드를 활용한 다른 예시
+const fruit1 = {color : 'red'};
+const fruit2 = {color : 'blue', size : 'big'};
+const mixedFruit = Object.assign({}, fruit1, fruit2);
+
+console.log(mixedFruit.color); // blue
+console.log(mixedFruit.size); // big
+
+// spread 연산자를 활용한 방법
+const user6 = {...user};
+
+console.log(user6);
