@@ -90,3 +90,22 @@ console.log('name' in hcs1105); // true
 console.log('age' in hcs1105); // true
 console.log('job' in hcs1105); // false
 console.log(hcs1105.job); // undefined(정의하지 않는 키에 접근할 때)
+
+
+
+// 6. for ..in vs for ..of
+// for (key in object)
+for(const key in hcs1105) {
+	console.log(key); // name, age, hasJob
+}
+
+// for (value of iterable) - 배열에 사용
+const array = [1, 2, 3, 4];
+
+for(let i = 0; i < array.length; i++){
+	console.log(array[i]); // 1, 2, 3, 4
+}
+
+for(const value of array) {
+	console.log(value); // 1, 2, 3, 4
+}
