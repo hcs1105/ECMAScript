@@ -82,3 +82,20 @@ console.log(fruits); // ['사과', '배', '수박', '복숭아', '레몬']
 const fruit2 = ['포도', '자두'];
 const newFruits = fruits.concat(fruit2);
 console.log(newFruits); // ['사과', '배', '수박', '복숭아', '레몬', '포도', '자두']
+
+// 5. Searching
+// indexOf : find the index
+console.log(fruits); // ['사과', '배', '수박', '복숭아', '레몬']
+console.log(fruits.indexOf('사과')); // 0
+console.log(fruits.indexOf('수박')); // 2
+console.log(fruits.indexOf('코코낫')); // -1
+
+// includes
+console.log(fruits.includes('수박')); // true
+console.log(fruits.includes('코코낫')); // false
+
+// lastIndexOf
+fruits.push('사과');
+console.log(fruits); // ['사과', '배', '수박', '복숭아', '레몬', '사과']
+console.log(fruits.indexOf('사과')); // 0
+console.log(fruits.lastIndexOf('사과')); // 5
