@@ -78,7 +78,7 @@ const students = [
 {
   const result = students.filter((student) => student.enrolled);
 
-  console.log(result); 
+  console.log(result); // [Student, Student, Student]
   // Student {name: 'A', age: 29, enrolled: true, score: 45}
   // Student {name: 'C', age: 30, enrolled: true, score: 90}
   // Student {name: 'E', age: 18, enrolled: true, score: 88}
