@@ -73,3 +73,13 @@ const students = [
   console.log(result); // Student {name: 'C', age: 30, enrolled: true, score: 90}
   */
 }
+
+// 6. make an array of enrolled students.
+{
+  const result = students.filter((student) => student.enrolled);
+
+  console.log(result); 
+  // Student {name: 'A', age: 29, enrolled: true, score: 45}
+  // Student {name: 'C', age: 30, enrolled: true, score: 90}
+  // Student {name: 'E', age: 18, enrolled: true, score: 88}
+}
