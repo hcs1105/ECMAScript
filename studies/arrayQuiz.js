@@ -62,7 +62,7 @@ const students = [
 
 // 5. find a student with the score 90.
 {
-  const result = students.find((student, index) => student.score === 90);
+  const result = students.find((student) => student.score === 90);
   console.log(result); // Student {name: 'C', age: 30, enrolled: true, score: 90}
 
   /* 같은 표현 : 함수 선언문 형식
