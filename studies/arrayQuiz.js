@@ -83,3 +83,11 @@ const students = [
   // Student {name: 'C', age: 30, enrolled: true, score: 90}
   // Student {name: 'E', age: 18, enrolled: true, score: 88}
 }
+
+// 7. make an array containing only the student's score
+// result should be: [45, 80, 90, 66, 88]
+{
+  const result = students.map((student) => student.score);
+
+  console.log(result); // [45, 80, 90, 66, 88]
+}
