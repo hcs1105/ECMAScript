@@ -98,3 +98,23 @@ const students = [
 
   console.log(result); // true
 }
+
+// 9. compute student's average score.
+{
+  const result = students.reduce((prev, curr) => prev + curr.score, 0);
+  const averageResult = result / students.length;
+
+  console.log(averageResult); // 73.8
+
+  /* 같은 표현
+  const result = students.reduce((prev, curr) => {
+    console.log('-------');
+    console.log(prev);
+    console.log(curr);
+    return prev + curr.score;
+  }, 0);
+  const averageResult = result / students.length;
+
+  console.log(averageResult); // 73.8
+  */
+}
