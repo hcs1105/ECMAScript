@@ -28,15 +28,17 @@
 // 4. make new array without the first and two elements
 {
   const array = [1, 2, 3, 4, 5];
-  const result = array.slice(2, 5); // slice() 메소드는 원본 배열이 수정되지 않음.
+  const result1 = array.slice(2, 5); // slice() 메소드는 원본 배열이 수정되지 않음.
+  const result2 = array.slice(2);
 
-  console.log(result); // [3, 4, 5]
+  console.log(result1); // [3, 4, 5]
+  console.log(result2); // [3, 4, 5]
   console.log(array) // [1, 2, 3, 4, 5]
 
   /* 오답 유형
-  const result = array.splice(2); // splice() 메소드는 원본 배열이 수정됨.
+  const result = array.splice(0, 2); // splice() 메소드는 원본 배열이 수정됨.
 
-  console.log(result); // [3, 4, 5]
-  console.log(array); // [1, 2]
+  console.log(result); // [1, 2]
+  console.log(array); // [3, 4, 5]
   */
 }
