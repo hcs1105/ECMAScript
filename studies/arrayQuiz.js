@@ -91,3 +91,10 @@ const students = [
 
   console.log(result); // [45, 80, 90, 66, 88]
 }
+
+// 8. check if there is a student with the score lower than 50.
+{
+  const result = students.some(student => student.score < 50);
+
+  console.log(result); // true
+}
