@@ -140,3 +140,13 @@ const students = [
   console.log(result3); // 80,90,66,88
   */
 }
+
+// 11. do Q10 sorted in ascending order.
+// result should be : '45, 66, 80, 88, 90'
+{
+  const result = students
+    .map(student => student.score)
+    .sort((a, b) => a - b);
+  
+  console.log(result);
+}
