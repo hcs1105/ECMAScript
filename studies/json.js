@@ -41,3 +41,13 @@ console.log(json); // {"name":"james","color":"white","size":null,"birthDate":"2
 
 // 2. JSON to Object
 // parse(JSON)
+json = JSON.stringify(rabbit);
+const obj = JSON.parse(json);
+
+console.log(obj); // {name: 'hcs1105', color: 'white', size: null, birthDate: '2023-02-28T07:45:00.345Z'}
+
+rabbit.jump(); // can be jump!
+// obj.jump(); // Uncaught TypeError: obj.jump is not a function
+
+console.log(rabbit.birthDate.getDate()); // 28
+console.log(typeof obj.birthDate.getDate()); // Uncaught TypeError: obj.birthDate.getDate is not a function
