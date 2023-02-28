@@ -118,3 +118,25 @@ const students = [
   console.log(averageResult); // 73.8
   */
 }
+
+// 10. make a string containing all the scores.
+// result should be : '45, 80, 90, 66, 88'
+{
+  const result = students
+    .map(student => student.score)
+    .filter(score => score >= 50)
+    .join();
+
+  console.log(result); // 80,90,66,88
+
+  /* 참고 사항
+  const result1 = students.map(student => student.score);
+  const result2 = result1.filter(score => score >=50)
+  const result3 = result2.join();
+
+
+  console.log(result1); // [45, 80, 90, 66, 88]
+  console.log(result2); // [80, 90, 66, 88]
+  console.log(result3); // 80,90,66,88
+  */
+}
