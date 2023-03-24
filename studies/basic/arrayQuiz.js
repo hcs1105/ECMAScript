@@ -156,5 +156,14 @@ const students = [
     .map(student => student.score)
     .sort((a, b) => a - b);
   
-  console.log(result);
+  console.log(result); // [45, 66, 80, 88, 90]
+
+  /* 
+   * 만약 학생들의 점수를 내림차순(descending order)으로 나열한다면
+  const result = students
+  .map(student => student.score)
+  .sort((a, b) => b - a);
+
+  console.log(result); // [90, 88, 80, 66, 45]
+   */
 }
