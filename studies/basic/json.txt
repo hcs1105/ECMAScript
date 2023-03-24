@@ -1,0 +1,7 @@
+JSON : JavaScript Object Notation
+  - simplest data interchange format
+  - lightweight text-based structure
+  - easy to read
+  - kay-value pairs
+  - used for serialization and transmission of data between the network connection
+  - independent programming language and platform
