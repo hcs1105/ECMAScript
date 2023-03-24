@@ -122,14 +122,20 @@ const students = [
 // 10. make a string containing all the scores.
 // result should be : '45, 80, 90, 66, 88'
 {
+  const result = students.map(student => student.score).join();
+
+  console.log(result); // 45,80,90,66,88
+
+  /* 
+   * 만약 학생들의 점수가 50점 이상인 경우의 점수들을 나열한다면
   const result = students
     .map(student => student.score)
     .filter(score => score >= 50)
     .join();
 
   console.log(result); // 80,90,66,88
-
-  /* 참고 사항
+  
+  // 참고 사항
   const result1 = students.map(student => student.score);
   const result2 = result1.filter(score => score >=50)
   const result3 = result2.join();
