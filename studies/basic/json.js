@@ -3,12 +3,17 @@
 // JSON
 // JavaScript Object Notation
 
-// 1. Object to JSON
+// 1. From Object to JSON
 // stringify(obj); 
 // Symbol과 function은 Object의 데이터가 아니므로 console() 메소드로 찍으면 값이 표현되지 않음.
-let json = JSON.stringify(true);
 
-console.log(json);
+// 오버로딩(overloading): 함수 이름이 동일하지만 매개변수(파라미터)가 다른 경우
+
+let json = JSON.stringify(true);
+const jsonType = typeof json;
+
+console.log(json); // true
+console.log(jsonType); // string
 
 json = JSON.stringify(['apple', 'banner']);
 console.log(json); // ["apple","banner"]
@@ -39,7 +44,7 @@ json = JSON.stringify(rabbit, (key, value) => {
 });
 console.log(json); // {"name":"james","color":"white","size":null,"birthDate":"2023-02-28T07:38:30.304Z"}
 
-// 2. JSON to Object
+// 2. From JSON to Object
 // parse(JSON)
 json = JSON.stringify(rabbit);
 const obj = JSON.parse(json);
