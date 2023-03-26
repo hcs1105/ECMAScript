@@ -5,3 +5,9 @@ JSON : JavaScript Object Notation
   - kay-value pairs
   - used for serialization and transmission of data between the network connection
   - independent programming language and platform
+
+JSON과 관련된 유용한 사이트 정리
+  ⦿ JSON Diff - https://jsondiff.org/ 
+  ⦿ JSON Beautifier - https://jsonbeautifier.org/  
+  ⦿ JSON Parser - https://jsonparser.org/
+  ⦿ JSON Validator - https://tools.learningcontainer.com/json-validator/
