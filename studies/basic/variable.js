@@ -23,7 +23,7 @@ console.log(name);
 console.log(globalName); // global name
 
 // var (don't ever use this!)
-// 호이스팅 : 특정 스코프 안에 선언된 변수는 코드에 적힌 순서와 상관없이 '최상단에 선언된 것처럼' 끌어올려지는 현상 
+// 호이스팅 : 변수와 함수 선언문이 코드에 적힌 순서와 상관없이 코드의 '최상단에 선언된 것처럼' 끌어올려지는 현상 
 // var hoisting : move declaration from bottom to top.
 {
     age = 7;
