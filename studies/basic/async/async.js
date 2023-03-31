@@ -78,3 +78,9 @@ function pickAllFruits() {
 }
 
 pickAllFruits().then(fruit => console.log(fruit)); // Apple + Banana
+
+function pickOnlyOne() {
+  return Promise.race([getApple(), getBanana()]);
+}
+
+pickOnlyOne().then(fruit => console.log(fruit)); // Apple
