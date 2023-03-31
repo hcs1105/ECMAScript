@@ -70,3 +70,11 @@ function pickFruits() {
  */
 
 pickFruits().then(fruit => console.log(fruit)); // Apple + Banana
+
+// 4. Useful Promise API
+function pickAllFruits() {
+  return Promise.all([getApple(), getBanana()])
+  .then(fruits => fruits.join(' + '));
+}
+
+pickAllFruits().then(fruit => console.log(fruit)); // Apple + Banana
