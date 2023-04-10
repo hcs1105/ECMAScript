@@ -17,8 +17,6 @@
   <button type="button">입력</button>
   <script>
     const enterNumber = parseInt(prompt('몇 명이 참가하나요?'), 10);
-    // alert(enterNumber);
-    // const yesOrNo = confirm('확인이나 취소를 눌러 보세요?'); // true or false
     const $input = document.querySelector('input');
     const $button = document.querySelector('button');
     const $word = document.querySelector('#word');
@@ -27,7 +25,6 @@
 
     const onInput = (e) => {
       newWord = e.target.value;
-      // console.log('글자 입력', e.target.value);
     };
     const onClickButton = () => {
       if(!word) { // 제시어가 없다면
