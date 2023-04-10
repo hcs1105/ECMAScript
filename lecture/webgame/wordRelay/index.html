@@ -17,15 +17,27 @@
   <button type="button">입력</button>
   <script>
     const enterNumber = parseInt(prompt('몇 명이 참가하나요?'), 10);
-    alert(enterNumber);
-    const yesOrNo = confirm('확인이나 취소를 눌러 보세요?'); // true or false
+    // alert(enterNumber);
+    // const yesOrNo = confirm('확인이나 취소를 눌러 보세요?'); // true or false
     const $input = document.querySelector('input');
     const $button = document.querySelector('button');
+    const $word = document.querySelector('#word');
+    let word; // 제시어
+    let newWord; // 입력한 단어
+
     const onInput = (e) => {
+      newWord = e.target.value;
       // console.log('글자 입력', e.target.value);
     };
     const onClickButton = () => {
-      // console.log('버튼 클릭');
+      if(!word) { // 제시어가 없다면
+        word = newWord; // 입력한 단어가 제시어이다.
+        $word.textContent = word;
+        $input.value = '';
+        $input.focus();
+      } else { // 제시어가 있다면
+
+      }
     };
 
     $input.addEventListener('input', onInput);
