@@ -16,7 +16,8 @@
   <input type="text">
   <button type="button">입력</button>
   <script>
-    const enterNumber = parseInt(prompt('몇 명이 참가하나요?'), 10);
+    const enterNumber = Number(prompt('몇 명이 참가하나요?'));
+    const $order = document.querySelector('#order');
     const $input = document.querySelector('input');
     const $button = document.querySelector('button');
     const $word = document.querySelector('#word');
@@ -32,12 +33,24 @@
         $word.textContent = word;
         $input.value = '';
         $input.focus();
+        const order = Number($order.textContent); // 현재 순서
+        if(order === enterNumber) {
+          $order.textContent = 1;
+        } else {
+          $order.textContent = order + 1;
+        }
       } else { // 제시어가 있다면
         if(word[word.length - 1] === newWord[0]) { // 입력한 단어의 첫 글자가 제시어의 마지막 글자와 같다면
           word = newWord; // 입력한 단어가 제시어이다.
           $word.textContent = word;
           $input.value = '';
           $input.focus();
+          const order = Number($order.textContent); // 현재 순서
+          if(order === enterNumber) {
+            $order.textContent = 1;
+          } else {
+            $order.textContent = order + 1;
+          }
         } else { // 입력한 단어의 첫 글자가 제시어의 마지막 글자와 다르다면
 
         }
