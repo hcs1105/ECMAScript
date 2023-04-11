@@ -52,7 +52,9 @@
             $order.textContent = order + 1;
           }
         } else { // 입력한 단어의 첫 글자가 제시어의 마지막 글자와 다르다면
-
+          alert('올바르지 않는 단어입니다.');
+          $input.value = '';
+          $input.focus();
         }
       }
     };
