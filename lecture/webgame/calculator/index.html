@@ -67,7 +67,7 @@
       } else { // 연산자가 없다.
         numOne += e.target.textContent;
       }
-      $result.value += number; 
+      $result.value += e.target.textContent; 
     };
 
     document.querySelector('#num-0').addEventListener('click', onClickNumber);
