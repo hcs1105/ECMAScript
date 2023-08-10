@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this 키워드와 화살표 함수, 일반 함수를 이용하여 응용 문제 풀기</title>
+	<script src="./quiz1.js"></script>
+</head>
+<body>
+	<button type="button" id="button">버튼이예요.</button>
+  <script>
+		// problem 3. setTimeout() 메소드를 이용하여 1초 후에 버튼 문구 출력하기
+
+		// solution - 창수
+		var button = document.getElementById('button');
+
+		button.addEventListener('click', function(){
+			var test = () => {
+				console.log(this.innerHTML);
+			};
+			setTimeout(test, 1000);
+		});
+  </script>
+</body>
+</html>
