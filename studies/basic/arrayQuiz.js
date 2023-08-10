@@ -124,12 +124,20 @@ const students = [
 {
   const result = students
     .map(student => student.score)
+    .join();
+
+  console.log(result); // 45,80,90,66,88
+
+  /* 
+   * 만약 학생들의 점수가 50점 이상인 경우의 점수들을 나열한다면
+  const result = students
+    .map(student => student.score)
     .filter(score => score >= 50)
     .join();
 
   console.log(result); // 80,90,66,88
-
-  /* 참고 사항
+  
+  // 참고 사항
   const result1 = students.map(student => student.score);
   const result2 = result1.filter(score => score >=50)
   const result3 = result2.join();
@@ -148,5 +156,14 @@ const students = [
     .map(student => student.score)
     .sort((a, b) => a - b);
   
-  console.log(result);
+  console.log(result); // [45, 66, 80, 88, 90]
+
+  /* 
+   * 만약 학생들의 점수를 내림차순(descending order)으로 나열한다면
+  const result = students
+  .map(student => student.score)
+  .sort((a, b) => b - a);
+
+  console.log(result); // [90, 88, 80, 66, 45]
+   */
 }
