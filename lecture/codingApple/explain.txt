@@ -27,11 +27,11 @@
 
 3. strict mode로 설정하고 일반 함수 안에서 작성할 경우 undefined
 
-[3강 event listener과 constructor에서 사용되는 this 키워드의 의미]
+[3강 event listener와 constructor에서 사용되는 this 키워드의 의미]
 
 1. constructor 안에 쓰면 constructor로부터 새로 생성되는 오브젝트(instance)
 
-2. eventListener 안에서 쓰면 e.currentTarget
+2. event Listener 안에서 쓰면 e.currentTarget
 
 [4강 Arrow function이란 무엇인가?]
 
