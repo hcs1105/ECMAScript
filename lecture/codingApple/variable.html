@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트 테스트</title>
+	<style>
+		.on {background:#000; color:#fff;}
+	</style>
+	<script src="variable.js"></script>
+</head>
+<body>
+  <div style="display : none">모달창 0</div>
+	<div style="display : none">모달창 1</div>
+	<div style="display : none">모달창 2</div>
+	<button type="button">버튼 0</button>
+	<button type="button">버튼 1</button>
+	<button type="button">버튼 2</button>
+	<script>
+		// problem 6. 버튼을 누르면 버튼 번호에 해당하는 모달창이 보이도록 스크립트를 작성해 주세요.
+		var buttonList = document.querySelectorAll('button');
+		var modalList = document.querySelectorAll('div');
+		
+		for (let i = 0; i < buttonList.length; i++){
+			buttonList[i].addEventListener('click', function(){
+				for (let j = 0; j < buttonList.length; j++) {
+					buttonList[j].classList.remove('on');
+					modalList[j].style.display = 'none';
+				}
+				buttonList[i].classList.add('on');
+				modalList[i].style.display = 'block';
+			});
+		}
+	</script>
+</body>
+</html>
