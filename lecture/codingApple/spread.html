@@ -59,6 +59,34 @@
   console.log(obj5); // {a: 1, b: 2}
   console.log(obj1 === obj5); // false
   console.log(obj6); // {a: 3, b: 2}
+
+  function add(a, b, c){
+    console.log(a + b + c);
+  }
+
+  // Array 내의 모든 데이터를 함수의 파라미터로 집어 넣고 싶을 때
+  const arrayItem = [1, 2, 3];
+
+  add(arrayItem[0], arrayItem[1], arrayItem[2]); // 주먹구구식 방식
+  add.apply(undefined, arrayItem); // 옛날 방식
+  add(...arrayItem); // 요즘 방식
+
+  // Apply 함수 설명 : '그냥 함수를 옮겨와서 실행합니다'라고 이해해 주세요.
+  const person1 = {
+    greeting : function(){
+      console.log(this.name + ' 안녕');
+    }
+  };
+
+  person1.greeting(); // undefined 안녕
+
+  const person2 = {
+    name : '손흥민'
+  };
+
+  // 변수 person1을 변수 person2에 적용하고 싶다면
+  person1.greeting.apply(person2, [1, 2, 3]); // 손흥민 안녕
+  person1.greeting.call(person2, 1, 2, 3); // 손흥민 안녕
 </script>  
 </body>
 </html>
