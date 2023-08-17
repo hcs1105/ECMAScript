@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spread Operator</title>
+</head>
+<body>
+<script>
+  const arr = ['hello', 'world'];
+
+  console.log(arr); // ['hello', 'world']
+  console.log(...arr); // hello world
+  console.log('hello', 'world'); // hello world
+
+  const str = 'hello';
+  
+  console.log(str); // hello
+  console.log(str[0]); // h
+  console.log(...str); // h e l l o
+  console.log('h','e','l','l','o'); // h e l l o
+
+  const a = [1, 2, 3]; 
+  const b = [4, 5];
+  const c = [...a];
+  const d = [...a, ...b];
+
+  console.log(c); // [1, 2, 3]
+  console.log(d); // [1, 2, 3, 4, 5]
+
+  // 복사
+  const e = [1, 2, 3];
+  const f = e; 
+
+  e[3] = 4;
+  console.log(e); // [1, 2, 3, 4]
+  console.log(f); // [1, 2, 3, 4], Array와 Object는 Reference data type이라서 값이 공유되므로
+  console.log(e === f); // true
+
+  // 깊은 복사
+  const g = [1, 2, 3];
+  const h = [...g]; 
+
+  g[3] = 4;
+  console.log(g); // [1, 2, 3, 4]
+  console.log(h); // [1, 2, 3]
+  console.log(g === h); // false
+
+  const obj1 = { a : 1 , b : 2 };
+  const obj2 = { c : 3 };
+  const obj3 = { ...obj1, c : 3 };
+  const obj4 = { ...obj1 };
+  const obj5 = { a : 3, ...obj1 };
+  const obj6 = { ...obj1, a : 3 };
+
+  console.log(obj3); // {a: 1, b: 2, c: 3}
+  console.log(obj4); // {a: 1, b: 2}
+  console.log(obj1 === obj4); // false
+  console.log(obj5); // {a: 1, b: 2}
+  console.log(obj1 === obj5); // false
+  console.log(obj6); // {a: 3, b: 2}
+</script>  
+</body>
+</html>
