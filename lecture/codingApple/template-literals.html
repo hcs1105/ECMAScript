@@ -10,12 +10,35 @@
 		var name = '손흥민';
 		var str1 = `안녕하세요! 저는 ${name}입니다.`;
 
+
 		function 해체분석기(문자들, 변수들) {
 			console.log(문자들[1] + 변수들 + 문자들[0]);
 			console.log(변수들);
 		}
-
 		해체분석기`안녕하세요! 저는 ${name}입니다.`;
+
+		var pants = 20;
+		var pants_1 = 0;
+		var socks = 100;
+
+		// Q1. 문자 중간에 '양말'과 '바지' 단어 순서를 바꾸어 주세요.
+		// solution(창수)
+		function parser(str, arg1, arg2) {
+			console.log(str[1] + arg1 + ', ' + str[0] + arg2);
+		}
+
+		parser`바지 ${pants}양말 ${socks}`; // 양말 20, 바지 100
+
+		// pants가 0개이면 '바지 안 팔아요, 양말 100'이라는 문자로 바꾸는 해체 분석기를 제작해 보세요.
+		// solution(창수)
+		function sell(str, arg1, arg2){
+			if(pants_1 === 0){
+				console.log(`${str[0]} 안 팔아요, ${str[1]} ${arg2}`);
+			} else {
+				console.log(`${str[0]} ${arg1}, ${str[1]} ${arg2}`);
+			}
+		}
+		sell`바지${pants_1}양말${socks}`;
 	</script>
 </body>
 </html>
