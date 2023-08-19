@@ -115,5 +115,22 @@
    - default parameter에 수학 연산자와 함수도 사용할 수 있음. 
 
 ⦿ arguments 키워드
-   - 정의 : 모든 파라미터를 Array 안에 담은 변수
-   - 용도 : 모든 파라미터를 한꺼번에 다루고 싶을 때
+   - 정의 : 함수에 전달된 모든 인수를 Array 형태로 나타낸 객체
+   - 용도 : 모든 인수를 한꺼번에 다루고 싶을 때
+
+[9강 Rest Parameter란 무엇인가?]
+
+⦿ 정의
+   - 함수 안에 들어온 특정 인수를 Array 형태로 나타낸 파리미터
+
+⦿ 특징
+   - 매개변수의 가장 뒤애 작성함.
+     ex) function test(...rest, a) {} → (X)
+     ex) function test(a, ...rest) {} → (O)
+   - 2번 이상 사용 금지.
+     ex) function test(...rest, ...rest2) {} → (X)
+     ex) function test(...rest) {} → (O)
+
+⦿ arguments 키워드와의 차이점
+   - Array 안에 arguments 키워드는 모든 파라미터들을 담지만 Rest Parameter는 특정 파라미터를 보관할 수 있음.
+   - arguments 키워드는 파라미터의 갯수를 지정해야 되지만 Rest Parameter는 그럴 필요가 없음.
