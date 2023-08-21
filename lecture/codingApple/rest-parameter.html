@@ -10,7 +10,7 @@
 		// arguments를 사용한 경우
 		function print_1(a, b, c) {
 			for(let i = 0; i < arguments.length; i++) {
-				console.log(arguments[i]);
+				console.log(arguments[i]); // 2 3 4
 			}
 		}
 
@@ -30,7 +30,7 @@
 			console.log(rest); // [1, 2, 3, 4, 5]
 			console.log(...rest); // 1 2 3 4 5
 			for(let i = 0; i < rest.length; i++){
-				console.log(rest[i]);
+				console.log(rest[i]); // 1 2 3 4 5
 			}
 		}
 
@@ -39,11 +39,105 @@
 		// forEach 문으로 작성한 경우
 		function print_4(...rest) {
 			rest.forEach((element, i) => {
-				console.log(rest[i]);
+				console.log(rest[i]); // 1 2 3 4 5
 			});
 		}
 
 		print_4(1, 2, 3, 4, 5);
+
+		// Q1. spread 연산자 문제 1
+		var a = [1,2,3];
+		var b = '김밥';
+		var c = [...b, ...a];
+
+		console.log(c); // ['김', '밥', 1, 2, 3]
+
+		// Q2. spread 연산자 문제 2
+		var a = [1,2,3];
+		var b = ['you', 'are'];
+		var c = function(a,b){
+  		console.log( [[...a], ...[...b]][1] )
+		}
+
+		c(a,b); // you
+
+		// Q3. default 파라미터 문제 1
+		function 함수(a = 5, b = a * 2 ){
+			console.log(a + b);
+			return 10;
+		}
+
+		함수(3); // 9
+
+		// Q4. default 파라미터 문제 2
+		function 함수(a = 5, b = a * 2 ){
+  		console.log(a + b);
+		}
+
+		함수(undefined, undefined); // 15
+
+		/*
+		 * Q5. array를 만들어주는 함수
+		 * [1,2,3,4,5]
+		 */
+		function 어레이(...arr){
+			return arr;
+		}
+
+		var newArray = 어레이(1,2,3,4,5);
+		console.log(newArray); // [1, 2, 3, 4, 5]
+
+		/*
+		 * Q6. 최댓값 구하기
+		 */
+		function maxNumber(num) {
+			const result = Math.max(...num); 
+			console.log(result);
+		 }
+
+		 var numbers = [2,3,4,5,6,1,3,2,5,5,4,6,7];
+		 maxNumber(numbers); // 7
+		/*
+		 * Q7. 글자를 알파벳 순으로 정렬해 주는 함수
+		 * 정렬('bear');
+		 * a b e r 
+		 */
+
+		// 첫 번째 풀이
+		function 정렬(글자){
+			const result = [...글자].sort().join(' ');
+			console.log(result);
+		}
+
+		정렬('bear'); // a b e r
+
+		// 두 번째 풀이
+		function 정렬_1(글자){
+			const result = [...글자].sort();
+			console.log(...result);
+		}
+
+    정렬_1('bear'); // a b e r
+
+		/* 
+		 * Q8. 입력한 단어에 들어 있는 알파벳의 갯수를 세어서 오브젝트에 기록해 주고 출력까지 해 주는 함수
+		 * 글자세기('aacbbb');
+		 * { a : 2, b : 3, c : 1 }
+		 */
+		function 글자세기(글자) {
+			const result = {};
+			
+			[...글자].forEach(element => {
+				if(result[element] > 0) { // 결과가 element가 있으면 +1
+					result[element] += 1; // result[element] = result[element] + 1
+				} else { // 없으면 element는 1
+					result[element] = 1;
+				}
+			});
+			return result;
+		}
+
+		글자세기('aacbbb'); // {a: 2, c: 1, b: 3}
 	</script>
 </body>
 </html>
