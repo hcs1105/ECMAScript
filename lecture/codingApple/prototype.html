@@ -44,6 +44,95 @@
 		obj_4.__proto__ = obj_3;
 
 		console.log(obj_4.name); // han
+
+		// Q1. constructor 함수를 이용하여 object 만들기
+		var 학생1 = { name : 'Kim', age : 20 }
+		var 학생2 = { name : 'Park', age : 21 }
+		var 학생3 = { name : 'Lee', age : 22 }
+
+		function StudentList(name, age) {
+			this.name = name;
+			this.age = age;
+			this.sayHi = function() {
+				console.log(`안녕 나는 ${this.name}이야`);
+			};
+		}
+
+		const StudentList_1 = new StudentList('Kim', 20); // StudentList {name: 'Kim', age: 20, sayHi: ƒ}
+		const StudentList_2 = new StudentList('Park', 21); // StudentList {name: 'Park', age: 21, sayHi: ƒ}
+		const StudentList_3 = new StudentList('Lee', 22); // StudentList {name: 'Lee', age: 22, sayHi: ƒ}
+		StudentList_1.sayHi(); // 안녕 나는 Kim이야
+
+		// Q2. 다음 코드의 출력 결과는 무엇일까요?
+		function Parent(){
+  		this.name = 'Kim';
+		}
+
+		var a = new Parent();
+		console.log(a); // Parent {name: 'Kim'}
+		a.__proto__.name = 'Park';
+		console.log(a.name); // Kim
+
+		// Q3. 함수의 출력 결과가 정상적으로 나오도록 코드를 수정해 주세요.
+		function StudentWrap(이름, 나이){
+			this.name = 이름;
+			this.age = 나이;
+		}
+
+		/*
+		 * 수정 전 - StudentWrap.prototype.sayHi = () => {
+		 */
+		// 수정 후 
+		StudentWrap.prototype.sayHi = function() {
+		console.log(this); // StudentWrap {name: 'Kim', age: 20}
+    	console.log('안녕 나는 ' + this.name + '이야');
+  	}
+		var 학생4 = new StudentWrap('Kim', 20);
+
+		학생4.sayHi(); // 안녕 나는 Kim이야
+
+		// Q4. 모든 Array에서 '3'을 제거할 수 있는 함수를 만들어 보세요.
+		// solution-1
+		Array.prototype.removeNum = function(deleteNum) {
+			for(let i = 0; i < this.length; i++){
+				if(this[i] === deleteNum) {
+					this.splice(i, 1);
+				}
+			}
+		};
+
+		var arr_3 = [1, 2, 3];
+		arr_3.removeNum(3);
+		
+		console.log(arr_3); // [1, 2]
+
+		// solution-2
+		Array.prototype.remove = function(deleteNum) {
+			this.map((element, i) => {
+				if(this[i] === deleteNum) {
+					return this.splice(i, 1);
+				}
+			});
+		};
+
+		var arr_4 = [1, 2, 3];
+		arr_4.remove(3);
+
+		console.log(arr_4); // [1, 2]
+
+		// solution-3
+		Array.prototype.removeFilter = function(deleteNum) {
+			this.forEach((element, i) => {
+				if(this[i] === deleteNum) {
+					return this.splice(i, 1);
+				}
+			});
+		};
+
+		var arr_5 = [1, 2, 3];
+		arr_5.removeFilter(3);
+
+		console.log(arr_5); // [1, 2]
 	</script>
 </body>
 </html> 
