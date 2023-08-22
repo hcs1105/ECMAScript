@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primitive data type과 Reference data type이란 무엇인가?</title>
+</head>
+<body>
+  <script>
+    /*
+     * Primitive data type의 사례
+     */
+    let name_1 = 'kim';
+    let name_2 = name_1;
+    name_1 = 'park';
+
+    console.log(name_1); // park
+    console.log(name_2); // kim
+
+    /*
+     * Reference data type의 사례
+     */
+    let name_3 = { name : 'kim' };
+    let name_4 = name_3;
+    name_3.name = 'park';
+
+    console.log(name_3); // {name: 'park'}
+    console.log(name_4); // {name: 'park'}
+
+    let name_5 = { name : 'kim'};
+    let name_6 = { name : 'kim'};
+
+    console.log(name_5 === name_6); // false
+
+    const name_7 = { name : 'kim'};
+
+    function changeObj_1(obj) {
+      obj = { name : 'park'};
+    }
+    
+    changeObj_1(name_7); // {name: 'kim'}
+
+    const name_8 = { name : 'kim'};
+
+    function changeObj_2(obj) {
+      obj.name = 'park';
+    }
+
+    changeObj_2(name_8); // {name: 'park'}
+    </script>
+</body>
+</html>

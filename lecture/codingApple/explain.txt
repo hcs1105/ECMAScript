@@ -134,3 +134,21 @@
 ⦿ arguments 키워드와의 차이점
    - Array 안에 arguments 키워드는 모든 파라미터들을 담지만 Rest Parameter는 특정 파라미터를 보관할 수 있음.
    - arguments 키워드는 파라미터의 갯수를 지정하지만 Rest Parameter는 그럴 필요가 없음.
+
+[10강 Primitive data type과 Reference data type이란 무엇인가?]
+
+⦿ Primitive data type의 정의
+   - 변수에 값이 저장되는 데이터 타입
+
+⦿ Primitive data type의 종류
+   - String, number, Boolean, undefined, null, Symbol
+
+⦿ Reference data type의 정의
+   - 변수에 reference가 저장되는 데이터 타입
+   
+⦿ Reference data type의 종류
+   - Array, Object
+
+⦿ Reference data type의 특징
+   - Array와 Object를 만들 때마다 별개의 Reference가 생김.
+   - 파라미터는 변수 생성 및 할당과 동일하다고 여겨야 됨.
