@@ -152,3 +152,14 @@
 ⦿ Reference data type의 특징
    - Array와 Object를 만들 때마다 별개의 Reference가 생김.
    - 파라미터는 변수 생성 및 할당과 동일하다고 여겨야 됨.
+
+[11강 객체 지향 1 - constructor(생성자)란 무엇인가?]
+
+⦿ 정의
+   - object를 생성하는 기계
+
+⦿ 용도
+   - object를 여러 개 만들고 싶을 때
+
+⦿ 특징
+   - constructor를 함수로 만들 경우, 관습적으로 함수 이름의 첫 번째 글자는 대문자임.

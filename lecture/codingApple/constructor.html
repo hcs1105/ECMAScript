@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>객체 지향 1 - constructor(생성자)</title>
+</head>
+<body>
+  <script>
+    var student_1 = {
+      name : 'kim',
+      age : 15,
+      sayHi : function() {
+        console.log(`안녕하세요, ${this.name}입니다.`);
+      }
+    };
+
+    student_1.sayHi(); // 안녕하세요, kim입니다.
+
+    function Student(name) {
+      this.name = name; // this : constructor로부터 새로 생성되는 object(instance)
+      this.age = 15;
+      this.sayHi = function() {
+        console.log(`안녕하세요, ${this.name}입니다.`);
+      };
+    } 
+
+    const student_2 = new Student('kim');
+    const student_3 = new Student('park');
+
+    console.log(student_2); // Student {name: 'kim', age: 15, sayHi: ƒ}
+    console.log(student_3); // Student {name: 'park', age: 15, sayHi: ƒ}
+    student_2.sayHi(); // 안녕하세요, kim입니다.
+    student_3.sayHi(); // 안녕하세요, park입니다.
+
+    // 쇼핑몰에 사용할 상품 데이터를 오브젝트로 여러 개 만들기
+    var product1 = { name : 'shirts', price : 50000 };
+    var product2 = { name : 'pants', price : 60000 }; 
+
+    /*
+     * Q1. 위처럼 생긴 상품 오브젝트들을 뽑아낼 수 있는 constructor를 제작해 보세요.
+     * 그리고 실제 상품 두 개를 뽑아 보십시오.
+		 * Q2. 상품마다 부가세()라는 내부 함수를 실행하면 콘솔창에 상품가격 * 10% 만큼의 부가세 금액이 출력되도록 하고 싶으면 constructor를 어떻게 수정해야 할까요?
+		 * 예를 들면 product1.부가세() 이렇게 쓰면 콘솔창에 5000이 출력되어야 합니다. 
+     */ 
+
+    function Product(name, price) {
+			this.name = name;
+			this.price = price;
+			this.addTax = function() {
+				console.log(this.price * 0.1);
+			}
+		}
+
+		const product_1 = new Product('shirts', 50000);
+		const product_2 = new Product('pants', 60000);
+
+		console.log(product_1); // Product {name: 'shirts', price: 50000, addTax: ƒ}
+		console.log(product_2); // Product {name: 'pants', price: 60000, addTax: ƒ}
+		product_1.addTax(); // 5000
+		product_2.addTax(); // 6000
+	</script>
+</body>
+</html> 
