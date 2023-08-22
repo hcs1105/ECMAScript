@@ -38,6 +38,12 @@
     console.log(typeof arr_2); // object
     console.log(obj_1); // {name: 'kim'}
     console.log(obj_2); // {name: 'kim'}
+
+		const obj_3 = { name : 'han'};
+		const obj_4 = {};
+		obj_4.__proto__ = obj_3;
+
+		console.log(obj_4.name); // han
 	</script>
 </body>
 </html> 
