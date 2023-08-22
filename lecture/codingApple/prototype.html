@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>객체 지향 2 - prototype</title>
+</head>
+<body>
+  <script>
+    function Student(name) {
+      this.name = name; // this : constructor로부터 새로 생성되는 object(instance)
+      this.age = 15;
+      this.sayHi = function() {
+        console.log(`안녕하세요, ${this.name}입니다.`);
+      };
+    } 
+
+    Student.prototype.gender = '남';
+
+    // constructor로부터 name, age, sayHi 속성들을 물러받음(상속).
+    const student_1 = new Student('kim');
+    const student_2 = new Student('park');
+
+    console.log(student_1); // Student {name: 'kim', age: 15, sayHi: ƒ}
+    console.log(student_2); // Student {name: 'park', age: 15, sayHi: ƒ}
+    console.log(student_1.gender); // 남
+    console.log(student_2.gender); // 남
+    student_1.sayHi(); // 안녕하세요, kim입니다.
+    student_2.sayHi(); // 안녕하세요, park입니다.
+
+    const arr_1 = [1, 2, 3]; // 사람이 만든 배열
+    const arr_2 = new Array(1, 2, 3); // 컴퓨터가 이해한 배열 → ∴ Array를 만드는 기계로부터 생성한 배열
+    const obj_1 = { name : 'kim'}; // 사람이 만든 오브젝트
+    const obj_2 = new Object(); // 컴퓨터가 이해한 오브젝트 → ∴ Object를 만드는 기계로부터 생성한 object
+    obj_2.name = 'kim';
+
+    console.log(typeof arr_1); // object
+    console.log(typeof arr_2); // object
+    console.log(obj_1); // {name: 'kim'}
+    console.log(obj_2); // {name: 'kim'}
+	</script>
+</body>
+</html> 
