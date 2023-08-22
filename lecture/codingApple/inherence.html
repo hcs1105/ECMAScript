@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ES5 방식으로 상속 기능 구현하기</title>
+</head>
+<body>
+  <script>
+    const obj_1 = { name : 'kim', age : 50 };
+    const obj_2 = Object.create(obj_1);
+    const obj_3 = Object.create(obj_2);
+
+    console.log(obj_2); // {} → 자식의 프로토토입만 부모이고 자식에게 속성이 부여되지 않았으므로 빈 오브젝트가 생성됨.
+    console.log(obj_2.name); // kim
+    console.log(obj_2.age); // 50
+    
+    // 자식의 age를 바꾸고 싶으면
+    obj_2.age = 20;
+    console.log(obj_2); // {age: 20}
+    console.log(obj_2.age); // 20
+
+    console.log(obj_3); // {} → 자식의 프로토토입만 부모이고 자식에게 속성이 부여되지 않았으므로 빈 오브젝트가 생성됨.
+    console.log(obj_3.name); // kim
+    console.log(obj_3.age); // 20
+	</script>
+</body>
+</html> 
