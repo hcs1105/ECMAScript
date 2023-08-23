@@ -29,7 +29,7 @@
 
 [3강 event listener와 constructor에서 사용되는 this 키워드의 의미]
 
-1. constructor 안에서 쓰면 constructor로부터 새로 생성되는 오브젝트(instance)
+1. constructor 안에서 쓰면 constructor로부터 생성되는 오브젝트(instance)
 
 2. event Listener 안에서 쓰면 e.currentTarget
 
@@ -173,7 +173,7 @@
 ⦿ 특징
    - prototype에 값을 여러개 부여할 수 있고 함수도 추가할 수 있다. 
    - prototype에 값을 추가하면 모든 자식들이 값을 물려받을 수 있다.
-   - prototype에 추가된 값은 부모만 가지고 있다.
+   - prototype에 부모만 값을 추가한다.
    - 함수로 constructor를 만들면 prototype이 자동으로 생성된다.
    - 내 부모 유전자(부모의 prototype)를 검사하고 싶으면 '__proto__'를 사용한다.
    - '__proto__'를 직접 등록하면 object끼리 상속을 구현할 수 있다.
