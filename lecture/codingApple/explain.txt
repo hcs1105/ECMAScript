@@ -203,3 +203,8 @@
 
 ⦿ 객체 지향 문법을 사용하는 이유
    - object를 여러 개 만들기 위해
+
+[15강 객체 지향 5 - class를 복사하는 extends 키워드와 super 키워드]
+
+⦿ super 키워드의 정의
+   - 물려받은 어떤 class의 constructor() 메소드 혹은 prototype를 의미함.
