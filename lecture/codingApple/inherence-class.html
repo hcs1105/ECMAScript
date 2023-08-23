@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ES6 방식으로 상속 기능 구현하기</title>
+</head>
+<body>
+  <script>
+	// constructor를 만드는 신문법
+	class parent_1 {
+		constructor() {
+			this.name = 'kim';
+			this.sayHi = function() {
+				console.log('hello');
+			};
+		}
+		greeting() {
+			console.log('Good!');
+		};
+	}
+
+	const child_1 = new parent_1();
+
+	console.log(child_1); // parent_1 {name: 'kim', sayHi: ƒ}
+	console.log(child_1.__proto__); // {constructor: ƒ, greeting: ƒ}
+	console.log(parent_1.prototype); // {constructor: ƒ, greeting: ƒ}
+	console.log(Object.getPrototypeOf(child_1)); // {constructor: ƒ, greeting: ƒ}
+	</script>
+</body>
+</html> 
