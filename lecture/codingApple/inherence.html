@@ -11,7 +11,7 @@
     const obj_2 = Object.create(obj_1);
     const obj_3 = Object.create(obj_2);
 
-    console.log(obj_2); // {} → 자식의 프로토토입만 부모이고 자식에게 속성이 부여되지 않았으므로 빈 오브젝트가 생성됨.
+    console.log(obj_2); // {} → 자식의 부모가 프로토타입이고 자식에게 속성이 부여되지 않았으므로 빈 오브젝트가 생성됨.
     console.log(obj_2.name); // kim
     console.log(obj_2.age); // 50
     
@@ -20,7 +20,7 @@
     console.log(obj_2); // {age: 20}
     console.log(obj_2.age); // 20
 
-    console.log(obj_3); // {} → 자식의 프로토토입만 부모이고 자식에게 속성이 부여되지 않았으므로 빈 오브젝트가 생성됨.
+    console.log(obj_3); // {} → 자식의 부모가 프로토타입이고 자식에게 속성이 부여되지 않았으므로 빈 오브젝트가 생성됨.
     console.log(obj_3.name); // kim
     console.log(obj_3.age); // 20
 	</script>
