@@ -7,37 +7,92 @@
 </head>
 <body>
   <script>
-    class grandfather {
-      constructor(name) {
-        this.lastName = 'kim';
-        this.firstName = name;
-      }
-      sayHi() { // grandfather.prototype에 추가됨.
-        console.log('안녕! 저는 할어바지예요.');
-      }
-    }
+		class grandfather {
+			constructor(name) {
+				this.lastName = 'kim';
+				this.firstName = name;
+			}
+			sayHi() { // grandfather.prototype에 추가됨.
+				console.log('안녕! 저는 할어바지예요.');
+			}
+		}
 
-    const grandfather_1 = new grandfather('만덕');
+		const grandfather_1 = new grandfather('만덕');
 
-    console.log(grandfather_1); // grandfather {lastName: 'kim', firstName: '만덕'}
-    console.log(grandfather_1.firstName); // 만덕
+		console.log(grandfather_1); // grandfather {lastName: 'kim', firstName: '만덕'}
+		console.log(grandfather_1.firstName); // 만덕
 
-    class father extends grandfather { // 할아버지의 속성을 그대로 물려받으려고
-      constructor(name) {
-        super(name); // 부모 클래스의 constructor() 메소드를 의미함.
-        this.age = 50;
-      }
-      sayHi() {
-        console.log('안녕! 저는 아버지예요.');
-        super.sayHi(); // 안녕! 저는 할어바지예요. → 부모 클래스의 prototype를 의미함. 
-      }
-    }
+		class father extends grandfather { // 할아버지의 속성을 그대로 물려받으려고
+			constructor(name) {
+				super(name); // 부모 클래스의 constructor() 메소드를 의미함.
+				this.age = 50;
+			}
+			sayHi() {
+				console.log('안녕! 저는 아버지예요.');
+				super.sayHi(); // 안녕! 저는 할어바지예요. → 부모 클래스의 prototype를 의미함. 
+			}
+		}
 
-    const father_1 = new father('철수'); 
+		const father_1 = new father('철수'); 
 
-    console.log(father_1); // {lastName: 'kim', firstName: '철수', age: 50}
-    console.log(father_1.firstName); // 철수
-    father_1.sayHi(); // 안녕! 저는 아버지예요. 안녕! 저는 할어바지예요.
+		console.log(father_1); // {lastName: 'kim', firstName: '철수', age: 50}
+		console.log(father_1.firstName); // 철수
+		father_1.sayHi(); // 안녕! 저는 아버지예요. 안녕! 저는 할어바지예요.
+
+		/*
+		 * Q1. 고양이 관련 object 만들기
+		 * var 고양이1 = { type : '코숏', color : 'white', age : 5 };
+		 * var 고양이2 = { type : '러시안블루', color : 'brown', age : 2 }; 
+		 */
+
+		class Dog_1 {
+			constructor(type, color) {
+				this.type = type;
+				this.color = color;
+			}
+		}
+
+		class Cat_1 extends Dog_1 {
+			constructor(type, color, age) {
+				super(type, color);
+				this.age = age;
+			}
+		}
+
+		const cat_1 = new Cat_1('코숏', 'white', 5); // Cat_1 {type: '코숏', color: 'white', age: 5}
+		const cat_2 = new Cat_1('러시안블루', 'brown', 2); // Cat_1 {type: '러시안블루', color: 'brown', age: 2}
+
+		/*
+		 * Q2. 모든 고양이와 강아지 object에 .한살먹기() 라는 함수 추가하기
+		 * 한살먹기 함수는 강아지 class로부터 생성된 오브젝트가 사용하면 콘솔창에 에러를 출력해 주어야 합니다. 
+		 * 한살먹기 함수는 고양이 class로부터 생성된 오브젝트가 사용하면 현재 가지고 있는 age 속성에 1을 더해 주는 기능을 실행해야 합니다.
+		 */
+		class Dog_2 {
+			constructor(type, color, age) {
+				this.type = type;
+				this.color = color;
+				this.age = age;
+			}
+			setAge() {
+				if(this instanceof Cat_2) {
+					return this.age + 1;
+				} else {
+					throw new Error('강아지 나이는 출력되지 않습니다');
+				}
+			}
+		}
+
+		class Cat_2 extends Dog_2{
+			constructor(type, color, age) {
+				super(type, color, age);
+			}
+		}
+
+		const dog_3 = new Dog_2('말티즈', 'white', 10);
+		const cat_3 = new Cat_2('코숏', 'white', 5); 
+
+		dog_3.setAge(); // Uncaught Error: 강아지 나이는 출력되지 않습니다
+		cat_3.setAge(); // 6
 	</script>
 </body>
 </html> 
