@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>getter() 메소드와 setter() 메소드란 무엇인가?</title>
+</head>
+<body>
+  <script>
+    const person_1 = {
+      name : 'park',
+      age : 30,
+      nextAge() { // 지금 age에서 1를 더해 출력해 주는 함수
+				console.log(this); // {name: 'park', age: 30, nextAge: ƒ, setAge: ƒ}
+        return this.age + 1;
+      },
+			setAge(num) {
+				return this.age = +num;
+			},
+    };
+
+    // age라는 자료를 꺼내고 싶으면
+    console.log(person_1); // {name: 'park', age: 30, nextAge: ƒ, setAge: ƒ}
+    console.log(person_1.age); // 30
+    console.log(person_1.age + 1); // 31
+    console.log(person_1.nextAge()); // 31
+		console.log(person_1.setAge('20')); // 20 → 데이터를 수정할 때 미리 검사하기 위해
+		console.log(person_1); // {name: 'park', age: 20, nextAge: ƒ, setAge: ƒ}
+
+		const person_2 = {
+      name : 'park',
+      age : 30,
+      get nextAge() { 
+        return this.age + 1;
+      },
+			set setAge(num) {
+				return this.age = +num;
+			},
+    };
+
+    console.log(person_2); // {name: 'park', age: 30}
+    console.log(person_2.age); // 30
+    console.log(person_2.age + 1); // 31
+		console.log(person_2.nextAge); // 31
+		console.log(person_2.setAge = '20'); // 20 → 복잡한 소괄호가 꼴보기 싶으면 set/get 키워드 사용
+    console.log(person_2.nextAge); // 21
+		console.log(person_2); // {name: 'park', age: 20}
+
+		// class에서 getter() 메소드와 setter() 메소드 사용하기
+		class person_3 {
+			constructor() {
+				this.name = 'park';
+				this.age = 20;
+			}
+			get nextAge() {
+				return this.age + 1;
+			}
+			set setAge(num) {
+				return this.age = +num;
+			}
+		}
+
+		const person = new person_3();
+
+		console.log(person); // person_3 {name: 'park', age: 20}
+		console.log(person.nextAge); // 21
+		console.log(person.setAge = '30'); // 30
+		console.log(person.nextAge); // 31
+		console.log(person); // person_3 {name: 'park', age: 30}
+	</script>
+</body>
+</html> 
