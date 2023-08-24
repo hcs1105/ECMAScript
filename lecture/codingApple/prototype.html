@@ -8,7 +8,7 @@
 <body>
   <script>
     function Student(name) {
-      this.name = name; // this : constructor로부터 새로 생성되는 object(instance)
+      this.name = name; // this : constructor로부터 생성되는 object(instance)
       this.age = 15;
       this.sayHi = function() {
         console.log(`안녕하세요, ${this.name}입니다.`);
@@ -58,10 +58,10 @@
 			};
 		}
 
-		const StudentList_1 = new StudentList('Kim', 20); // StudentList {name: 'Kim', age: 20, sayHi: ƒ}
-		const StudentList_2 = new StudentList('Park', 21); // StudentList {name: 'Park', age: 21, sayHi: ƒ}
-		const StudentList_3 = new StudentList('Lee', 22); // StudentList {name: 'Lee', age: 22, sayHi: ƒ}
-		StudentList_1.sayHi(); // 안녕 나는 Kim이야
+		const studentList_1 = new StudentList('Kim', 20); // StudentList {name: 'Kim', age: 20, sayHi: ƒ}
+		const studentList_2 = new StudentList('Park', 21); // StudentList {name: 'Park', age: 21, sayHi: ƒ}
+		const studentList_3 = new StudentList('Lee', 22); // StudentList {name: 'Lee', age: 22, sayHi: ƒ}
+		studentList_1.sayHi(); // 안녕 나는 Kim이야
 
 		// Q2. 다음 코드의 출력 결과는 무엇일까요?
 		function Parent(){
@@ -121,7 +121,7 @@
 		console.log(arr_4); // [1, 2]
 
 		// solution-3
-		Array.prototype.removeFilter = function(deleteNum) {
+		Array.prototype.removeElement = function(deleteNum) {
 			this.forEach((element, i) => {
 				if(this[i] === deleteNum) {
 					return this.splice(i, 1);
@@ -130,7 +130,7 @@
 		};
 
 		var arr_5 = [1, 2, 3];
-		arr_5.removeFilter(3);
+		arr_5.removeElement(3);
 
 		console.log(arr_5); // [1, 2]
 	</script>
