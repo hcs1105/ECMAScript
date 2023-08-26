@@ -30,7 +30,7 @@
 
     const arr_1 = [1, 2, 3]; // 사람이 만든 배열
     const arr_2 = new Array(1, 2, 3); // 컴퓨터가 이해한 배열 → ∴ Array를 만드는 기계로부터 생성한 배열
-    const obj_1 = { name : 'kim'}; // 사람이 만든 오브젝트
+    const obj_1 = { name : 'kim' }; // 사람이 만든 오브젝트
     const obj_2 = new Object(); // 컴퓨터가 이해한 오브젝트 → ∴ Object를 만드는 기계로부터 생성한 object
     obj_2.name = 'kim';
 
@@ -39,16 +39,16 @@
     console.log(obj_1); // {name: 'kim'}
     console.log(obj_2); // {name: 'kim'}
 
-		const obj_3 = { name : 'han'};
+		const obj_3 = { name : 'han' };
 		const obj_4 = {};
 		obj_4.__proto__ = obj_3;
 
 		console.log(obj_4.name); // han
 
 		// Q1. constructor 함수를 이용하여 object 만들기
-		var 학생1 = { name : 'Kim', age : 20 }
-		var 학생2 = { name : 'Park', age : 21 }
-		var 학생3 = { name : 'Lee', age : 22 }
+		var 학생1 = { name : 'Kim', age : 20 };
+		var 학생2 = { name : 'Park', age : 21 };
+		var 학생3 = { name : 'Lee', age : 22 };
 
 		function StudentList(name, age) {
 			this.name = name;
