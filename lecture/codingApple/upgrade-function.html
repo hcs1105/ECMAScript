@@ -7,19 +7,19 @@
 </head>
 <body>
   <script>
-		function test() {
+		function test_1() {
 			return 10;
 		}
 
 		// 파라미터 2개를 더해 주는 함수 제작
 		// b : default parameter
-		function add(a, b = test()) {  
+		function add(a, b = test_1()) {  
 			console.log(a + b);
 		}
 
 		add(1); // 11
 
-		function test(a, b, c) {
+		function test_2(a, b, c) {
 			console.log(arguments); // Arguments(3) [2, 3, 4, callee: ƒ, Symbol(Symbol.iterator): ƒ]
 			console.log(arguments[0]); // 첫 번째 파라미터, 2
 			console.log(arguments[1]); // 두 번째 파라미터, 3
@@ -27,7 +27,7 @@
 			console.log(arguments[3]); // undefined
 		}
 
-		test(2, 3, 4);
+		test_2(2, 3, 4);
 
 		// 입력한 파라미터를 모두 콘솔창에 출력하는 함수
 		// forEach 문으로 작성한 경우
