@@ -121,7 +121,7 @@
 [9강 Rest Parameter란 무엇인가?]
 
 ⦿ 정의
-   - 함수 안에 들어온 인수를 Array 형태로 나타낸 파리미터
+   - ...을 사용하여 함수 안에 들어온 인수를 Array 형태로 나타낸 파리미터
 
 ⦿ 특징
    - 매개변수의 가장 뒤애 작성함.
@@ -132,7 +132,7 @@
      ex) function test(...rest) {} → (O)
 
 ⦿ arguments 키워드와의 차이점
-   - Array 안에 arguments 키워드는 모든 파라미터들을 담지만 Rest Parameter는 특정 파라미터를 보관할 수 있음.
+   - Array 형태로 arguments 키워드는 모든 파라미터들을 담지만 Rest Parameter는 특정 파라미터를 보관할 수 있음.
    - arguments 키워드는 파라미터의 갯수를 지정하지만 Rest Parameter는 그럴 필요가 없음.
 
 [10강 Primitive data type과 Reference data type이란 무엇인가?]
