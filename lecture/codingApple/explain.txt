@@ -225,3 +225,10 @@
    - getter() 메소드를 작성할 때 파라미터는 없어야 되며 return 문은 있어야 함.
    - setter() 메소드를 작성할 때 파라미터가 1개 있어야 함.
    - class와 리액트, 뷰, 앵귤러에서도 해당 메소드들을 작성할 수 있음.
+
+[17강 Destructuring 문법이란 무엇인가?]
+
+⦿ 특징
+   - array destructuring할 때 배열 원소를 몇 개 빼먹으면 등호로 기본값 지정이 가능함.
+   - object destructuring할 때 변수 이름은 key 이름과 같아야 하며 변수에 기본값 지정이 가능함.
+   - 함수 파라미터를 만들 때 Destructuring 문법 사용이 가능함.

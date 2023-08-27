@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destructuring 문법이란 무엇인가?</title>
+</head>
+<body>
+  <script>
+    const arr_1 = [2, 3, 4];
+
+    // arr_1 안에 있는 개별 데이터를 다른 변수에 담으려면
+    const [a, b, c] = arr_1;
+
+    console.log(a); // 2 = arr_1[0]
+    console.log(b); // 3 = arr_1[1]
+    console.log(c); // 4 = arr_1[2]
+
+    const [d, e, f = 10] = [2, 3];
+
+    console.log(d); // 2
+    console.log(e); // 3
+    console.log(f); // 10
+
+    const [g, h, i = 10] = [];
+    
+    console.log(g); // undefined
+    console.log(h); // undefined
+    console.log(i); // 10
+
+    // object 안에 있는 개별 데이터를 다른 변수에 담으려면
+    const obj_1 = { name_1 : 'kim', age_1 : 30 };
+    const { name_1, age_1 } = obj_1;
+
+    console.log(name_1); // kim = obj_1.name_1
+    console.log(age_1); // 30 = obj_1.age_1
+
+    const obj_2 = { name_2 : 'kim' };
+    const { name_2, age_2 = 31 } = obj_2;
+
+    console.log(name_2); // kim
+    console.log(age_2); // 31
+
+    const obj_3 = { name_3 : 'kim' };
+    const { name_3 : nameObj, age_3 = 31 } = obj_3;
+
+    console.log(nameObj); // kim
+    console.log(age_3); // 31
+
+    const obj_4 = { name_4 : 'kim'};
+    const { name_4 : name = 'han' } = {};
+    
+    console.log(name); // han
+
+    // 반대로 변수들을 obj에 넣고 싶으면
+    const name_5 = 'kim';
+    const age_4 = 30;
+    const obj_5 = { name_5 : name_5, age_4 : age_4 };
+    const obj_6 = { name_5, age_4 }
+
+    console.log(obj_5); // {name_5: 'kim', age_4: 30}
+    console.log(obj_6); // {name_5: 'kim', age_4: 30}
+
+    // 함수 파라미터에 Destructuring 문법을 사용하고 싶으면
+    const obj_7 = { name_6 : 'kim', age_5 : 30 };
+
+    function makeObj_1(obj) {
+      console.log(obj);
+    }
+
+    makeObj_1(obj_7); // {name_6: 'kim', age_5: 30}
+
+    // object의 개별 데이터를 함수 파라미터로 사용하고 싶으면
+    function makeObj_2({ name_6, age_5 }) {
+      console.log(name_6); // kim
+      console.log(age_5); // 30
+    }
+
+    makeObj_2({ name_6 : 'kim', age_5 : 30 });
+
+    // array의 개별 데이터를 함수 파라미터로 사용하고 싶으면
+    function makeArray_1( [num_1, num_2] ) {
+      console.log(num_1); // 1
+      console.log(num_2); // 2
+    }
+
+    makeArray_1( [1, 2] );
+	</script> 
+</body>
+</html> 
