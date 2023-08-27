@@ -85,6 +85,45 @@
     }
 
     makeArray_1( [1, 2] );
+
+    // Q1. aa와 address와 number라는 변수는 각각 무슨 값을 가지고 있을까요? 
+    var [number, address] = [ 30, 'seoul' ];
+    var { address : aa, number = 20 } = { address, number };
+
+		// solution
+    console.log(aa); // seoul
+    console.log(address); // seoul
+    console.log(number); // 30
+
+    /*
+		 * Q2. 다음과 같은 Object에서 데이터를 뽑아서 변수를 만들고 싶습니다.
+		 * 여러분의 뛰어난 신체 정보를 담은 Object입니다. 
+		 * 여기서 키, 몸무게, 상의 사이즈, 하의 사이즈 정보를 각각 뽑아서 4개의 변수를 만들고 싶습니다.
+		 * 어떻게 만들면 될까요?
+		 * (참고 : 데이터가 얼마나 복잡하든 간에 좌우 형태를 똑같이 맞추시면 destructuring 문법으로 변수를 만들 수 있습니다.)
+		 */ 
+
+		let 신체정보 = {
+			body: { 
+				height: 190,
+				weight: 70
+			},
+			size: ["상의 Large", "바지 30인치"],
+		};
+
+		// solution
+    let {
+			body : {
+				height,
+				weight,
+			},
+			size : [상의, 바지]
+		} = 신체정보;
+	
+		console.log(height); // 190
+		console.log(weight); // 70
+		console.log(상의); // 상의 Large
+		console.log(바지); // 바지 30인치
 	</script> 
 </body>
 </html> 
