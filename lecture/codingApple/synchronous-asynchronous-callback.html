@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>동기 처리와 비동기 처리, 콜백 함수란 무엇인가?</title>
+</head>
+<body> 
+  <script>
+		/* 동기 처리의 사례
+		 *
+		console.log(1); // 1
+		console.log(2); // 2
+		console.log(3); // 3
+     */
+
+		/*
+		 * 비동기 처리 : 오래 걸리는 작업이 있으면 제꺼두고 다른 것부터 처리하는 방식
+		 * 비동기 처리의 사례 1 - setTimeout() 메소드
+		  
+		console.log(4);
+		setTimeout(() => {
+			console.log(5);
+		}, 1000);
+		console.log(6);
+    
+
+		// 비동기 처리의 사례 2 - 이벤트 리스너
+		element.addEventListener('click', function(){});
+
+		// 비동기 처리의 사례 3 - Ajax 요청 코드
+		$.ajax();
+		 */
+
+		/*
+		 * 자바스크립트를 순차적으로 실행하려면 콜백 함수를 사용함.
+		console.log(7);
+		setTimeout(() => { 
+			console.log(8); 
+		}, 1000);
+		element.addEventListener('click', function(){});
+		*/
+
+		// 콜백 함수를 이용한 또 다른 사례
+		function firstFunction(arg) {
+			console.log('첫째 함수');
+			arg();
+		}
+
+		function secondFunction() {
+			console.log('둘째 함수');
+		}
+
+		firstFunction(secondFunction);
+  </script>
+</body>
+</html> 
