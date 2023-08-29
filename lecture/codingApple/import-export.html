@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>import와 export를 이용한 모듈 개발</title>
+</head>
+<body>
+  <script type="module">
+    import a, { b as b_alias, c, d, e } from '/import-export.js';
+    import * as all_alias from './import-export.js';
+
+    console.log(a); // 10
+    console.log(b_alias); // 20
+    console.log(c); // 30
+    console.log(d); // 40
+    console.log(e); // 50
+    console.log(all_alias.a); // undefined
+    console.log(all_alias.b); // 20
+    console.log(all_alias.c); // 30
+    console.log(all_alias.d); // 40
+    console.log(all_alias.e); // 50
+	</script> 
+  <script type="module"></script>
+</body>
+</html> 

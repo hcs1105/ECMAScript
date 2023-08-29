@@ -232,3 +232,22 @@
    - array destructuring할 때 배열 원소를 몇 개 빼먹으면 등호로 기본값 지정이 가능함.
    - object destructuring할 때 변수 이름은 key 이름과 같아야 하며 변수에 기본값 지정이 가능함.
    - 함수 파라미터를 만들 때 Destructuring 문법 사용이 가능함.
+
+[18강 import와 export를 이용한 모듈 개발]
+
+⦿ 작성법
+   - 1개만 내보내는 export 문법 → import 가져올 것 from '경로' / export default 내보낼 것
+   - 여러 개를 내보내는 export 문법 → import {가져올 것들} / export {내보낼 것들}  
+
+⦿ 특징
+   - HTML 파일에서 import 문법을 사용하려면 script 요소의 type 속성값을 'module'로 설정해야 함. 
+   - export default 키워드를 쓰면 import할 때 변수 이름을 변경할 수 있음.
+   - import한 변수와 함수는 사용이 가능하지만 수정은 불가능함 → ∴ read-only임. 
+   - default 키워드를 사용하지 않는다면 export와 import할 때 변수 이름이 같아야 함.
+   - export default 키워드는 1번만 사용하지만 export 키워드는 여러 번 쓸 수 있음.
+   - export 키워드는 변수 혹은 함수 선언문 왼쪽에 써도 됨.
+   - export 키워드와 export default 키워드는 동시에 사용할 수 있음.
+   - default 키워드를 사용하지 않고 import할 때 변수 이름을 바꿀 수 있음. → import {기존 변수 as 새로운 변수} from '경로'
+   - 모든 것들을 import할 수 있음. → import * as 모든_변수 from '경로'
+   - React와 Angular로 작업할 때 사용함.
+   - IE에서는 적용되지 않음. 그래서 프론트엔드 개발할 때 <script scr=""></script> 방식을 사용함.
