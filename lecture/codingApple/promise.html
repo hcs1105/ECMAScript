@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise란 무엇인가?</title>
+</head>
+<body> 
+  <script>
+    const promise_1 = new Promise(function(resolve, reject) {
+      /* resolve(); // 성공을 판정하는 방법, Promise {<fulfilled>: undefined} */
+      /* reject(); // 실패를 판정하는 방법, Promise {<rejected>: undefined} */
+    }); // Promise는 성공과 실패를 판정하는 기계
+
+    console.log(promise_1); // Promise {<pending>}
+    promise_1.then(function(){ // 성공할 경우 실행할 코드
+      console.log('성공!');
+    }).catch(function(){ // 실패할 경우 실행할 코드
+			console.log('실패');
+    }).finally(function(){ // 성공 • 실패와 상관없이 항상 실행되는 코드
+
+    });
+
+		const promise_2 = new Promise(function(resolve, reject){
+			const difficult_operator = 1 + 1;
+			resolve(difficult_operator); 
+		});
+
+		promise_2.then(function(result){
+			console.log('성공');
+			console.log(result); // 2
+		}).catch(function(){
+			console.log('실패');
+		});
+
+		const promise_3 = new Promise(function(resolve, reject){
+			setTimeout(function() {
+				resolve();
+			}, 1000);
+		});
+
+		promise_3.then(function(){
+			console.log('성공');
+		}).catch(function(){
+			console.log('실패');
+		});
+  </script>
+</body>
+</html> 
