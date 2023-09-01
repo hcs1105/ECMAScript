@@ -284,7 +284,7 @@
 [21강 Promise란 무엇인가?]
 
 ⦿ 정의
-	 - 비동기 작업의 상태(fulfilled, rejected, pending)를 나타내는 객체
+	 - 비동기 작업의 처리 상태(fulfilled, rejected, pending)를 나타내는 객체
 
 ⦿ 이유
 	 - 콜백 함수보다 코드가 간결함.
