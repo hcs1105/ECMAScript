@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise란 무엇인가?</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body> 
+  <script>
+		// 연산이 끝나고 특정 코드를 실행하고 싶을 때 - 콜백 함수
+		function sum_1(callback) {
+			callback();
+		}
+
+		function test_1() {
+			console.log('테스트');
+		}
+
+		sum_1(test_1); // 테스트
+
+		// 연산이 끝나고 특정 코드를 실행하고 싶을 때 - Promise 오브젝트
+		const sum_2 = new Promise((resolve, reject) => {
+			resolve();
+		});
+
+		sum_2.then(() => sum_1(test_1)); // 테스트
+  </script>
+</body>
+</html> 
