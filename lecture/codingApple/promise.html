@@ -73,9 +73,9 @@
 		/*
 		 * Q2. Ajax 요청이 성공하면 무언가 코드를 실행하고 싶습니다. 
 		 * https://codingapple1.github.io/hello.txt라는 경로로 GET 요청을 하면 인삿말이 하나 딸려옵니다.
-		 * 여기로 GET 요청을 해서 성공하면 Promise의 then 함수를 이용해서 Ajax로 받아온 인삿말을 콘솔창에 출력해주고 싶습니다.
+		 * 여기로 GET 요청을 해서 성공하면 Promise의 then 함수를 이용해서 Ajax로 받아온 인삿말을 콘솔창에 출력해 주고 싶습니다.
 		 * 어떻게 하면 될까요? 
-		 * (jQuery done함수 자체에 Promise 기능이 있기 때문에 코드가 약간 중복도 많고 쓸데없을 수 있지만 연습삼아 해봅시다.) 
+		 * (jQuery done함수 자체에 Promise 기능이 있기 때문에 코드가 약간 중복도 많고 쓸데없을 수 있지만 연습 삼아 해 봅시다.) 
 		 * 이것은 jQuery Ajax 편리하니까 jQuery CDN 파일 - https://code.jquery.com/jquery-3.4.1.min.js
 		 * 일단 jQuery로 Ajax 요청하려면 $.ajax혹은 $.get을 쓰시면 됩니다.
 		 * (그리고 jQuery 설치 파일이 상단에 첨부되어 있어야겠죠?)
@@ -91,23 +91,85 @@
 		// solution - fetch API를 이용한 방법
 		const promise_5 = new Promise((resolve, reject) => 
 			fetch('https://codingapple1.github.io/hello.txt')
-				.then(res => res.text())
-				.then(data => resolve(data))
-		 	);
+			.then(res => res.text())
+			.then(data => resolve(data))
+		);
 
 		promise_5.then(result => console.log(result)); // '안녕하세요 반갑습니다요.'
 
 		// solution - $.ajax() 메소드를 이용한 방법
 		const promise_6 = new Promise((resolve, reject) => $.ajax({ 
 			type : 'GET', 
-			url : 'https://codingapple1.github.io/hello.txt'}).done(
-				result => console.log(result) // '안녕하세요 반갑습니다요.'
+			url : 'https://codingapple1.github.io/hello.txt'}).done(data => resolve(data)
 		));
+
+		promise_6.then(result => console.log(result)); // '안녕하세요 반갑습니다요.'
 
 		// solution - $.get() 메소드를 이용한 방법
 		const promise_7 = new Promise((resolve, reject) => $.get('https://codingapple1.github.io/hello.txt')
-			.done(result => console.log(result)) // '안녕하세요 반갑습니다요.'
+			.done(data => resolve(data))
 		);
+
+		promise_7.then(result => console.log(result)); // '안녕하세요 반갑습니다요.'
+
+		/* 
+		 * Q3. Promise chaining 
+		 * 2번 문제에서 https://codingapple1.github.io/hello.txt라는 경로로 GET 요청을 한 뒤에 .then을 이용해 인삿말을 콘솔창에 출력해 보았습니다. 
+		 * 이번엔 그 직후 https://codingapple1.github.io/hello2.txt라는 경로로 GET 요청을 또 하고 .then을 이용해 인삿말을 또 출력해 보고 싶습니다. 
+		 * 쉽게 말하면 
+		 * 1. hello.txt GET 요청 
+		 * 2. 그게 완료되면 hello2.txt GET 요청 
+		 * 그게 완료되면 hello2.txt 결과를 콘솔창에 출력하고 싶다는 말입니다. 
+		 * 2번에서 만든 코드를 어떻게 업데이트하면 될까요? 
+		 * 힌트1) 프로미스.then(()=>{둘째 실행할 거}).then(()=>{셋째 실행할 거}) 
+		 * 이렇게 then을 여러 개 이어 붙여 만들어 봅시다. 
+		 * 힌트2) .then()은 당연히 new Promise()로 생성한 프로미스 오브젝트들에 붙일 수 있습니다. 
+		 */
+     
+		// solution - fetch API를 이용한 방법 
+		const promise_8 = new Promise((resolve, reject) => 
+		fetch('https://codingapple1.github.io/hello.txt')
+			.then(res => res.text()) 
+			.then(data => resolve(data)) 
+		);
+ 		
+		promise_8.then(result => { 
+			console.log(result); // '안녕하세요 반갑습니다요.' 
+			const promise_9 = new Promise((resolve, reject) => { 
+				return fetch('https://codingapple1.github.io/hello2.txt') 
+					.then(res => res.text()) 
+					.then(data => resolve(data)); 
+				}); 	
+			return promise_9; 
+		}).then(result => console.log(result)); // '두번째 인삿말입니다'
+
+		// solution - $.ajax() 메소드를 이용한 방법
+		const promise_10 = new Promise((resolve, reject) => $.ajax({ 
+			type : 'GET', 
+			url : 'https://codingapple1.github.io/hello.txt'}).done(data => resolve(data)
+		));
+
+		promise_10.then(result => {
+			console.log(result);
+			const promise_11 = new Promise((resolve, reject) => $.ajax({ 
+				type : 'GET', 
+				url : 'https://codingapple1.github.io/hello2.txt'}).done(data => resolve(data)
+			));
+			return promise_11;
+		}).then(result => console.log(result)); // '두번째 인삿말입니다'
+
+		// solution - $.get() 메소드를 이용한 방법
+		const promise_12 = new Promise((resolve, reject) => $.get('https://codingapple1.github.io/hello.txt')
+			.done(data => resolve(data))
+		);
+
+		promise_12.then(result => {
+			console.log(result);
+			const promise_13 = new Promise((resolve, reject) => $.get('https://codingapple1.github.io/hello2.txt')
+				.done(data => resolve(data)
+			));
+			return promise_13;
+		}).then(result => console.log(result)); // '두번째 인삿말입니다'
   </script>
 </body>
 </html> 
