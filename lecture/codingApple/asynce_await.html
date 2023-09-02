@@ -3,28 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Promise란 무엇인가?</title>
+  <title>async 키워드 &amp; await 키워드란 무엇인가?</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body> 
   <script>
 		// 연산이 끝나고 특정 코드를 실행하고 싶을 때 - 콜백 함수
-		function sum_1(callback) {
-			callback();
+		function test_1(callback) {
+			const result = 1 + 1;
+			console.log(result); // 2
+			callback(); // 테스트
 		}
 
-		function test_1() {
-			console.log('테스트');
+		function test_2() {
+			console.log('테스트'); 
 		}
 
-		sum_1(test_1); // 테스트
+		test_1(test_2); 
 
 		// 연산이 끝나고 특정 코드를 실행하고 싶을 때 - Promise 오브젝트
-		const sum_2 = new Promise((resolve, reject) => {
-			resolve();
+		const test_3 = new Promise((resolve, reject) => {
+			const result = 1 + 1;
+			resolve(result);
 		});
 
-		sum_2.then(() => sum_1(test_1)); // 테스트
+		test_3.then(result => {
+			console.log(result); // 2
+			console.log('테스트'); // 테스트
+		}); 
+
+		// 연산이 끝나고 특정 코드를 실행하고 싶을 때 - async 키워드
+		async function test_4() {
+			return 1 + 1;
+		}
+
+		test_4().then(result => {
+			console.log(result); // 2
+			console.log('테스트'); // 테스트
+		}); 
+
+		// 연산이 끝나고 특정 코드를 실행하고 싶을 때 - async 키워드 & Promise 오브젝트
+		async function test_5() {
+			const promise_1 = new Promise((resolve, reject) => {
+				const difficult_operator = 1 + 1;
+				resolve(difficult_operator);
+			});
+
+			promise_1.then(result => {
+				console.log(result); // 2
+				console.log('성공'); // 성공
+			});
+		}
+
+		test_5(); 
+
+		// 연산이 끝나고 특정 코드를 실행하고 싶을 때 - async 키워드 & await 키워드
+		async function test_6() {
+			const promise_1 = new Promise((resolve, reject) => {
+				const difficult_operator = 1 + 1;
+				resolve(difficult_operator);
+			});
+
+			const result = await promise_1;
+			console.log(result); // 2
+			console.log('성공'); // 성공
+		}
+
+		test_6();
   </script>
 </body>
 </html> 
