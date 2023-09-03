@@ -6,7 +6,9 @@
   <title>async 키워드 &amp; await 키워드란 무엇인가?</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
-<body> 
+<body>
+	<button type="button" class="button">버튼 1</button> 
+	<button type="button" id="test">버튼 2</button> 
   <script>
 		// 연산이 끝나고 특정 코드를 실행하고 싶을 때 - 콜백 함수
 		function test_1(callback) {
@@ -83,11 +85,52 @@
 				console.log(result); // 2
 				console.log('성공'); // 성공
 			} catch {
-				throw new Error('프로미스 연산이 잘 안 되었군요.');
-			}
+				console.log('프로미스 연산이 안 되었군요.'); // 프로미스 연산이 안 되었군요.
+			}		
 		}
 
 		test_7();
+
+		/*
+		 * Q1. HTML 페이지 내에 버튼 아무거나 하나 만들고 그걸 클릭하면 성공하는 Promise를 만들고 싶습니다. 
+		 * 성공하면 콘솔창에 '성공했어요'를 출력하고요. 어떻게 코드를 짜면 될까요? 
+		 * async, await이 필요하면 써 봅시다.
+		 */
+
+		// solution - 창수
+		async function test_8() {
+			const promise_3 = new Promise((resolve, reject) => {
+				const button = document.querySelector('.button');
+				button.addEventListener('click', () => {
+					resolve('성공했어요.');
+				});
+			});
+
+			try {
+				const successResult = await promise_3;
+				console.log(successResult); // 성공했어요.
+			} catch {
+				console.log('프로미스 연산이 안 되었군요.');
+			} finally {
+				test_8();
+			}
+		}
+
+		test_8();
+
+		// solution - 코딩애플
+		var 프로미스 = new Promise(function(성공, 실패){
+      document.getElementById('test').addEventListener('click', function(){
+        성공();
+      });
+  	});
+
+  	async function 버튼누르기(){
+    	var 결과 = await 프로미스;
+    	console.log('성공했으요')
+  	}
+
+  	버튼누르기();
   </script>
 </body>
 </html> 
