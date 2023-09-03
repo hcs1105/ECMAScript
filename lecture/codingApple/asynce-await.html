@@ -59,17 +59,35 @@
 
 		// 연산이 끝나고 특정 코드를 실행하고 싶을 때 - async 키워드 & await 키워드
 		async function test_6() {
-			const promise_1 = new Promise((resolve, reject) => {
+			const promise_2 = new Promise((resolve, reject) => {
 				const difficult_operator = 1 + 1;
 				resolve(difficult_operator);
 			});
 
-			const result = await promise_1;
+			const result = await promise_2;
 			console.log(result); // 2
 			console.log('성공'); // 성공
 		}
 
 		test_6();
+
+		// 연산이 끝나고 특정 코드를 실행하고 싶을 때 - async 키워드 & await 키워드
+		async function test_7() {
+			const promise_2 = new Promise((resolve, reject) => {
+				const difficult_operator = 1 + 1;
+				reject(difficult_operator);
+			});
+
+			try {
+				const result = await promise_2;
+				console.log(result); // 2
+				console.log('성공'); // 성공
+			} catch {
+				throw new Error('프로미스 연산이 잘 안 되었군요.');
+			}
+		}
+
+		test_7();
   </script>
 </body>
 </html> 

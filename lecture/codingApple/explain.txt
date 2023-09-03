@@ -301,3 +301,4 @@
    - async 키워드는 promise가 성공할 때만 사용함.
    - async function 문 안에 await 키워드를 쓰면 then() 메소드는 쓰지 않아도 됨.
    - await 키워드는 promise가 실패하면 에러가 발생하고 다음 코드들의 실행이 멈춤. 그래서 이것을 해결하기 위해 try~catch 구문을 사용함.
+   - promise 연산 결과는 변수에 저장할 수 있음.
