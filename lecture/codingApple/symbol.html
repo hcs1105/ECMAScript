@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Symbol이란 무엇인가?</title>
+</head>
+<body>
+  <script>
+		// 심볼 만드는 방밥
+		const symbol_1 = Symbol('test_1');
+
+		console.log(symbol_1); // Symbol(test_1)
+
+		// 심볼의 용도
+		const weight = Symbol('나의 비밀스러운 몸무게');
+		const height = Symbol('나의 비밀스러운 키');
+
+		const person_1 = {
+			name : 'changsu',
+			age : 20,
+			// [height] : 160
+		};
+
+		person_1.weight = 100;
+		console.log(person_1); // {name: 'changsu', age: 20, weight: 100}
+		person_1[weight] = 200; // 심볼은 enumerable하지 않아서 반복문에서 출력되지 않음.
+		console.log(person_1); // {name: 'changsu', age: 20, weight: 100, Symbol(나의 비밀스러운 몸무게): 200}
+		person_1[height] = 190;
+		console.log(person_1); // {name: 'changsu', age: 20, weight: 100, Symbol(나의 비밀스러운 몸무게): 200, Symbol(나의 비밀스러운 키): 190}
+
+		for(const key in person_1) {
+			console.log(person_1[key]); // changsu 20 100
+		}
+
+		// 심볼들의 설명이 동일하더라도 같은 심볼이 아닌 경우
+		const symbol_2 = Symbol('설명1');
+		const symbol_3 = Symbol('설명1');
+
+		console.log(symbol_2 === symbol_3); // false
+
+		// 전역 심볼을 만든 경우 같은 설명을 가진 전역 심볼이 위에 있으면 기존 전역 심볼로 대체됨.
+		const symbol_4 = Symbol.for('설명1');
+		const symbol_5 = Symbol.for('설명1');
+
+		console.log(symbol_4 === symbol_5); // true
+	</script> 
+</body>
+</html> 
