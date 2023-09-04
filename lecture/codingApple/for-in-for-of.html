@@ -63,6 +63,53 @@
 				}
 			}
 		}
+
+		/*
+		 * Q2. 어떤 놈이 object 자료의 key 값에 오타를 섞어 놨습니다.
+		 * key 값 마지막 문자에 한 자릿수 숫자가 섞여 있으면 그걸 다 제거하고 싶습니다. 
+		 * 어떻게 코드를 짜면 될까요? 
+		 * 마지막 글자가 숫자인지 판단하는 방법도 잘 찾아봐야겠군요.
+		 * (예시) array 안의 object 안에 들어있는 name1 : 'chair' 이게 name : 'chair' 이렇게 숫자만 깔끔하게 없어져야 합니다.
+		 */
+
+		/* 
+		 * 예제 및 풀이
+		const test = {
+			name1 : 'chair'
+		}
+		const testKey = parseInt('name1'.slice(-1));
+
+		if(!isNaN(testKey)) {
+			const newValue = test['name1'];
+			const newKey = 'name1'.slice(0, -1);
+
+			console.log(`${newKey} : ${newValue}`);
+			test[newKey] = newValue;	
+			delete test.name1;
+			console.log(test);
+		} 
+		*/
+
+		const products = [
+  		{	name1 : 'chair', price1 : 7000 },
+  		{ name2 : 'sofa', price : 5000 },
+  		{ name1 : 'desk', price3 : 9000 },
+		]; 
+		const testKey = parseInt('name1'.slice(-1));
+		
+		for(const item of products) {
+			for(const key in item) {
+				if(!isNaN(testKey)) {
+					const newValue = item[key];
+					const newKey = key.slice(0, -1);
+
+					console.log(`${newKey} : ${newValue}`);	
+					item[newKey] = newValue;
+					delete item[key];
+				}
+			}
+		}
+		console.log(products);
   </script>
 </body>
 </html> 
