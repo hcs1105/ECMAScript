@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map과 Set이란 무엇인가?</title>
+</head>
+<body>
+  <script>
+		// Map 자료형을 만드는 방법
+    const person_1 = new Map();
+
+    console.log(person_1); // Map(0) {size: 0}
+
+		// Map에 자료를 추가하는 방법
+    const person_2 = new Map();
+    person_2.set('name', 'kim');
+    person_2.set('age', 20);
+		person_2.set('gender', '남성');
+
+    console.log(person_2); // Map(3) {'name' => 'kim', 'age' => 20, 'gender' => '남성'}
+
+    // Map에서 자료를 출력하는 방법
+    console.log(person_2.get('name')); // kim
+    console.log(person_2.get('age')); // 20
+    console.log(person_2.get('gender')); // 남성
+
+    // Map에서 자료를 삭제하는 방법
+		person_2.delete('gender');
+		console.log(person_2); // Map(2) {'name' => 'kim', 'age' => 20}
+		
+    // Map의 자료 갯수를 세는 방법
+    console.log(person_2.size); // 2
+
+		// 반복문으로 Map에서 자료를 출력하는 방법
+		console.log(person_2.keys()); // MapIterator {'name', 'age'}
+		console.log(person_2.values()); // MapIterator {'kim', 20}
+
+		for(const key of person_2.keys()) {
+			console.log(key); // name age
+		}
+
+		for(const value of person_2.values()) {
+			console.log(value); // kim 20
+		}
+
+		// Map에 자료들을 직접 추가하는 방법
+		const person_3 = new Map([
+			['name', 'kim'],
+			['age', 20]
+		]);
+
+		console.log(person_3); // Map(2) {'name' => 'kim', 'age' => 20}
+
+		// Set 자료형을 만드는 방법
+		let attendance_1 = ['jame', 'smith', 'jordan', 'jame'];
+		let attendance_2 = new Set(attendance_1);
+
+		console.log(attendance_2); // Set(3) {'jame', 'smith', 'jordan'}
+
+		// Set에 자료를 추가하는 방법
+		attendance_2.add('sally');
+		console.log(attendance_2); // Set(4) {'jame', 'smith', 'jordan', 'sally'}
+
+		// Set에서 자료를 삭제하는 방법
+		attendance_2.delete('sally');
+		console.log(attendance_2); // Set(3) {'jame', 'smith', 'jordan'}
+
+		// Set에 자료의 존재 여부를 확인하는 방법
+		console.log(attendance_2.has('sally')); // false
+
+		// Set의 자료 갯수를 세는 방법
+		console.log(attendance_2.size); // 3
+
+		/*
+		 * Set <=> Array
+		 * 활용 문제 : Array의 중복 자료를 제거하고 싶으면
+		 */
+
+		// solution 
+		attendance_1 = [...attendance_2];
+		console.log(attendance_1); // (3) ['jame', 'smith', 'jordan']
+
+		// 반복문으로 Set에서 자료를 출력하는 방법
+		console.log(attendance_2.keys()); // SetIterator {'jame', 'smith', 'jordan'}
+		console.log(attendance_2.values()); // SetIterator {'jame', 'smith', 'jordan'}
+
+		for(const key of attendance_2.keys()) {
+			console.log(key); // jame smith jordan
+		}
+
+		for(const value of attendance_2.values()) {
+			console.log(value); // jame smith jordan
+		}
+
+		attendance_2.forEach(item => 
+			console.log(item) // jame smith jordan
+		); 
+	</script> 
+</body>
+</html> 
