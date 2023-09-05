@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Components : 커스텀 HTML 엘리먼트 만들기</title>
+</head>
+<body>
+  <custom-input-1 name="이름"></custom-input-1>
+  <custom-input-2></custom-input-2>
+  <script>
+    // 커스텀 엘리먼트로 HTML을 축약하는 방법
+    class Test_1 extends HTMLElement {
+      connectedCallback() { // 커스텀 엘리먼트가 HTML에 추가될 때 실행할 코드 작성, this : <custome-input-1>
+        const name = this.getAttribute('name');
+        this.innerHTML = `<label for="name">${name}</label> 
+                          <input type="text" id="name" />
+        `;
+      }
+      static get observedAttributes() { // attribute의 변경을 감지하는 방법
+        return ['name']; // name이라는 attribute가 변경되는지 감시해 주세요.
+      }
+      attributeChangedCallback() { // attribute가 변경되면 이거를 실행해 주세요.
+        console.log(this); // <custome-input-1>
+        console.log(this.getAttribute('name')); // 이름
+      }
+    }
+
+    class Test_2 extends HTMLElement {
+      connectedCallback() {
+        const label_1 = document.createElement('label');
+        const input_1 = document.createElement('input');
+        
+        label_1.textContent = '비밀번호';
+        label_1.setAttribute('for','passsword');
+        input_1.setAttribute('type','passsword');
+        input_1.setAttribute('id','passsword');
+
+        this.append(label_1);
+        this.append(input_1);
+      }
+    }
+
+    customElements.define('custom-input-1', Test_1);
+    customElements.define('custom-input-2', Test_2);
+	</script> 
+</body>
+</html> 
