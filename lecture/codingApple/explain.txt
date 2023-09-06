@@ -364,3 +364,11 @@
 
 ⦿ 참고
    - Web Components를 쉽게 사용하도록 도와주는 라이브러리 : Lit, Stencil
+
+[26강 shadow DOM과 template으로 HTML 모듈화하기]
+
+⦿ 참고
+   - Web Components + shadow DOM = 완벽한 HTML 모듈
+   - Web Components에 스타일을 추가하고 전역적으로 영향을 끼치기 싶으면 Shadow DOM을 쓰면 됨.
+   - 커스템 태그인 template은 HTML 엘리먼트의 임시 보관함을 담당함.
+   - shadow DOM에 이벤트 리스너를 부착할 수 있음. 
