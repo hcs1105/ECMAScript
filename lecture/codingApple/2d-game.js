@@ -5,6 +5,7 @@ const obstacleSet = [];
 let timer = 0;
 let jump = false;
 let jumpTimer = 0;
+let animation;
 
 canvas.width = window.innerWidth - 100;
 canvas.height = window.innerHeight - 100;
@@ -22,7 +23,7 @@ const dinosaur = {
 	width : 50,
 	height : 50,
 	draw : function() {
-		context.fillStyle = '#008000';
+		context.fillStyle = '#000';
 		context.fillRect(this.x, this.y, this.width, this.height);
 	}
 };
@@ -49,7 +50,7 @@ class Obstacle {
 
 
 function animationFrames() {
-	requestAnimationFrame(animationFrames);
+	animation = requestAnimationFrame(animationFrames);
 	timer++;
 
 	context.clearRect(0, 0, canvas.width, canvas.height);
@@ -60,22 +61,20 @@ function animationFrames() {
 		obstacleSet.push(obstacle_1);
 	}
 
-	obstacleSet.forEach((element, i) => {
+	obstacleSet.forEach((element, i, o) => {
 		// X 좌표가 0 미만이면 필요 없는 장애물 제거
 		if(element.x <= 0) {
-			console.log('X 좌표가 0 미만이면 필요 없는 장애물 제거');
-			obstacleSet.splice(i, 1);
+			o.splice(i, 1);
 		}
 		element.x--;
+		collisionCheck(dinosaur, element); // 주인공과 모든 장애물의 충돌을 체크해야 되므로
 		element.draw();
 	});
 
-	if(jump === true ) {
-		dinosaur.y--;
+	if(jump === true) {
+		dinosaur.y -= 1.5;
 		jumpTimer++;
-	} 
-
-	if(jump === false ) {
+	} else {
 		if(dinosaur.y < 200) {
 			dinosaur.y++;
 		}
@@ -93,8 +92,21 @@ function animationFrames() {
 
 animationFrames();
 
+// 충돌 확인(collision check, collision detection)
+function collisionCheck(dinosaur, obstacle_1){
+	const diff_collision_x = obstacle_1.x - (dinosaur.x + dinosaur.width);
+	const diff_collision_y = obstacle_1.y - (dinosaur.y + dinosaur.height);
+
+	if(diff_collision_x < 0 && diff_collision_y < 0) {
+		alert('충돌했어요! 게임 다시 시작');
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		cancelAnimationFrame(animation);
+		location.reload();
+	}
+}
+
 // 스페이스바를 누르면 공룡 접프하기
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', e => {
 	if(e.code === 'Space') {
 		jump = true;
 	}
