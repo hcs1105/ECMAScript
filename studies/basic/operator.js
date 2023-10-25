@@ -195,3 +195,19 @@ console.log(true || '아이브'); // true
 console.log(false || '아이브'); // 아이브
 console.log(true && true && '아이브'); // 아이브
 console.log(true && false && '아이브'); // false
+
+/**
+ * 13. nullish coalescing operator
+ */
+let name1;
+console.log(name1); // undefined
+
+name1 = name1 ?? 'hcs1105';
+console.log(name1); // hcs1105
+
+name1 = name1 ?? '아이브';
+console.log(name1); // hcs1105
+
+let name2;
+name2 ??= '아이브';
+console.log(name2); // 아이브
