@@ -181,3 +181,17 @@ for(let i = 0; i < 11; i++){
   }
   console.log(`q2 : ${i}`); // q2 : 0, q2 : 1, q2 : 2, q2 : 3, q2 : 4, q2 : 5, q2 : 6, q2 : 7, q2 : 8
 }
+
+/**
+ * 12. short circult evalution
+ * When using &&, if the left side is true, the right side value is returned.
+ * When using &&, if the left side is false, the left value is returned.
+ * When || is used, if the left side is true, the left side value is returned.
+ * When || is used, if the left side is false, the right side value is returned.
+ */
+console.log(true && '아이브'); // 아이브
+console.log(false && '아이브'); // false
+console.log(true || '아이브'); // true
+console.log(false || '아이브'); // 아이브
+console.log(true && true && '아이브'); // 아이브
+console.log(true && false && '아이브'); // false
