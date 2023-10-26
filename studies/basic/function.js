@@ -90,6 +90,21 @@ function printAll3(...args){
 
 printAll3('beautiful', 'smile', 'hcs1105'); // beautiful, smile, hcs1105
 
+const multiply = function(x, y, z) {
+	console.log(arguments);
+	return x * y * z;
+};
+
+console.log(multiply(4, 5, 6));
+console.log(typeof multiply); // function
+console.log(multiply instanceof Object); // true
+
+const multipleAll = function(...args) {
+	return Object.values(args).reduce((a, b) => a * b, 1);
+};
+
+console.log(multipleAll(3, 4, 5, 6, 7, 8, 9, 10)); // 1814400
+
 // 5. Local scope
 // 밖에서는 안이 보이지 않고 안에서만 밖을 볼 수 있다
 // 클로저(Closure) : 중첩된 함수에서 자식 함수가 부모 함수의 변수에 접근하는 현상
@@ -219,8 +234,12 @@ function hello() {
 hello(); // IIFE1
 
 (function hello() {
-  console.log('IIFE2');
-})(); // IIFE2
+  console.log('IIFE2'); // IIFE2
+})(); 
+
+(function(x, y){
+	console.log(x * y); // 2
+})(1, 2);
 
 // Quiz
 // function calculate(command, a, b)
