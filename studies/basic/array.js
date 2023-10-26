@@ -1,6 +1,8 @@
 'use strict';
 
 // Array
+let iveMembers = ['안유진', '가을', '레이', '장원영', '리즈', '이서'];
+console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
 
 // 1. Declaration
 const arr1 = new Array(1, 2);
@@ -99,3 +101,107 @@ fruits.push('사과');
 console.log(fruits); // ['사과', '배', '수박', '복숭아', '레몬', '사과']
 console.log(fruits.indexOf('사과')); // 0
 console.log(fruits.lastIndexOf('사과')); // 5
+
+// push()
+console.log(iveMembers.push('창수')); // 7
+console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서', '창수']
+
+// pop()
+console.log(iveMembers.pop()); // 창수
+console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
+
+// shift()
+console.log(iveMembers.shift()); // 안유진
+console.log(iveMembers); // ['가을', '레이', '장원영', '리즈', '이서']
+
+// unshift()
+console.log(iveMembers.unshift('안유진')); // 6
+console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
+
+// splice()
+console.log(iveMembers.splice(0, 3)); // ['안유진', '가을', '레이']
+console.log(iveMembers); // ['장원영', '리즈', '이서']
+
+iveMembers = ['안유진', '가을', '레이', '장원영', '리즈', '이서'];
+
+// concat()
+console.log(iveMembers.concat('창수')); // ['안유진', '가을', '레이', '장원영', '리즈', '이서', '창수']
+console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
+
+// slice()
+console.log(iveMembers.slice(0, 3)); // ['안유진', '가을', '레이']
+console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
+
+// spread operator
+const iveMembers_1 = [...iveMembers];
+console.log(iveMembers_1); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
+console.log(iveMembers_1 === iveMembers); // false
+
+const iveMembers_2 = [iveMembers];
+console.log(iveMembers_2); // [['안유진', '가을', '레이', '장원영', '리즈', '이서']]
+
+const iveMembers_3 = iveMembers;
+console.log(iveMembers_3); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
+console.log(iveMembers_3 === iveMembers); // true
+
+// join()
+console.log(iveMembers.join()); // 안유진,가을,레이,장원영,리즈,이서
+console.log(iveMembers.join('/')); // 안유진/가을/레이/장원영/리즈/이서
+console.log(iveMembers.join(', ')); // 안유진, 가을, 레이, 장원영, 리즈, 이서
+console.log(iveMembers.join(' ')); // 안유진 가을 레이 장원영 리즈 이서
+console.log(typeof iveMembers.join()); // string
+
+/**
+ * sort() : 오름차순
+ * a와 b를 비교했을 때
+ * 1) a를 b보다 나중에 정렬하려면(뒤애 두려면) 0보다 큰 숫자를 반환
+ * 2) a를 b부다 먼저 정렬하려면(앞에 두려면) 0보다 작은 숫자를 반환
+ * 3) 원래 순서대로 두려면 0을 반환
+ */
+console.log(iveMembers.sort()); // ['가을', '레이', '리즈', '안유진', '이서', '장원영']
+
+let numbers = [1, 9, 7, 5, 3];
+console.log(numbers); // [1, 9, 7, 5, 3]
+
+numbers.sort((a, b) => {
+  return a > b ? 1 : -1;
+});
+console.log(numbers); // 오름차순 : [1, 3, 5, 7, 9]
+
+numbers.sort((a, b) => a > b ? -1 : 1);
+console.log(numbers); // [9, 7, 5, 3, 1]
+
+// reverse() : 역순
+console.log(iveMembers.reverse()); // ['장원영', '이서', '안유진', '리즈', '레이', '가을']
+
+// map()
+console.log(iveMembers.map(x => x)); // ['장원영', '이서', '안유진', '리즈', '레이', '가을']
+console.log(iveMembers.map(x => `아이브: ${x}`)); // ['아이브: 장원영', '아이브: 이서', '아이브: 안유진', '아이브: 리즈', '아이브: 레이', '아이브: 가을']
+console.log(iveMembers.map(x => {
+  if(x === '안유진'){
+    return `아이브: ${x}`;
+  } else {
+		return x;
+	}
+})); // ['장원영', '이서', '아이브: 안유진', '리즈', '레이', '가을']
+console.log(iveMembers); // ['장원영', '이서', '안유진', '리즈', '레이', '가을']
+
+// filter()
+numbers = [1, 8, 7, 6, 3];
+
+console.log(numbers.filter(x => true)); // [1, 8, 7, 6, 3]
+console.log(numbers.filter(x => false)); // []
+console.log(numbers.filter(x => x % 2 === 0)); // [8, 6]
+console.log(numbers); // [1, 8, 7, 6, 3]
+
+// find()
+console.log(numbers.find(x => true)); // 1
+console.log(numbers.find(x => false)); // undefined
+console.log(numbers.find(x => x % 2 === 0)); // 8
+console.log(numbers); // [1, 8, 7, 6, 3]
+
+// findIndex()
+console.log(numbers.findIndex(x => x % 2 === 0)); // 1
+
+// reduce()
+console.log(numbers.reduce((prevValue, currentValue) => prevValue + currentValue)); // 25
