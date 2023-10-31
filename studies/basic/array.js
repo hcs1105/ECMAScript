@@ -50,21 +50,33 @@ fruits.forEach(fruit => console.log(fruit)); // 사과, 바나나
 fruits.push('딸기', '복숭아');
 console.log(fruits); // ['사과', '바나나', '딸기', '복숭아']
 
+console.log(iveMembers.push('창수')); // 7
+console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서', '창수']
+
 // pop : remove an item from the end
 fruits.pop();
 console.log(fruits); // ['사과', '바나나', '딸기']
 fruits.pop();
 console.log(fruits); // ['사과', '바나나']
 
+console.log(iveMembers.pop()); // 창수
+console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
+
 // unshift : add an item to the beginning
 fruits.unshift('딸기', '레몬');
 console.log(fruits); // ['딸기', '레몬', '사과', '바나나']
+
+console.log(iveMembers.unshift('안유진')); // 6
+console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
 
 // shift : remove an item from the beginning
 fruits.shift();
 console.log(fruits); // ['레몬', '사과', '바나나']
 fruits.shift();
 console.log(fruits); // ['사과', '바나나']
+
+console.log(iveMembers.shift()); // 안유진
+console.log(iveMembers); // ['가을', '레이', '장원영', '리즈', '이서']
 
 // note!! shift and unshift are slower than push and pop.
 
@@ -80,10 +92,22 @@ console.log(fruits); // ['사과', '딸기', '복숭아', '레몬']
 fruits.splice(1, 1, '배', '수박');
 console.log(fruits); // ['사과', '배', '수박', '복숭아', '레몬']
 
+console.log(iveMembers.splice(0, 3)); // ['안유진', '가을', '레이']
+console.log(iveMembers); // ['장원영', '리즈', '이서']
+
+// slice()
+console.log(iveMembers.slice(0, 3)); // ['안유진', '가을', '레이']
+console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
+
 // combine two arrays
 const fruit2 = ['포도', '자두'];
 const newFruits = fruits.concat(fruit2);
 console.log(newFruits); // ['사과', '배', '수박', '복숭아', '레몬', '포도', '자두']
+
+iveMembers = ['안유진', '가을', '레이', '장원영', '리즈', '이서'];
+
+console.log(iveMembers.concat('창수')); // ['안유진', '가을', '레이', '장원영', '리즈', '이서', '창수']
+console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
 
 // 5. Searching
 // indexOf : find the index
@@ -101,36 +125,6 @@ fruits.push('사과');
 console.log(fruits); // ['사과', '배', '수박', '복숭아', '레몬', '사과']
 console.log(fruits.indexOf('사과')); // 0
 console.log(fruits.lastIndexOf('사과')); // 5
-
-// push()
-console.log(iveMembers.push('창수')); // 7
-console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서', '창수']
-
-// pop()
-console.log(iveMembers.pop()); // 창수
-console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
-
-// shift()
-console.log(iveMembers.shift()); // 안유진
-console.log(iveMembers); // ['가을', '레이', '장원영', '리즈', '이서']
-
-// unshift()
-console.log(iveMembers.unshift('안유진')); // 6
-console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
-
-// splice()
-console.log(iveMembers.splice(0, 3)); // ['안유진', '가을', '레이']
-console.log(iveMembers); // ['장원영', '리즈', '이서']
-
-iveMembers = ['안유진', '가을', '레이', '장원영', '리즈', '이서'];
-
-// concat()
-console.log(iveMembers.concat('창수')); // ['안유진', '가을', '레이', '장원영', '리즈', '이서', '창수']
-console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
-
-// slice()
-console.log(iveMembers.slice(0, 3)); // ['안유진', '가을', '레이']
-console.log(iveMembers); // ['안유진', '가을', '레이', '장원영', '리즈', '이서']
 
 // spread operator
 const iveMembers_1 = [...iveMembers];
