@@ -7,13 +7,66 @@
 // A collection of related data and/or functionality.
 // Nearly all objects in JavaScript area instances of Object.
 // object = {key : value};
+// If declared as const, the object itself cannot be changed, but the properties or methods inside the object can be changed.
 
 // 1. Literals and properties
 // const obj1 = {}; // object literal syntax
-// const obj2 = new Object(); // object constructor syntax	
+// const obj2 = new Object(); // object constructor syntax
 
 const name = 'hcs1105';
 const age = 20;
+const yujin1 = {
+	name : '안유진',
+	group : '아이브',
+	dance() {
+		console.log(this); // {name: '안유진', group: '아이브', dance: ƒ}
+		return `${this.name}이 춤을 춥니다.`;
+	},
+};
+const key = 'name';
+const nameKey = 'name';
+const nameValue = '안유진';
+const groupKey = 'group';
+const groupValue = '아이브';
+
+console.log(yujin1); // {name: '안유진', group: '아이브', dance: ƒ}
+console.log(yujin1.name); // 안유진
+console.log(yujin1['name']); // 안유진
+console.log(yujin1[key]); // 안유진
+console.log(yujin1.dance()); // 안유진이 춤을 춥니다.
+
+const yujin2 = {
+	[nameKey] : nameValue,
+	[groupKey] : groupValue,
+	dance() {
+		console.log(this); // {name: '안유진', group: '아이브', dance: ƒ}
+		return `${this.name}이 춤을 춥니다.`; // 안유진이 춤을 춥니다.
+	},
+};
+
+console.log(yujin2); // {name: '안유진', group: '아이브', dance: ƒ}
+console.log(yujin2.dance()); // 안유진이 춤을 춥니다.
+
+yujin2.group = 'hcs1105'; 
+console.log(yujin2); // {name: '안유진', group: 'hcs1105', dance: ƒ}
+
+yujin2.englishName = 'An Yujin';
+console.log(yujin2); // {name: '안유진', group: 'hcs1105', englishName: 'An Yujin', dance: ƒ}
+
+delete yujin2.englishName;
+console.log(yujin2); // {name: '안유진', group: 'hcs1105', dance: ƒ}
+
+// Get all keys.
+console.log(Object.keys(yujin2)); // ['name', 'group', 'dance']
+
+// Get all values.
+console.log(Object.values(yujin2)); // ['안유진', 'hcs1105', ƒ]
+
+const yujin3 = {
+	name,
+};
+
+console.log(yujin3); // {name: 'hcs1105'}
 
 print1(name, age);
 
@@ -91,8 +144,6 @@ console.log('age' in hcs1105); // true
 console.log('job' in hcs1105); // false
 console.log(hcs1105.job); // undefined(정의하지 않는 키에 접근할 때)
 
-
-
 // 6. for ..in vs for ..of
 // for (key in object)
 for(const key in hcs1105) {
@@ -126,7 +177,7 @@ for(const key in user) {
 	user3[key] = user[key];
 }
 
-console.clear();
+// console.clear();
 console.log(user3); // {name: 'Front-end Developer', age: 20}
 
 // assign() 메소드를 활용한 방법
@@ -150,3 +201,7 @@ console.log(mixedFruit.size); // big
 const user6 = {...user};
 
 console.log(user6);
+
+/**
+ * Object
+ */
