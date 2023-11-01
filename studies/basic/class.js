@@ -205,6 +205,54 @@ console.log(article1.fedev); // undefined
 console.log(Article.fedev); // Frontend Developer
 Article.printFedev(); // Frontend Developer
 
+class IdolTemplate_3 {
+	name;
+	year;
+	static groupName = '아이브';
+
+	constructor(name, year) {
+		this.name = name;
+		this.year = year;
+	}
+
+	static getGroupName() {
+		return '아이브';
+	}
+}
+
+const yujin_3 = new IdolTemplate_3('안유진', 2003);
+console.log(yujin_3); // IdolTemplate_3 {name: '안유진', year: 2003}
+console.log(IdolTemplate_3.groupName); // 아이브
+console.log(IdolTemplate_3.getGroupName()); // 아이브
+
+/**
+ * factory constrctor
+ */
+
+class IdolTemplate_4 {
+	name;
+	year;
+
+	constructor(name, year) {
+		this.name = name;
+		this.year = year;
+	}
+
+	static fromObject(object) {
+		return new IdolTemplate_4(object.name, object.year);
+	}
+
+	static fromList(list) {
+		return new IdolTemplate_4(list[0], list[1]);
+	}
+}
+
+const yujin_4 = IdolTemplate_4.fromObject({name : '안유진', year : 2003});
+console.log(yujin_4); // IdolTemplate_4 {name: '안유진', year: 2003}
+
+const wonYoung_1 = IdolTemplate_4.fromList(['장원영', 2004]);
+console.log(wonYoung_1); // IdolTemplate_4 {name: '장원영', year: 2004}
+
 // 5. Inheritance
 // A way for one class to extend another class.
 class Shape {
