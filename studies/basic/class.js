@@ -117,6 +117,61 @@ const user1 = new User('Steve', 'Jobs', -1);
 
 console.log(user1.age); // 0
 
+class IdolTemplate_1 {
+	name;
+	year;
+
+	constructor(name, year) {
+		this.name = name;
+		this.year = year;
+	}
+
+	/**
+	 * 1) When processing data and returning new data
+	 * 2) When returning a private value
+	 */
+	get nameAndYear() {
+		return `${this.name}-${this.year}`;
+	}
+
+	set setName(value) {
+		this.name = value;
+	}
+}
+
+const yujin_1 = new IdolTemplate_1('안유진', 2003);
+console.log(yujin_1); // IdolTemplate_1 {name: '안유진', year: 2003}
+console.log(yujin_1.nameAndYear); // 안유진-2003
+
+yujin_1.setName = 'hcs1105';
+console.log(yujin_1); // IdolTemplate_1 {name: 'hcs1105', year: 2003}
+
+class IdolTemplate_2 {
+	#name;
+	year;
+
+	constructor(name, year) {
+		this.#name = name;
+		this.year = year;
+	}
+
+	get name() {
+		return this.#name;
+	}
+
+	set name(value) {
+		this.#name = value;
+	}
+}
+
+const yujin_2 = new IdolTemplate_2('안유진', 2003);
+console.log(yujin_2); // IdolTemplate_2 {year: 2003, #name: '안유진'}
+console.log(yujin_2.name); // 안유진
+
+yujin_2.name = 'hcs1105';
+console.log(yujin_2); // IdolTemplate_2 {year: 2003, #name: 'hcs1105'}
+console.log(yujin_2.name); // hcs1105
+
 // 3. Fields (public, private)
 // Too soon!
 class Experiment {
