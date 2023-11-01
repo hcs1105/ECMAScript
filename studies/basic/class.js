@@ -48,6 +48,45 @@ console.log(hcs1105.name); // hcs1105
 console.log(hcs1105.age); // 20
 hcs1105.speak(); // hcs1105: hello!
 
+class IdolModel {
+	name;
+	year;
+
+	constructor(name, year) {
+		this.name = name;
+		this.year = year;
+	}
+
+	sayName() {
+		return `안녕하세요, 저는 ${this.name}입니다.`;
+	}
+}
+
+const yujin = new IdolModel('안유진', 2003);
+console.log(yujin); // IdolModel {name: '안유진', year: 2003}
+
+const gaeul = new IdolModel('가을', 2002);
+console.log(gaeul); // IdolModel {name: '가을', year: 2002}
+
+const ray = new IdolModel('레이', 2004);
+console.log(ray); // IdolModel {name: '레이', year: 2004}
+
+const wonYoung = new IdolModel('장원영', 2004);
+console.log(wonYoung); // IdolModel {name: '장원영', year: 2004}
+
+const liz = new IdolModel('리즈', 2004);
+console.log(liz); // IdolModel {name: '리즈', year: 2004}
+
+const eseo = new IdolModel('이서', 2007);
+console.log(eseo); // IdolModel {name: '이서', year: 2007}
+
+console.log(yujin.name); // 안유진
+console.log(yujin.year); // 2003
+console.log(yujin.sayName()); // 안녕하세요, 저는 안유진입니다.
+console.log(wonYoung.sayName()); // 안녕하세요, 저는 장원영입니다.
+console.log(typeof IdolModel); // function
+console.log(typeof yujin); // object
+
 // 2. Getter & Setter
 class User {
   constructor(firstName, lastName, age) {
