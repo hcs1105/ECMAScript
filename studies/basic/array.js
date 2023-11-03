@@ -163,7 +163,7 @@ numbers.sort((a, b) => {
 console.log(numbers); // 오름차순 : [1, 3, 5, 7, 9]
 
 numbers.sort((a, b) => a > b ? -1 : 1);
-console.log(numbers); // [9, 7, 5, 3, 1]
+console.log(numbers); // 내림차순 : [9, 7, 5, 3, 1]
 
 // reverse() : 역순
 console.log(iveMembers.reverse()); // ['장원영', '이서', '안유진', '리즈', '레이', '가을']
