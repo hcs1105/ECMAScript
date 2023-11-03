@@ -293,7 +293,45 @@ console.log(rectangle.getArea()); // 400
 
 const triangle = new Triangle(20, 20, 'red');
 triangle.draw(); // drawing red color!
-console.log(triangle.getArea()); // 
+console.log(triangle.getArea()); // 200
+
+class IdolModel_1 {
+	name;
+	year;
+
+	constructor(name, year) {
+		this.name = name;
+		this.year = year;
+	}
+}
+
+class FemaleIdolModel extends IdolModel_1 {
+	dance() {
+		return `여자 아이돌이 춤을 춥니다.`;
+	}
+}
+
+class MaleIdolModel extends IdolModel_1 {
+	sing() {
+		return `남자 아이돌이 노래를 부릅니다.`;
+	}
+}
+
+const yujin_5 = new FemaleIdolModel('안유진', 2003);
+console.log(yujin_5); // FemaleIdolModel {name: '안유진', year: 2003}
+console.log(yujin_5.name); // 안유진
+console.log(yujin_5.dance()); // 여자 아이돌이 춤을 춥니다.
+// console.log(yujin_5.sing()); // Uncaught TypeError: yujin_5.sing is not a function
+
+const jimin = new MaleIdolModel('지민', 1995);
+console.log(jimin); // MaleIdolModel {name: '지민', year: 1995}
+console.log(jimin.year); // 1995
+// console.log(jimin.dance()); // Uncaught TypeError: jimin.dance is not a function
+console.log(jimin.sing()); // 남자 아이돌이 노래를 부릅니다.
+
+const hcs1105_1 = new IdolModel_1('한창수', 1977);
+console.log(hcs1105_1); // IdolModel_1 {name: '한창수', year: 1977}
+console.log(hcs1105_1.name); // 한창수
 
 // 6. Class checking : instanceof
 // instanceof 연산자 : 오브젝트가 특정 클래스에 속한는지 여부를 확인하는 연산자
@@ -304,3 +342,15 @@ console.log(triangle instanceof Triangle); // true
 console.log(triangle instanceof Shape); // true
 console.log(triangle instanceof Object); // true
 console.log(triangle.toString()); // Triangle color : red
+
+console.log(yujin_5 instanceof IdolModel_1); // true
+console.log(yujin_5 instanceof FemaleIdolModel); // true
+console.log(yujin_5 instanceof MaleIdolModel); // false
+
+console.log(jimin instanceof IdolModel_1); // true
+console.log(jimin instanceof FemaleIdolModel); // false
+console.log(jimin instanceof MaleIdolModel); // true
+
+console.log(hcs1105_1 instanceof IdolModel_1); // true
+console.log(hcs1105_1 instanceof FemaleIdolModel); // false
+console.log(hcs1105_1 instanceof MaleIdolModel); // false
