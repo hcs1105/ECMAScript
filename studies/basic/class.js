@@ -228,7 +228,6 @@ console.log(IdolTemplate_3.getGroupName()); // 아이브
 /**
  * factory constrctor
  */
-
 class IdolTemplate_4 {
 	name;
 	year;
@@ -333,6 +332,42 @@ const hcs1105_1 = new IdolModel_1('한창수', 1977);
 console.log(hcs1105_1); // IdolModel_1 {name: '한창수', year: 1977}
 console.log(hcs1105_1.name); // 한창수
 
+class IdolModel_2 {
+	name;
+	year;
+
+	constructor(name, year) {
+		this.name = name;
+		this.year = year;
+	}
+
+	sayHello(){
+		return `안녕하세요! ${this.name}입니다.`;
+	}
+}
+
+class FemaleIdolModel_1 extends IdolModel_2 {
+	part;
+
+	constructor(name, year, part) {
+		super(name, year);
+		this.part = part;
+	}
+
+	sayHello() {
+		// return `안녕하세요! 저는 ${this.name}이며 ${this.part}를 맡고 있습니다.`;
+		return `${super.sayHello()} 그리고 저는 ${this.part}를 맡고 있습니다.`; 
+	}
+}
+
+const yujin_6 = new FemaleIdolModel_1('안유진', 2003, '보컬');
+console.log(yujin_6); // FemaleIdolModel_1 {name: '안유진', year: 2003, part: '보컬'}
+console.log(yujin_6.sayHello()); // 안녕하세요! 안유진입니다. 그리고 저는 보컬를 맡고 있습니다.
+
+const wonYoung_2 = new FemaleIdolModel_1('장원영', 2002);
+console.log(wonYoung_2); // FemaleIdolModel_1 {name: '장원영', year: 2002, part: undefined}
+console.log(wonYoung_2.sayHello()); // 안녕하세요! 장원영입니다. 그리고 저는 undefined를 맡고 있습니다.
+
 // 6. Class checking : instanceof
 // instanceof 연산자 : 오브젝트가 특정 클래스에 속한는지 여부를 확인하는 연산자
 // 참고 URL : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
@@ -354,3 +389,8 @@ console.log(jimin instanceof MaleIdolModel); // true
 console.log(hcs1105_1 instanceof IdolModel_1); // true
 console.log(hcs1105_1 instanceof FemaleIdolModel); // false
 console.log(hcs1105_1 instanceof MaleIdolModel); // false
+
+/**
+ * Super and Override
+ */
+
