@@ -389,8 +389,3 @@ console.log(jimin instanceof MaleIdolModel); // true
 console.log(hcs1105_1 instanceof IdolModel_1); // true
 console.log(hcs1105_1 instanceof FemaleIdolModel); // false
 console.log(hcs1105_1 instanceof MaleIdolModel); // false
-
-/**
- * Super and Override
- */
-
