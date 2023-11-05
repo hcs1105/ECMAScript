@@ -49,9 +49,6 @@ console.log(hcs1105.age); // 20
 hcs1105.speak(); // hcs1105: hello!
 
 class IdolModel {
-	name;
-	year;
-
 	constructor(name, year) {
 		this.name = name;
 		this.year = year;
@@ -118,9 +115,6 @@ const user1 = new User('Steve', 'Jobs', -1);
 console.log(user1.age); // 0
 
 class IdolTemplate_1 {
-	name;
-	year;
-
 	constructor(name, year) {
 		this.name = name;
 		this.year = year;
@@ -148,7 +142,6 @@ console.log(yujin_1); // IdolTemplate_1 {name: 'hcs1105', year: 2003}
 
 class IdolTemplate_2 {
 	#name;
-	year;
 
 	constructor(name, year) {
 		this.#name = name;
@@ -206,8 +199,6 @@ console.log(Article.fedev); // Frontend Developer
 Article.printFedev(); // Frontend Developer
 
 class IdolTemplate_3 {
-	name;
-	year;
 	static groupName = '아이브';
 
 	constructor(name, year) {
@@ -229,9 +220,6 @@ console.log(IdolTemplate_3.getGroupName()); // 아이브
  * factory constrctor
  */
 class IdolTemplate_4 {
-	name;
-	year;
-
 	constructor(name, year) {
 		this.name = name;
 		this.year = year;
@@ -295,9 +283,6 @@ triangle.draw(); // drawing red color!
 console.log(triangle.getArea()); // 200
 
 class IdolModel_1 {
-	name;
-	year;
-
 	constructor(name, year) {
 		this.name = name;
 		this.year = year;
@@ -333,9 +318,6 @@ console.log(hcs1105_1); // IdolModel_1 {name: '한창수', year: 1977}
 console.log(hcs1105_1.name); // 한창수
 
 class IdolModel_2 {
-	name;
-	year;
-
 	constructor(name, year) {
 		this.name = name;
 		this.year = year;
@@ -347,8 +329,6 @@ class IdolModel_2 {
 }
 
 class FemaleIdolModel_1 extends IdolModel_2 {
-	part;
-
 	constructor(name, year, part) {
 		super(name, year);
 		this.part = part;
