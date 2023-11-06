@@ -82,3 +82,21 @@ IdolModel_3.sayStaticHello = function() {
 };
 
 console.log(IdolModel_3.sayStaticHello()); // 안녕하세요, 저는 static method입니다.
+
+/**
+ * property shadowing <=> class overriding
+ */
+function IdolModel_4(name, year) {
+	this.name = name;
+	this.year = year;
+	this.sayHello = function(){
+		return '안녕하세요, 저는 인스턴스 메소드입니다.';
+	};
+}
+
+IdolModel_4.prototype.sayHello = function() { 
+	return '안녕하세요, 저는 prototype method입니다.';
+};
+
+const yujin_4 = new IdolModel_4('안유진', 2003);
+console.log(yujin_4.sayHello()); // 안녕하세요, 저는 인스턴스 메소드입니다.
