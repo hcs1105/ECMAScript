@@ -1,7 +1,6 @@
 /**
  * Prototype
  */
-
 const testObj_1 = {};
 
 /**
@@ -100,3 +99,55 @@ IdolModel_4.prototype.sayHello = function() {
 
 const yujin_4 = new IdolModel_4('안유진', 2003);
 console.log(yujin_4.sayHello()); // 안녕하세요, 저는 인스턴스 메소드입니다.
+
+/**
+ * getPropertyOf, setPropertyOf
+ * change the __proto of an instance vs change __proto of a function
+ */
+function IdolModel_5(name, year) {
+	this.name = name;
+	this.year = year;
+}
+
+IdolModel_5.prototype.sayHello = function() { 
+	return `${this.name}이 인사합니다.`;
+};
+
+function FemaleIdolModel_1(name, year) {
+	this.name = name;
+	this.year = year;
+	this.dance = function() {
+		return `${this.name}가 춤을 춥니다.`;
+	}
+}
+
+const gaeul_1 = new IdolModel_5('가을', 2004);
+const ray_1 = new FemaleIdolModel_1('레이', 2004);
+
+console.log(gaeul_1.__proto__); // {sayHello: ƒ, constructor: ƒ}
+console.log(IdolModel_5.prototype); // {sayHello: ƒ, constructor: ƒ}
+console.log(gaeul_1.__proto__ === IdolModel_5.prototype); // true
+
+console.log(Object.getPrototypeOf(gaeul_1)); // {sayHello: ƒ, constructor: ƒ}
+console.log(Object.getPrototypeOf(gaeul_1) === IdolModel_5.prototype); // true
+
+console.log(gaeul_1.sayHello()); // 가을이 인사합니다.
+console.log(ray_1.dance()); // 레이가 춤을 춥니다.
+
+console.log(Object.getPrototypeOf(ray_1)); // {constructor: ƒ}
+console.log(FemaleIdolModel_1.prototype); // {constructor: ƒ}
+console.log(Object.getPrototypeOf(ray_1) === FemaleIdolModel_1.prototype); // true
+
+Object.setPrototypeOf(ray_1, IdolModel_5.prototype); // FemaleIdolModel_1 {name: '레이', year: 2004, dance: ƒ}
+console.log(ray_1.sayHello()); // 레이이 인사합니다.
+
+console.log(ray_1.constructor); // ƒ IdolModel_5(name, year) {this.name = name; this.year = year;}
+console.log(FemaleIdolModel_1); // ƒ FemaleIdolModel_1(name, year) {this.name = name; this.year = year; this.dance = function() { return `${this.name}가 춤을 춥니다.`;}}
+console.log(IdolModel_5); // ƒ IdolModel_5(name, year) {this.name = name; this.year = year;}
+console.log(gaeul_1.constructor); // ƒ IdolModel_5(name, year) {this.name = name; this.year = year;}
+console.log(ray_1.constructor === FemaleIdolModel_1); // false
+console.log(ray_1.constructor === IdolModel_5); // true
+console.log(gaeul_1.constructor === IdolModel_5); // true
+console.log(Object.getPrototypeOf(ray_1)); // {sayHello: ƒ, constructor: ƒ}
+console.log(FemaleIdolModel_1.prototype); // {constructor: ƒ}
+console.log(Object.getPrototypeOf(ray_1) === FemaleIdolModel_1.prototype); // false
