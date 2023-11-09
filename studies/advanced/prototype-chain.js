@@ -149,5 +149,12 @@ console.log(ray_1.constructor === FemaleIdolModel_1); // false
 console.log(ray_1.constructor === IdolModel_5); // true
 console.log(gaeul_1.constructor === IdolModel_5); // true
 console.log(Object.getPrototypeOf(ray_1)); // {sayHello: ƒ, constructor: ƒ}
-console.log(FemaleIdolModel_1.prototype); // {constructor: ƒ}
 console.log(Object.getPrototypeOf(ray_1) === FemaleIdolModel_1.prototype); // false
+console.log(FemaleIdolModel_1.prototype === IdolModel_5.prototype); // false
+console.log(Object.getPrototypeOf(ray_1) === IdolModel_5.prototype); // true
+
+FemaleIdolModel_1.prototype = IdolModel_5.prototype;
+
+const eseo_1 = new FemaleIdolModel_1('이서', 2007);
+console.log(Object.getPrototypeOf(eseo_1) === FemaleIdolModel_1.prototype); // true
+console.log(FemaleIdolModel_1.prototype === IdolModel_5.prototype); // true
