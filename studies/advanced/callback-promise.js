@@ -37,14 +37,14 @@ const timeoutPromise = new Promise((resolve, reject) => {
 // });
 
 const getPromise = (seconds) => new Promise((resolve, reject) => {
-	let test = 1;
+	const test = 1;
 	setTimeout(() => {
 		// if(test === 2) {
 		// 	resolve('Promise 완료');
 		// } else {
 		// 	reject('Promise 에러');
 		// }
-		reject('Promise 에러');
+	resolve('Promise 완료');
 	}, seconds * 1000);
 });
 
@@ -61,7 +61,6 @@ const getPromise = (seconds) => new Promise((resolve, reject) => {
 // 		console.log('finally');
 // 	});
 
-
 Promise.all([getPromise(1), getPromise(1), getPromise(1)]).then((res) => {
-  console.log(res);
+  console.log(res); // ['Promise 완료', 'Promise 완료', 'Promise 완료']
 });
