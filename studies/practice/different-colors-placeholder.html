@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>placeholder 속성값의 특정 문자열에 다른 색상 적용하기</title>
+	<style>
+		.test_form {
+			& p { 
+				position:relative;
+				font-size:12px;
+				font-family:arial, helvetica, sans-serif;
+				& > label {
+					position:absolute;
+					left:3px;
+					top:3px;
+					& .highlight_text {
+						color:#f00;
+					}
+				}
+			}
+			& .hide-placeholder + label {
+				text-indent:-9999em;
+			}
+		}
+		</style>
+</head>
+<body>
+	<form name="" id="" class="test_form" method="post" action="">
+		<fieldset>
+			<legend>리베하얀님! 최고</legend>
+			<p>
+				<textarea id="rebehayan_zzang"></textarea>
+				<label for="rebehayan_zzang">
+					<span class="highlight_text">블랙</span>프라이데이
+				</label>
+			</p>
+		</fieldset>
+	</form>
+	<script>
+	const rebehayan_zzang = document.querySelector('#rebehayan_zzang'); 	
+	const handlePlaceholder = e => {
+  	const element = e.currentTarget;
+
+		if(element.value.length !== 0) {
+			element.classList.add('hide-placeholder');
+		} else {
+			element.classList.remove('hide-placeholder');
+		}
+	};
+	const handleEvent = (el, ev, fn) => {
+		console.log(el); // <textarea id="rebehayan_zzang"></textarea>
+		console.log(ev); // focus keyup
+  	return ev.split(' ').forEach(e => el.addEventListener(e, fn));
+	};
+
+	handleEvent(rebehayan_zzang, 'focus keyup', handlePlaceholder);
+	</script>
+</body>
+</html>
